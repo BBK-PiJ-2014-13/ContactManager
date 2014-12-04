@@ -5,8 +5,14 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 public class MeetingImpl implements Meeting{
-	public MeetingImpl(int i, Calendar c, Set<Contact> sc) {
-		
+	private int id;
+	private Calendar calendar;
+	private Set<Contact> contacts;
+	
+	public MeetingImpl(int i, Calendar cal, Set<Contact> con) {
+		id = i;
+		calendar = cal;
+		contacts = con;
 	}
 	
 	public int getId() {
