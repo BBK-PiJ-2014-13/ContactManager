@@ -1,3 +1,5 @@
+package contactManagerCore;
+
 /**
 * A meeting that was held in the past.
 *
