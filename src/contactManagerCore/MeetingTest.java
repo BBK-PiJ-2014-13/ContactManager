@@ -11,6 +11,7 @@ public class MeetingTest extends BasicTest {
 	GregorianCalendar gc = new GregorianCalendar();
 	MeetingImpl meeting = new MeetingImpl(10, gc, sc);
 
+	@Test
 	public void testsGetId() {
 		valueExpected = 10;
 		valueActual = meeting.getId();
