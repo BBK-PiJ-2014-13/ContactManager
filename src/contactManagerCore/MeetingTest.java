@@ -9,7 +9,7 @@ import org.junit.Test;
 public class MeetingTest extends BasicTest {
 	HashSet<Contact> sc = new HashSet<Contact>();
 	GregorianCalendar gc = new GregorianCalendar();
-	MeetingMock meeting = new MeetingMock(10, gc, sc);
+	MeetingImpl meeting = new MeetingImpl(10, gc, sc);
 
 	public void testsGetId() {
 		valueExpected = 10;
