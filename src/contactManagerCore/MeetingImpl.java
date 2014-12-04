@@ -16,7 +16,7 @@ public class MeetingImpl implements Meeting{
 	}
 	
 	public int getId() {
-		return 0;
+		return id;
 	}
 	
 	public Calendar getDate() {
