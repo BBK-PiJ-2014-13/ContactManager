@@ -12,7 +12,7 @@ public class MeetingMock {
 		return 0;
 	}
 	
-	public Calendar GetDate(Calendar c) {
+	public Calendar GetDate() {
 		return new GregorianCalendar();
 	}
 }
