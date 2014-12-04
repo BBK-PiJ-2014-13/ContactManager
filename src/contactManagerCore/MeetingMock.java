@@ -5,7 +5,7 @@ public class MeetingMock {
 		
 	}
 	
-	public void getID() {
-		
+	public int getId() {
+		return 0;
 	}
 }
