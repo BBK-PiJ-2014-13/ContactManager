@@ -14,11 +14,10 @@ public class MeetingMock implements Meeting{
 	}
 	
 	public Calendar getDate() {
-		return new GregorianCalendar();
+		return null;
 	}
 
 	public Set<Contact> getContacts() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
