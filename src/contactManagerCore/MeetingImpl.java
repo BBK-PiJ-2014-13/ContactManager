@@ -20,7 +20,7 @@ public class MeetingImpl implements Meeting{
 	}
 	
 	public Calendar getDate() {
-		return null;
+		return calendar;
 	}
 
 	public Set<Contact> getContacts() {
