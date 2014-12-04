@@ -17,7 +17,12 @@ public class MeetingTest extends BasicTest {
 	
 	public void testsGetDate() {
 		valueExpected = gc;
-		valueActual = meeting.GetDate();
+		valueActual = meeting.getDate();
 		test();
+	}
+	
+	@Test
+	public void testsGetContacts() {
+		
 	}
 }
