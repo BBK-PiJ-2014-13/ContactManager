@@ -5,7 +5,7 @@ import java.util.Calendar;
 import org.junit.Test;
 
 public class MeetingTest extends BasicTest {
-	Meeting meeting = new Meeting(10);
+	MeetingMock meeting = new MeetingMock(10);
 
 	@Test
 	public void testsGetId() {
