@@ -22,7 +22,7 @@ public class MeetingTest extends BasicTest {
 		valueActual = meeting.getDate();
 		test();
 	}
-
+	
 	public void testsGetContacts() {
 		valueExpected = sc;
 		valueActual = meeting.getContacts();
