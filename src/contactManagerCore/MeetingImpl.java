@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
-public class MeetingMock implements Meeting{
-	public MeetingMock(int i, Calendar c, Set<Contact> sc) {
+public class MeetingImpl implements Meeting{
+	public MeetingImpl(int i, Calendar c, Set<Contact> sc) {
 		
 	}
 	
