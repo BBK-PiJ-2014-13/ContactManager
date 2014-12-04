@@ -23,7 +23,6 @@ public class MeetingTest extends BasicTest {
 		test();
 	}
 
-	@Test
 	public void testsGetContacts() {
 		valueExpected = sc;
 		valueActual = meeting.getContacts();
