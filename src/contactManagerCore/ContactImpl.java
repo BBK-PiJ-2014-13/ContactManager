@@ -3,6 +3,7 @@ package contactManagerCore;
 public class ContactImpl implements Contact {
 	private int id;
 	private String name;
+	private String notes;
 	
 	public ContactImpl(int id, String name) {
 		this.id = id;
