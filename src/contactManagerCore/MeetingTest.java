@@ -7,9 +7,9 @@ import java.util.HashSet;
 import org.junit.Test;
 
 public class MeetingTest extends BasicTest {
-	HashSet<Contact> sc = new HashSet<Contact>();
-	GregorianCalendar gc = new GregorianCalendar();
-	MeetingImpl meeting = new MeetingImpl(10, gc, sc);
+	HashSet<Contact> contact = new HashSet<Contact>();
+	GregorianCalendar calendar = new GregorianCalendar();
+	MeetingImpl meeting = new MeetingImpl(10, calendar, contact);
 
 	public void testsGetId() {
 		valueExpected = 10;
@@ -18,13 +18,13 @@ public class MeetingTest extends BasicTest {
 	}
 	
 	public void testsGetDate() {
-		valueExpected = gc;
+		valueExpected = calendar;
 		valueActual = meeting.getDate();
 		test();
 	}
 	
 	public void testsGetContacts() {
-		valueExpected = sc;
+		valueExpected = contact;
 		valueActual = meeting.getContacts();
 		test();
 	}
