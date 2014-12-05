@@ -10,4 +10,12 @@ public class ContactTest extends BasicTest {
 		valueActual = contact.getId();
 		test();
 	}
+	
+	public void testsGetName() {
+		valueExpected = "John";
+		valueActual = contact.getName();
+		test();
+	}
+	
+
 }
