@@ -17,5 +17,9 @@ public class ContactTest extends BasicTest {
 		test();
 	}
 	
-
+	public void testsGetNotes() {
+	valueExpected = "";
+	valueActual = contact.getNotes();
+	test();
+	}
 }
