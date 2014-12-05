@@ -9,10 +9,10 @@ public class MeetingImpl implements Meeting{
 	private Calendar calendar;
 	private Set<Contact> contacts;
 	
-	public MeetingImpl(int i, Calendar cal, Set<Contact> con) {
-		id = i;
-		calendar = cal;
-		contacts = con;
+	public MeetingImpl(int id, Calendar calendar, Set<Contact> contacts) {
+		this.id = id;
+		this.calendar = calendar;
+		this.contacts = contacts;
 	}
 	
 	public int getId() {
