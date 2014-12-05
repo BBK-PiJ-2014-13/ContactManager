@@ -11,8 +11,9 @@ public class PastMeetingTest extends BasicTest{
 	String notes = "notes";
 	PastMeetingImpl meeting = new PastMeetingImpl(10, calendar, contact, notes);
 	
-	@Test
 	public void testsGetNotes() {
-		
+		valueExpected = notes;
+		valueActual = meeting.getNotes();
+		test();
 	}
 }
