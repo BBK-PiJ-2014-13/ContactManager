@@ -1,10 +1,7 @@
 package contactManagerCore;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-
-import org.junit.Test;
 
 public class MeetingTest extends BasicTest {
 	HashSet<Contact> contact = new HashSet<Contact>();
