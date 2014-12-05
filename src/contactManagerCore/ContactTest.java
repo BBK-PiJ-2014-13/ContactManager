@@ -22,4 +22,11 @@ public class ContactTest extends BasicTest {
 	valueActual = contact.getNotes();
 	test();
 	}
+	
+	public void testsAddNotes() {
+		contact.addNotes("notes");
+		valueExpected = "notes";
+		valueActual = contact.getNotes();
+		test();
+	}
 }
