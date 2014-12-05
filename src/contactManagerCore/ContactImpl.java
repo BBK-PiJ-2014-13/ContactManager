@@ -10,10 +10,8 @@ public class ContactImpl implements Contact {
 		this.name = name;
 	}
 
-	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
 
 	@Override
