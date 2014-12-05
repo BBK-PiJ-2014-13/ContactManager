@@ -23,10 +23,8 @@ public class ContactImpl implements Contact {
 		return notes;
 	}
 
-	@Override
 	public void addNotes(String note) {
-		// TODO Auto-generated method stub
-		
+		this.notes = note; 
 	}
 
 }
