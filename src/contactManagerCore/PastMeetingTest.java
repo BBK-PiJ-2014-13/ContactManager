@@ -1,5 +1,5 @@
 package contactManagerCore;
 
-public class PastMeetingTest {
-
+public class PastMeetingTest extends BasicTest{
+	
 }
