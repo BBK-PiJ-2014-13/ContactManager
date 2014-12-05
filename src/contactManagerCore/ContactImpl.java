@@ -8,6 +8,7 @@ public class ContactImpl implements Contact {
 	public ContactImpl(int id, String name) {
 		this.id = id;
 		this.name = name;
+		this.notes = "";
 	}
 
 	public int getId() {
@@ -18,10 +19,8 @@ public class ContactImpl implements Contact {
 		return name;
 	}
 
-	@Override
 	public String getNotes() {
-		// TODO Auto-generated method stub
-		return null;
+		return notes;
 	}
 
 	@Override
