@@ -1,6 +1,10 @@
 package contactManagerCore;
 
 public class ContactImpl implements Contact {
+	
+	public ContactImpl(int id, String name) {
+		
+	}
 
 	@Override
 	public int getId() {
