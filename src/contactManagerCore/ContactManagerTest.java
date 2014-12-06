@@ -24,8 +24,8 @@ public class ContactManagerTest extends BasicTest {
 	
 	@Test
 	public void testsGetPastMeeting() {
-		valueExpected = new PastMeetingImpl(0, date, contacts, null);
-		manager.pastMeetings.put(0, (PastMeeting) valueExpected);
+		valueExpected = new MeetingImpl(0, date, contacts);
+		manager.meetings.put(0, (Meeting) valueExpected);
 		valueActual = manager.getPastMeeting(0);
 		test();
 	}
