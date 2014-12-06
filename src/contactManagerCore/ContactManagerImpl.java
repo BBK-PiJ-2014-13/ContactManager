@@ -1,13 +1,13 @@
 package contactManagerCore;
 
 import java.util.Calendar;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
 	// TODO make field private
-	public HashSet<Meeting> meetings = new HashSet<Meeting>();
+	public HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
