@@ -11,7 +11,7 @@ public class ContactManagerTest extends BasicTest {
 	GregorianCalendar date = new GregorianCalendar();
 
 	@Test
-	public void testAddFutureMeeting() {
+	public void testsAddFutureMeeting() {
 		manager.addFutureMeeting(contacts, date);
 		valueExpected = true;
 		if (manager.meetings.get(0) == null) {
