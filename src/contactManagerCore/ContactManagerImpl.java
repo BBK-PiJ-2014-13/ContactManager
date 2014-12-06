@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
-	HashSet<Meeting> meetings = new HashSet<Meeting>();
+	// TODO make field private
+	public HashSet<Meeting> meetings = new HashSet<Meeting>();
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
