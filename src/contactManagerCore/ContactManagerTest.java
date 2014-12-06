@@ -77,5 +77,17 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 	
+	@Test
+	public void testsAddNewPastMeeting() {
+		manager.addNewPastMeeting(contacts, date, "notes");
+		valueExpected = true;
+		if (manager.meetings.size() == 0) {
+			valueActual = false;
+		} else {
+			valueActual = true;
+		}
+		test();
+	}
+	
 
 }
