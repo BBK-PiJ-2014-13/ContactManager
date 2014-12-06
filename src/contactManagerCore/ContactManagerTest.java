@@ -46,5 +46,10 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 	
+	@Test
+	public void testsGetFutureMeetingList() {
+		
+	}
+	
 	
 }
