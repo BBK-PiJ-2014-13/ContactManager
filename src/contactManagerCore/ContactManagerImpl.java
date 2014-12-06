@@ -8,6 +8,7 @@ import java.util.Set;
 public class ContactManagerImpl implements ContactManager {
 	// TODO make field private
 	public HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
+	public HashMap<Integer, PastMeeting> pastMeetings = new HashMap<Integer, PastMeeting>();
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
