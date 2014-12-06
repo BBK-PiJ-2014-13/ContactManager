@@ -69,5 +69,13 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getFutureMeetingList(date);
 		test();
 	}
+	
+	@Test
+	public void testsGetPastMeetingList() {
+		valueExpected = new ArrayList<PastMeeting>();
+		valueActual = manager.getPastMeetingList(contact);
+		test();
+	}
+	
 
 }
