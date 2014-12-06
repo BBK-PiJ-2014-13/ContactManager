@@ -29,4 +29,12 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getPastMeeting(0);
 		test();
 	}
+	
+	@Test
+	public void testsGetFutureMeeting() {
+		valueExpected = new MeetingImpl(0, date, contacts);
+		manager.meetings.put(0, (Meeting) valueExpected);
+		valueActual = manager.getFutureMeeting(0);
+		test();
+	}
 }
