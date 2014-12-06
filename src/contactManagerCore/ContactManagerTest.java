@@ -1,14 +1,24 @@
 package contactManagerCore;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.LinkedList;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class ContactManagerTest extends BasicTest {
-	ContactManagerImpl manager = new ContactManagerImpl();
+	ContactManagerImpl manager;
+	ContactImpl contact = new ContactImpl(0, null);
 	HashSet<Contact> contacts = new HashSet<Contact>();
 	GregorianCalendar date = new GregorianCalendar();
+
+	@Before
+	public void buildUp() {
+		manager = new ContactManagerImpl();
+	}
 
 	@Test
 	public void testsAddFutureMeeting() {
@@ -21,7 +31,7 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test();
 	}
-	
+
 	@Test
 	public void testsGetPastMeeting() {
 		valueExpected = new MeetingImpl(0, date, contacts);
@@ -29,7 +39,7 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getPastMeeting(0);
 		test();
 	}
-	
+
 	@Test
 	public void testsGetFutureMeeting() {
 		valueExpected = new MeetingImpl(0, date, contacts);
@@ -37,7 +47,7 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getFutureMeeting(0);
 		test();
 	}
-	
+
 	@Test
 	public void testsGetMeeting() {
 		valueExpected = new MeetingImpl(0, date, contacts);
@@ -45,11 +55,19 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getMeeting(0);
 		test();
 	}
-	
+
 	@Test
-	public void testsGetFutureMeetingList() {
-		
+	public void testsGetFutureMeetingList(Contact contact) {
+		valueExpected = new ArrayList<Contact>();
+		valueActual = manager.getFutureMeetingList(contact);
+		test();
 	}
-	
-	
+
+	@Test
+	public void testsGetFutureMeetingList(Calendar date) {
+		valueExpected = new ArrayList<Contact>();
+		valueActual = manager.getFutureMeetingList(date);
+		test();
+	}
+
 }
