@@ -1,11 +1,13 @@
 package contactManagerCore;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
-
+	HashSet<Meeting> meetings = new HashSet<Meeting>();
+	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		// TODO Auto-generated method stub
