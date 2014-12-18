@@ -33,11 +33,15 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetPastMeetingAndAddNewPastMeeting() {
+	public void testsAddAndGetPastMeeting() {
 		manager.addNewPastMeeting(contacts, date, "notes1");
 		manager.addNewPastMeeting(contacts, date, "notes2");
 		valueExpected = "notes2";
 		valueActual = manager.getPastMeeting(1).getNotes();
+		test();
+		
+		valueExpected = null;
+		valueActual = manager.getPastMeeting(2);
 		test();
 	}
 
