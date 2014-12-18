@@ -18,7 +18,14 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		return (PastMeeting) meetings.get(id);
+		if (meetings.get(id) == null) {
+			return null; 
+		} else 	if (meetings.get(id).getClass() == PastMeeting.class) {
+			return (PastMeeting) meetings.get(id); 
+		} else {
+			return null;
+		}
+		
 	}
 
 	@Override
