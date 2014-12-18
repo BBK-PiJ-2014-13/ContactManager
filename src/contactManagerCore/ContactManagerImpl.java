@@ -7,12 +7,12 @@ import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
 	// TODO make field private
-	public HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
+	public HashMap<Integer, Meeting> futureMeetings = new HashMap<Integer, Meeting>();
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-		Meeting meeting = new FutureMeetingImpl(meetings.size(), date, contacts);
-		meetings.put(meeting.getId(), meeting);
+		Meeting meeting = new FutureMeetingImpl(futureMeetings.size(), date, contacts);
+		futureMeetings.put(meeting.getId(), meeting);
 		return meeting.getId();
 	}
 
@@ -55,7 +55,6 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
-		// TODO Auto-generated method stub
 		
 	}
 
