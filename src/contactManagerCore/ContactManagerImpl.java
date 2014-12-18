@@ -1,5 +1,6 @@
 package contactManagerCore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,19 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		// TODO Auto-generated method stub
+		List<Meeting> resultList = new ArrayList<Meeting>();
+		for (int i = 0; i < meetings.size(); i++) {
+			if (meetings.get(i) instanceof FutureMeeting) {
+				for (int j = 0; j < meetings.get(i).getContacts().size(); i++) {
+					if (meetings.get(i).equals(contact)) {
+						resultList.add(meetings.get(i));
+						break;
+					}
+				}
+			}
+		}
+
+		// go through the final list and sort it chronologically
 		return null;
 	}
 
