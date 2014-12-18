@@ -25,7 +25,7 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsAddFutureMeeting() {
+	public void testsAddAndGetFutureMeeting() {
 		valueExpected = 1;
 		manager.addFutureMeeting(contacts, date);
 		valueActual = manager.addFutureMeeting(contacts, date);
@@ -42,14 +42,6 @@ public class ContactManagerTest extends BasicTest {
 		
 		valueExpected = null;
 		valueActual = manager.getPastMeeting(2);
-		test();
-	}
-
-	@Test
-	public void testsGetFutureMeeting() {
-		valueExpected = new MeetingImpl(0, date, contacts);
-		manager.meetings.put(0, (FutureMeeting) valueExpected);
-		valueActual = manager.getFutureMeeting(0);
 		test();
 	}
 
