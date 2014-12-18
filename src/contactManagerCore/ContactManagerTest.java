@@ -45,11 +45,17 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+
 	@Test
 	public void testsGetMeeting() {
-		valueExpected = new MeetingImpl(0, date, contacts);
-		manager.meetings.put(0, (Meeting) valueExpected);
-		valueActual = manager.getMeeting(0);
+		manager.addNewPastMeeting(contacts, date, "notes1");
+		manager.addFutureMeeting(contacts, date);
+		valueExpected = 1;
+		valueActual = manager.getMeeting(1).getId();
+		test();
+
+		valueExpected = null;
+		valueActual = manager.getMeeting(2);
 		test();
 	}
 
