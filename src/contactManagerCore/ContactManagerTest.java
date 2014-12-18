@@ -44,7 +44,7 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void testsGetFutureMeeting() {
 		valueExpected = new MeetingImpl(0, date, contacts);
-		manager.futureMeetings.put(0, (FutureMeeting) valueExpected);
+		manager.meetings.put(0, (FutureMeeting) valueExpected);
 		valueActual = manager.getFutureMeeting(0);
 		test();
 	}
@@ -52,7 +52,7 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void testsGetMeeting() {
 		valueExpected = new MeetingImpl(0, date, contacts);
-		manager.futureMeetings.put(0, (Meeting) valueExpected);
+		manager.meetings.put(0, (Meeting) valueExpected);
 		valueActual = manager.getMeeting(0);
 		test();
 	}
@@ -83,7 +83,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, date);
 		valueExpected = "notes";
 		manager.addMeetingNotes(0, "notes");
-		valueActual = ((PastMeetingImpl) manager.futureMeetings.get(0)).getNotes();
+		valueActual = ((PastMeetingImpl) manager.meetings.get(0)).getNotes();
 		test();
 	}
 
