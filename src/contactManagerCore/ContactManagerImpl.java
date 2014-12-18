@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
-	private HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
+	// TODO make field private
+	public HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
