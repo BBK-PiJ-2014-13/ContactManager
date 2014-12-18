@@ -18,18 +18,15 @@ public class ContactManagerTest extends BasicTest {
 	@Before
 	public void buildUp() {
 		manager = new ContactManagerImpl();
-		contact = new ContactImpl(0, null);
+		contact = new ContactImpl(13, null);
 		date = new GregorianCalendar();
 	}
 
 	@Test
 	public void testsAddFutureMeeting() {
 		manager.addFutureMeeting(contacts, date);
-		valueExpected = true;
-		valueActual = false;
-		if (manager.meetings.get(0) != null) {
-			valueActual = true;
-		}
+		valueExpected = 13;
+		valueActual = manager.meetings.get(0).getId() == 13;
 		test();
 	}
 
@@ -70,14 +67,14 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getFutureMeetingList(date);
 		test();
 	}
-	
+
 	@Test
 	public void testsGetPastMeetingList() {
 		valueExpected = new ArrayList<PastMeeting>();
 		valueActual = manager.getPastMeetingList(contact);
 		test();
 	}
-	
+
 	@Test
 	public void testsAddNewPastMeeting() {
 		manager.addNewPastMeeting(contacts, date, "notes");
@@ -89,7 +86,7 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test();
 	}
-	
+
 	@Test
 	public void testsAddMeetingNotes() {
 		manager.addFutureMeeting(contacts, date);
@@ -98,6 +95,5 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = ((PastMeetingImpl) manager.meetings.get(0)).getNotes();
 		test();
 	}
-	
 
 }
