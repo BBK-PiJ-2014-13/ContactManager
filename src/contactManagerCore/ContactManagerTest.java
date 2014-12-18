@@ -12,13 +12,15 @@ import org.junit.Test;
 public class ContactManagerTest extends BasicTest {
 	ContactManagerImpl manager;
 	ContactImpl contact;
-	HashSet<Contact> contacts = new HashSet<Contact>();
+	HashSet<Contact> contacts;
 	GregorianCalendar date;
 
 	@Before
 	public void buildUp() {
 		manager = new ContactManagerImpl();
 		contact = new ContactImpl(13, null);
+		contacts = new HashSet<Contact>();
+		contacts.add(contact);
 		date = new GregorianCalendar();
 	}
 
