@@ -33,10 +33,11 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetPastMeeting() {
-		valueExpected = new MeetingImpl(0, date, contacts);
-		manager.futureMeetings.put(0, (PastMeeting) valueExpected);
-		valueActual = manager.getPastMeeting(0);
+	public void testsGetPastMeetingAndAddNewPastMeeting() {
+		manager.addNewPastMeeting(contacts, date, "notes1");
+		manager.addNewPastMeeting(contacts, date, "notes2");
+		valueExpected = "notes2";
+		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
 	}
 
@@ -74,15 +75,6 @@ public class ContactManagerTest extends BasicTest {
 	public void testsGetPastMeetingList() {
 		valueExpected = new ArrayList<PastMeeting>();
 		valueActual = manager.getPastMeetingList(contact);
-		test();
-	}
-
-	@Test
-	public void testsAddNewPastMeeting() {
-		manager.addNewPastMeeting(contacts, date, "notes1");
-		manager.addNewPastMeeting(contacts, date, "notes2");
-		valueExpected = "notes2";
-		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
 	}
 
