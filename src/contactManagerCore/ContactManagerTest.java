@@ -27,8 +27,8 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, date);
 		valueExpected = true;
 		valueActual = false;
-		if (manager.meetings.get(0) == null) {
-			valueActual = false;
+		if (manager.meetings.get(0) != null) {
+			valueActual = true;
 		}
 		test();
 	}
