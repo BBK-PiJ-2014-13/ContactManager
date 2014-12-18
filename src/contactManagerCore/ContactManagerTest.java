@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -99,4 +99,9 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	public void testsSortChronologically() {
+		List<Meeting> list = new ArrayList<Meeting>();
+		Calendar date1 = new GregorianCalendar(); 
+		test();
+	}
 }
