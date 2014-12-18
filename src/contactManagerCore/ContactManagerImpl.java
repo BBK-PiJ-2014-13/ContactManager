@@ -20,7 +20,7 @@ public class ContactManagerImpl implements ContactManager {
 	public PastMeeting getPastMeeting(int id) {
 		if (meetings.get(id) == null) {
 			return null; 
-		} else 	if (meetings.get(id).getClass() == PastMeeting.class) {
+		} else 	if (meetings.get(id) instanceof PastMeeting) {
 			return (PastMeeting) meetings.get(id); 
 		} else {
 			return null;
