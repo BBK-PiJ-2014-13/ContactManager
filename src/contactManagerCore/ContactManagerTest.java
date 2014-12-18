@@ -79,13 +79,10 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsAddNewPastMeeting() {
-		manager.addNewPastMeeting(contacts, date, "notes");
-		valueExpected = true;
-		if (manager.meetings.size() == 0) {
-			valueActual = false;
-		} else {
-			valueActual = true;
-		}
+		manager.addNewPastMeeting(contacts, date, "notes1");
+		manager.addNewPastMeeting(contacts, date, "notes2");
+		valueExpected = "notes2";
+		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
 	}
 
