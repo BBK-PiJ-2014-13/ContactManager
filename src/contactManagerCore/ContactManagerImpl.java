@@ -57,6 +57,10 @@ public class ContactManagerImpl implements ContactManager {
 		// go through the final list and sort it chronologically
 		return null;
 	}
+	
+	private List<Meeting> sortChronologically(List<Meeting> list) {
+		return null;
+	}
 
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
