@@ -10,8 +10,9 @@ public class ContactManagerImpl implements ContactManager {
 	
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-		
-		return 0;
+		Meeting meeting = new FutureMeetingImpl(meetings.size(), date, contacts);
+		meetings.put(meeting.getId(), meeting);
+		return meeting.getId();
 	}
 
 	@Override
