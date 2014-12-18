@@ -26,9 +26,8 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsAddFutureMeeting() {
-		manager.addFutureMeeting(contacts, date);
-		valueExpected = 13;
-		valueActual = manager.meetings.get(0).getId() == 13;
+		valueExpected = 0;
+		valueActual = manager.addFutureMeeting(contacts, date);
 		test();
 	}
 
