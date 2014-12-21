@@ -2,6 +2,7 @@ package contactManagerCore;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -55,7 +56,8 @@ public class ContactManagerImpl implements ContactManager {
 		}
 
 		// go through the final list and sort it chronologically
-		return null;
+		resultList = sortChronologically(resultList);
+		return resultList;
 	}
 	
 	private List<Meeting> sortChronologically(List<Meeting> list) {
