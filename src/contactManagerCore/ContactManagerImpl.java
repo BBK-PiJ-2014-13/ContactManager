@@ -109,7 +109,7 @@ public class ContactManagerImpl implements ContactManager {
 		for (int i = 0; i < meetings.size(); i++) {
 			Meeting curElement = meetings.get(i);
 			if (curElement instanceof PastMeeting && curElement.getId() == id) {
-				((PastMeetingImpl) meetings.get(i)).setNotes(text);
+				((PastMeetingImpl) meetings.get(i)).addNotes(text);
 			}
 		}
 
