@@ -3,6 +3,7 @@ package contactManagerCore;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class ContactManagerImpl implements ContactManager {
 	// TODO make field private
 	public HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
-	
+
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		Meeting meeting = new FutureMeetingImpl(meetings.size(), date, contacts);
@@ -21,13 +22,13 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public PastMeeting getPastMeeting(int id) {
 		if (meetings.get(id) == null) {
-			return null; 
-		} else 	if (meetings.get(id) instanceof PastMeeting) {
-			return (PastMeeting) meetings.get(id); 
+			return null;
+		} else if (meetings.get(id) instanceof PastMeeting) {
+			return (PastMeeting) meetings.get(id);
 		} else {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -59,11 +60,17 @@ public class ContactManagerImpl implements ContactManager {
 		resultList = sortChronologically(resultList);
 		return resultList;
 	}
-	
-	private List<Meeting> sortChronologically(List<Meeting> list) {
-		return null;
-	}
 
+	private List<Meeting> sortChronologically(List<Meeting> list) {
+		Collections.sort(list, new Comparator<Meeting>() {
+
+			@Override
+			public int compare(Meeting m1, Meeting m2) {
+				return m1.getDate().getTime().compareTo(m2.getDate().getTime());
+			}} );
+		return list;
+	}
+			    
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
 		// TODO Auto-generated method stub
@@ -79,20 +86,21 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
-		Meeting meeting = new PastMeetingImpl(meetings.size(), date, contacts, text);
+		Meeting meeting = new PastMeetingImpl(meetings.size(), date, contacts,
+				text);
 		meetings.put(meeting.getId(), meeting);
 	}
 
 	@Override
 	public void addMeetingNotes(int id, String text) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addNewContact(String name, String notes) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -110,7 +118,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
