@@ -21,7 +21,6 @@ public class ContactManagerTest extends BasicTest {
 		manager = new ContactManagerImpl();
 		contact = new ContactImpl(13, null);
 		contacts = new HashSet<Contact>();
-		contacts.add(contact);
 		date = new GregorianCalendar();
 	}
 
@@ -63,12 +62,11 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void testsGetFutureMeetingListContact() {
 		contacts.add(contact);
-		manager.getMeeting(manager.addFutureMeeting(contacts, date));
+		manager.addFutureMeeting(contacts, date);
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
-		Meeting meetingReturn = manager.getMeeting(manager.addFutureMeeting(contacts, date));
 		manager.getFutureMeetingList(contact);
-		valueExpected = meetingReturn;
-		valueActual = manager.getPastMeetingList(contact).get(1);
+		valueExpected = 1;
+		valueActual = manager.getFutureMeetingList(contact).size();
 		test();
 	}
 	
