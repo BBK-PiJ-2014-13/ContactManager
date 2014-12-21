@@ -108,8 +108,8 @@ public class ContactManagerImpl implements ContactManager {
 	public void addMeetingNotes(int id, String text) {
 		for (int i = 0; i < meetings.size(); i++) {
 			Meeting curElement = meetings.get(i);
-			if (curElement instanceof PastMeeting) {
-				curElement.setNotes(text);
+			if (curElement instanceof PastMeeting && curElement.getId() == id) {
+				((PastMeetingImpl) meetings.get(i)).setNotes(text);
 			}
 		}
 
