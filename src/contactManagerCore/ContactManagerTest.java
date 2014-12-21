@@ -2,6 +2,7 @@ package contactManagerCore;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
@@ -73,8 +74,23 @@ public class ContactManagerTest extends BasicTest {
 	
 	@Test
 	public void testsSortChronologically() {
+		Meeting meeting0 =  new FutureMeetingImpl(0, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
+		Meeting meeting1 =  new FutureMeetingImpl(1, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
+		Meeting meeting2 =  new FutureMeetingImpl(2, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
+		ArrayList<Meeting> arrayList = new ArrayList<Meeting>();
+		arrayList.add(meeting0);
+		arrayList.add(meeting1);
+		arrayList.add(meeting2);
+		valueExpected = 0;
+		valueActual = arrayList.get(0).getId();
+		test();
 		
-	}
+		valueExpected = 1;
+		valueActual = arrayList.get(0).getId();
+		test();
+			
+		}
+		
 
 	@Test
 	public void testsGetFutureMeetingListCalendar() {
