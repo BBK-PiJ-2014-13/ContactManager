@@ -61,7 +61,7 @@ public class ContactManagerImpl implements ContactManager {
 		return resultList;
 	}
 
-	private List<Meeting> sortChronologically(List<Meeting> list) {
+	public List<Meeting> sortChronologically(List<Meeting> list) {
 		Collections.sort(list, new Comparator<Meeting>() {
 
 			@Override
