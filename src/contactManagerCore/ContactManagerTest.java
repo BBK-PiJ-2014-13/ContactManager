@@ -94,8 +94,8 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsGetFutureMeetingListCalendar() {
-		Calendar date1 = new GregorianCalendar(2015, 01, 05, 12, 00);
-		Calendar date2 = new GregorianCalendar(2015, 01, 05, 12, 00);
+		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
+		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
 		manager.addFutureMeeting(contacts, date1);
 		manager.addFutureMeeting(contacts, date2);
 		manager.addFutureMeeting(contacts, date1);
