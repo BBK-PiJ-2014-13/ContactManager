@@ -47,8 +47,8 @@ public class ContactManagerImpl implements ContactManager {
 		List<Meeting> resultList = new ArrayList<Meeting>();
 		for (int i = 0; i < meetings.size(); i++) {
 			if (meetings.get(i) instanceof FutureMeeting) {
-				for (int j = 0; j < meetings.get(i).getContacts().size(); i++) {
-					if (meetings.get(i).equals(contact)) {
+				for (int j = 0; j < meetings.get(i).getContacts().size(); j++) {
+					if (meetings.get(i).getContacts().contains(contact)) {
 						resultList.add(meetings.get(i));
 						break;
 					}
