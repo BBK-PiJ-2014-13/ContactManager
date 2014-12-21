@@ -39,12 +39,11 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = "notes2";
 		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
-		
+
 		valueExpected = null;
 		valueActual = manager.getPastMeeting(2);
 		test();
 	}
-
 
 	@Test
 	public void testsGetMeeting() {
@@ -64,17 +63,20 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(contact);
 		manager.addFutureMeeting(contacts, date);
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
-		
+
 		valueExpected = 1;
 		valueActual = manager.getFutureMeetingList(contact).size();
 		test();
 	}
-	
+
 	@Test
 	public void testsSortChronologically() {
-		Meeting meeting0 =  new FutureMeetingImpl(0, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
-		Meeting meeting1 =  new FutureMeetingImpl(1, new GregorianCalendar(2015, 01, 04, 12, 00), contacts);
-		Meeting meeting2 =  new FutureMeetingImpl(2, new GregorianCalendar(2015, 01, 05, 12, 10), contacts);
+		Meeting meeting0 = new FutureMeetingImpl(0, new GregorianCalendar(2015,
+				01, 05, 12, 00), contacts);
+		Meeting meeting1 = new FutureMeetingImpl(1, new GregorianCalendar(2015,
+				01, 04, 12, 00), contacts);
+		Meeting meeting2 = new FutureMeetingImpl(2, new GregorianCalendar(2015,
+				01, 05, 12, 10), contacts);
 		ArrayList<Meeting> arrayList = new ArrayList<Meeting>();
 		arrayList.add(meeting0);
 		arrayList.add(meeting1);
@@ -82,19 +84,24 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = 0;
 		valueActual = arrayList.get(0).getId();
 		test();
-		
+
 		manager.sortChronologically(arrayList);
 		valueExpected = 1;
 		valueActual = arrayList.get(0).getId();
 		test();
-			
-		}
-		
+
+	}
 
 	@Test
 	public void testsGetFutureMeetingListCalendar() {
-		valueExpected = new ArrayList<Contact>();
-		valueActual = manager.getFutureMeetingList(date);
+		Calendar date1 = new GregorianCalendar(2015, 01, 05, 12, 00);
+		Calendar date2 = new GregorianCalendar(2015, 01, 05, 12, 00);
+		manager.addFutureMeeting(contacts, date1);
+		manager.addFutureMeeting(contacts, date2);
+		manager.addFutureMeeting(contacts, date1);
+		
+		valueExpected = 2;
+		valueActual = manager.getFutureMeetingList(date1).size();
 		test();
 	}
 
@@ -103,7 +110,8 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(contact);
 		manager.getMeeting(manager.addFutureMeeting(contacts, date));
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
-		Meeting meetingReturn = manager.getMeeting(manager.addFutureMeeting(contacts, date));
+		Meeting meetingReturn = manager.getMeeting(manager.addFutureMeeting(
+				contacts, date));
 		// TODO figure ut this test
 		// manager.getFutureMeetingList(contact);
 		valueExpected = meetingReturn;
