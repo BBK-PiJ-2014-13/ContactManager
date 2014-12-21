@@ -75,8 +75,8 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void testsSortChronologically() {
 		Meeting meeting0 =  new FutureMeetingImpl(0, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
-		Meeting meeting1 =  new FutureMeetingImpl(1, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
-		Meeting meeting2 =  new FutureMeetingImpl(2, new GregorianCalendar(2015, 01, 05, 12, 00), contacts);
+		Meeting meeting1 =  new FutureMeetingImpl(1, new GregorianCalendar(2015, 01, 04, 12, 00), contacts);
+		Meeting meeting2 =  new FutureMeetingImpl(2, new GregorianCalendar(2015, 01, 05, 12, 10), contacts);
 		ArrayList<Meeting> arrayList = new ArrayList<Meeting>();
 		arrayList.add(meeting0);
 		arrayList.add(meeting1);
