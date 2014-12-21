@@ -92,8 +92,24 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> startingList = new ArrayList<Meeting>();
+		for (int i = 0; i < meetings.size(); i++) {
+			if (meetings.get(i) instanceof PastMeeting) {
+				for (int j = 0; j < meetings.get(i).getContacts().size(); j++) {
+					if (meetings.get(i).getContacts().contains(contact)) {
+						startingList.add(meetings.get(i));
+						break;
+					}
+				}
+			}
+		}
+
+		startingList = sortChronologically(startingList);
+		List<PastMeeting> resultList = new ArrayList<PastMeeting>();
+		for (int i = 0; i < startingList.size(); i++) {
+			resultList.add((PastMeeting) startingList.get(i));
+		}
+		return resultList;
 	}
 
 	@Override
