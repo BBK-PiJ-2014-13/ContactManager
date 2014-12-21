@@ -15,6 +15,7 @@ public class ContactManagerTest extends BasicTest {
 	ContactImpl contact;
 	HashSet<Contact> contacts;
 	GregorianCalendar date;
+	String notes;
 
 	@Before
 	public void buildUp() {
@@ -22,6 +23,7 @@ public class ContactManagerTest extends BasicTest {
 		contact = new ContactImpl(13, "Arnold");
 		contacts = new HashSet<Contact>();
 		date = new GregorianCalendar();
+		notes = "hello world";
 	}
 
 	@Test
@@ -108,23 +110,19 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void testsGetPastMeetingList() {
 		contacts.add(contact);
-		manager.getMeeting(manager.addFutureMeeting(contacts, date));
-		manager.addFutureMeeting(new HashSet<Contact>(), date);
-		Meeting meetingReturn = manager.getMeeting(manager.addFutureMeeting(
-				contacts, date));
-		// TODO figure ut this test
-		// manager.getFutureMeetingList(contact);
-		valueExpected = meetingReturn;
-		valueActual = manager.getPastMeetingList(contact).get(1);
+		manager.addNewPastMeeting(contacts, date, notes);
+		manager.addNewPastMeeting(new HashSet<Contact>(), date, notes);
+
+		valueExpected = 1;
+		valueActual = manager.getPastMeetingList(contact).size();
 		test();
 	}
 
 	@Test
 	public void testsAddMeetingNotes() {
-		manager.addNewPastMeeting(contacts, date, null);
-		manager.addMeetingNotes(0, "notes");
-		valueExpected = "notes";
-		manager.addMeetingNotes(0, "notes");
+		manager.addNewPastMeeting(contacts, date, "hello");
+		manager.addMeetingNotes(0, "\nworld");
+		valueExpected = "hello\nworld";
 		valueActual = manager.getPastMeeting(0).getNotes();
 		test();
 	}
