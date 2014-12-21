@@ -121,10 +121,10 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsAddMeetingNotes() {
-		manager.addFutureMeeting(contacts, date);
+		manager.addNewPastMeeting(contacts, date, "notes");
 		valueExpected = "notes";
 		manager.addMeetingNotes(0, "notes");
-		valueActual = ((PastMeetingImpl) manager.meetings.get(0)).getNotes();
+		valueActual = manager.getPastMeeting(0).getNotes();
 		test();
 	}
 
