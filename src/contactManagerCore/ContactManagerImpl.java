@@ -56,7 +56,6 @@ public class ContactManagerImpl implements ContactManager {
 			}
 		}
 
-		// go through the final list and sort it chronologically
 		resultList = sortChronologically(resultList);
 		return resultList;
 	}
