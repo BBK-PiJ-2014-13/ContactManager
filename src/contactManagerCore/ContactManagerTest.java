@@ -70,6 +70,11 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getPastMeetingList(contact).get(1);
 		test();
 	}
+	
+	@Test
+	public void testsSortChronologically() {
+		
+	}
 
 	@Test
 	public void testsGetFutureMeetingListCalendar() {
@@ -99,9 +104,4 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	public void testsSortChronologically() {
-		List<Meeting> list = new ArrayList<Meeting>();
-		Calendar date1 = new GregorianCalendar(); 
-		test();
-	}
 }
