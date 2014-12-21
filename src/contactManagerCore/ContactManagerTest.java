@@ -85,6 +85,7 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = arrayList.get(0).getId();
 		test();
 		
+		manager.sortChronologically(arrayList);
 		valueExpected = 1;
 		valueActual = arrayList.get(0).getId();
 		test();
