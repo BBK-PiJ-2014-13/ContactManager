@@ -121,7 +121,8 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsAddMeetingNotes() {
-		manager.addNewPastMeeting(contacts, date, "notes");
+		manager.addNewPastMeeting(contacts, date, null);
+		manager.addMeetingNotes(0, "notes");
 		valueExpected = "notes";
 		manager.addMeetingNotes(0, "notes");
 		valueActual = manager.getPastMeeting(0).getNotes();
