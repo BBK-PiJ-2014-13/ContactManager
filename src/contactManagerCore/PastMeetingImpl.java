@@ -14,5 +14,10 @@ public class PastMeetingImpl extends MeetingImpl implements PastMeeting{
 	public String getNotes() {
 		return notes;
 	}
+	
+	public String setNotes(String input) {
+		notes += input + "\n";
+		return notes;
+	}
 
 }
