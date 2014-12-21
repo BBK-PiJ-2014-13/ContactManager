@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,19 +49,6 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetMeeting() {
-		manager.addNewPastMeeting(contacts, date, "notes1");
-		manager.addFutureMeeting(contacts, date);
-		valueExpected = 1;
-		valueActual = manager.getMeeting(1).getId();
-		test();
-
-		valueExpected = null;
-		valueActual = manager.getMeeting(2);
-		test();
-	}
-
-	@Test
 	public void testsGetFutureMeetingListContact() {
 		contacts.add(contact);
 		manager.addFutureMeeting(contacts, date);
@@ -68,6 +56,19 @@ public class ContactManagerTest extends BasicTest {
 
 		valueExpected = 1;
 		valueActual = manager.getFutureMeetingList(contact).size();
+		test();
+	}
+
+	@Test
+	public void testsGetFutureMeetingListCalendar() {
+		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
+		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
+		manager.addFutureMeeting(contacts, date1);
+		manager.addFutureMeeting(contacts, date2);
+		manager.addFutureMeeting(contacts, date1);
+
+		valueExpected = 2;
+		valueActual = manager.getFutureMeetingList(date1).size();
 		test();
 	}
 
@@ -95,19 +96,6 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetFutureMeetingListCalendar() {
-		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
-		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
-		manager.addFutureMeeting(contacts, date1);
-		manager.addFutureMeeting(contacts, date2);
-		manager.addFutureMeeting(contacts, date1);
-		
-		valueExpected = 2;
-		valueActual = manager.getFutureMeetingList(date1).size();
-		test();
-	}
-
-	@Test
 	public void testsGetPastMeetingList() {
 		contacts.add(contact);
 		manager.addNewPastMeeting(contacts, date, notes);
@@ -119,11 +107,60 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
+	public void testsAddFutureMeeting() {
+		test();
+	}
+
+	@Test
+	public void testsGetPastMeeting() {
+		test();
+	}
+
+	@Test
+	public void testsGetFutureMeeting() {
+		test();
+	}
+
+	@Test
+	public void testsGetMeeting() {
+		manager.addNewPastMeeting(contacts, date, "notes1");
+		manager.addFutureMeeting(contacts, date);
+		valueExpected = 1;
+		valueActual = manager.getMeeting(1).getId();
+		test();
+
+		valueExpected = null;
+		valueActual = manager.getMeeting(2);
+		test();
+	}
+
+	@Test
 	public void testsAddMeetingNotes() {
 		manager.addNewPastMeeting(contacts, date, "hello");
 		manager.addMeetingNotes(0, "\nworld");
 		valueExpected = "hello\nworld";
 		valueActual = manager.getPastMeeting(0).getNotes();
+		test();
+	}
+
+	@Test
+	public void testsAddNewContact() {
+		test();
+
+	}
+
+	@Test
+	public void testsGetContactsInt() {
+		test();
+	}
+
+	@Test
+	public void testsGetContactsString() {
+		test();
+	}
+
+	@Test
+	public void testsFlush() {
 		test();
 	}
 
