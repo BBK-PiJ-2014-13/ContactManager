@@ -28,7 +28,7 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsAddAndGetFutureMeeting() {
+	public void addFutureMeetingTest() {
 		valueExpected = 1;
 		manager.addFutureMeeting(contacts, date);
 		valueActual = manager.addFutureMeeting(contacts, date);
@@ -36,7 +36,7 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsAddAndGetPastMeeting() {
+	public void getPastMeetingTest() {
 		manager.addNewPastMeeting(contacts, date, "notes1");
 		manager.addNewPastMeeting(contacts, date, "notes2");
 		valueExpected = "notes2";
@@ -49,7 +49,25 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetFutureMeetingListContact() {
+	public void getFutureMeetingTest() {
+		// Is tested by addFutureMeetingTest()
+	}
+
+	@Test
+	public void getMeeting() {
+		manager.addNewPastMeeting(contacts, date, "notes1");
+		manager.addFutureMeeting(contacts, date);
+		valueExpected = 1;
+		valueActual = manager.getMeeting(1).getId();
+		test();
+
+		valueExpected = null;
+		valueActual = manager.getMeeting(2);
+		test();
+	}
+
+	@Test
+	public void getFutureMeetingListTest_Contact() {
 		contacts.add(contact);
 		manager.addFutureMeeting(contacts, date);
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
@@ -60,7 +78,7 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	@Test
-	public void testsGetFutureMeetingListCalendar() {
+	public void getFutureMeetingListTest_Calendar() {
 		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
 		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
 		manager.addFutureMeeting(contacts, date1);
@@ -69,6 +87,58 @@ public class ContactManagerTest extends BasicTest {
 
 		valueExpected = 2;
 		valueActual = manager.getFutureMeetingList(date1).size();
+		test();
+	}
+
+	@Test
+	public void getPastMeetingListTest() {
+		contacts.add(contact);
+		manager.addNewPastMeeting(contacts, date, notes);
+		manager.addNewPastMeeting(new HashSet<Contact>(), date, notes);
+
+		valueExpected = 1;
+		valueActual = manager.getPastMeetingList(contact).size();
+		test();
+	}
+
+	public void addNewPastMeetingTest() {
+		// Is tested by getPastMeetingTest()
+	}
+
+	@Test
+	public void addMeetingNotesTest() {
+		manager.addNewPastMeeting(contacts, date, "hello");
+		manager.addMeetingNotes(0, "\nworld");
+		valueExpected = "hello\nworld";
+		valueActual = manager.getPastMeeting(0).getNotes();
+		test();
+	}
+
+	@Test
+	public void addNewContactTest() {
+		valueExpected = 1;
+		valueActual = 0;
+		test();
+	}
+
+	@Test
+	public void getContactsTest_Int() {
+		valueExpected = 1;
+		valueActual = 0;
+		test();
+	}
+
+	@Test
+	public void getContactsTest_String() {
+		valueExpected = 1;
+		valueActual = 0;
+		test();
+	}
+
+	@Test
+	public void flushTest() {
+		valueExpected = 1;
+		valueActual = 0;
 		test();
 	}
 
@@ -93,75 +163,6 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = arrayList.get(0).getId();
 		test();
 
-	}
-
-	@Test
-	public void testsGetPastMeetingList() {
-		contacts.add(contact);
-		manager.addNewPastMeeting(contacts, date, notes);
-		manager.addNewPastMeeting(new HashSet<Contact>(), date, notes);
-
-		valueExpected = 1;
-		valueActual = manager.getPastMeetingList(contact).size();
-		test();
-	}
-
-	@Test
-	public void testsAddFutureMeeting() {
-		test();
-	}
-
-	@Test
-	public void testsGetPastMeeting() {
-		test();
-	}
-
-	@Test
-	public void testsGetFutureMeeting() {
-		test();
-	}
-
-	@Test
-	public void testsGetMeeting() {
-		manager.addNewPastMeeting(contacts, date, "notes1");
-		manager.addFutureMeeting(contacts, date);
-		valueExpected = 1;
-		valueActual = manager.getMeeting(1).getId();
-		test();
-
-		valueExpected = null;
-		valueActual = manager.getMeeting(2);
-		test();
-	}
-
-	@Test
-	public void testsAddMeetingNotes() {
-		manager.addNewPastMeeting(contacts, date, "hello");
-		manager.addMeetingNotes(0, "\nworld");
-		valueExpected = "hello\nworld";
-		valueActual = manager.getPastMeeting(0).getNotes();
-		test();
-	}
-
-	@Test
-	public void testsAddNewContact() {
-		test();
-
-	}
-
-	@Test
-	public void testsGetContactsInt() {
-		test();
-	}
-
-	@Test
-	public void testsGetContactsString() {
-		test();
-	}
-
-	@Test
-	public void testsFlush() {
-		test();
 	}
 
 }
