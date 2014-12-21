@@ -104,7 +104,8 @@ public class ContactManagerTest extends BasicTest {
 		manager.getMeeting(manager.addFutureMeeting(contacts, date));
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
 		Meeting meetingReturn = manager.getMeeting(manager.addFutureMeeting(contacts, date));
-		manager.getFutureMeetingList(contact);
+		// TODO figure ut this test
+		// manager.getFutureMeetingList(contact);
 		valueExpected = meetingReturn;
 		valueActual = manager.getPastMeetingList(contact).get(1);
 		test();
