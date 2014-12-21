@@ -106,7 +106,12 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addMeetingNotes(int id, String text) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < meetings.size(); i++) {
+			Meeting curElement = meetings.get(i);
+			if (curElement instanceof PastMeeting) {
+				curElement.setNotes(text);
+			}
+		}
 
 	}
 
