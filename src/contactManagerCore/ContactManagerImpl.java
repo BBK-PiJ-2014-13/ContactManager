@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -66,14 +68,26 @@ public class ContactManagerImpl implements ContactManager {
 			@Override
 			public int compare(Meeting m1, Meeting m2) {
 				return m1.getDate().getTime().compareTo(m2.getDate().getTime());
-			}} );
+			}
+		});
 		return list;
 	}
-			    
+
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Meeting> resultList = new ArrayList<Meeting>();
+		for (int i = 0; i < meetings.size(); i++) {
+			Meeting curMeeting = meetings.get(i);
+			Calendar curElement = curMeeting.getDate();
+			Date thisDate = new GregorianCalendar(date.get(Calendar.YEAR), date.get(Calendar.MONTH),
+					date.get(Calendar.DATE)).getTime();
+			Date targetDate = new GregorianCalendar(curElement.get(Calendar.YEAR), curElement.get(Calendar.MONTH),
+					curElement.get(Calendar.DATE)).getTime();
+			if (thisDate.equals(targetDate)) {
+				resultList.add(curMeeting);
+			}
+		}
+		return sortChronologically(resultList);
 	}
 
 	@Override
