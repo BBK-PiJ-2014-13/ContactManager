@@ -125,6 +125,15 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = 2;
 		valueActual = manager.getContacts(1, 2).toArray().length;
 		test();
+		
+		valueExpected = 0;
+		valueActual = 1;
+		try {
+			
+		} catch (NullPointerException e) {
+			valueExpected = 1;
+		}
+		test();
 	}
 
 	@Test
