@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -139,7 +140,9 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public Set<Contact> getContacts(int... ids) {
-		// TODO Auto-generated method stub
+		HashSet<Contact> resultSet = new HashSet<Contact>();
+		for (int i = 0; i < contacts.size(); i++) {
+		}
 		return null;
 	}
 
