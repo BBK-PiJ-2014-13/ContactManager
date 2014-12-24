@@ -42,6 +42,9 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public Meeting getMeeting(int id) {
+		if (id >= meetings.size()) {
+			return null;
+		}
 		return meetings.get(id);
 	}
 
@@ -171,8 +174,11 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub
-
+		// Write to file
+	}
+	
+	public void writeNeetings() {
+		
 	}
 
 }
