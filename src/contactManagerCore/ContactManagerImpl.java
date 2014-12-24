@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -135,13 +134,16 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewContact(String name, String notes) {
 		contacts.add(new ContactImpl(contacts.size(), name));
-		contacts.get(contacts.size()).addNotes(notes);
+		contacts.get(contacts.size() - 1).addNotes(notes);
 
 	}
 
 	@Override
 	public Set<Contact> getContacts(int... ids) {
 		HashSet<Contact> resultSet = new HashSet<Contact>();
+		if (ids == null) {
+			throw new NullPointerException();
+		}
 		int[] arguments = ids;
 		Contact curElem;
 		for (int i = 0; i < arguments.length; i++) {
