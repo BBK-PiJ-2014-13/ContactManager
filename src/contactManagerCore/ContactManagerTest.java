@@ -139,8 +139,21 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getContactsTest_String() {
+		manager.addNewContact("Jones", "manager");
+		manager.addNewContact("Arnold", "actor");
+		manager.addNewContact("Obama", "president");
 		valueExpected = 1;
-		valueActual = 0;
+		valueActual = manager.getContacts("Jones").toArray().length;
+		test();
+		
+		valueExpected = 0;
+		valueActual = 1;
+		String emptyStr = null;
+		try {
+			manager.getContacts(emptyStr);
+		} catch (NullPointerException e) {
+			valueExpected = 1;
+		}
 		test();
 	}
 
