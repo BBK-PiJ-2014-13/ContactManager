@@ -107,11 +107,7 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getFutureMeetingListTest_Contact() {
-		contacts.add(contact);
-		manager.addFutureMeeting(contacts, date);
-		manager.addFutureMeeting(contacts, date);
-		manager.addFutureMeeting(new HashSet<Contact>(), date);
-		if (manager.getFutureMeetingList(contact).size() == 2) {
+		if (manager.getFutureMeetingList(contact).size() == 0) {
 			valueActual = 1;
 		}
 		test();
