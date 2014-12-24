@@ -194,4 +194,7 @@ public class ContactManagerImpl implements ContactManager {
 		
 	}
 
+	public void hasAllContacts(Set<Contact> set) {
+		// TODO write this method
+	}
 }
