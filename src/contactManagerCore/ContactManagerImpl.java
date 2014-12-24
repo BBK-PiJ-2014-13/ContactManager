@@ -18,7 +18,11 @@ public class ContactManagerImpl implements ContactManager {
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		int isInPast = date.getTime().compareTo(new Date());
 		boolean hasAllContacts = this.contacts.containsAll(contacts);
-		if (isInPast == -1 || !hasAllContacts) {
+		if (isInPast == -1) {
+			throw new IllegalArgumentException();
+		}
+		
+		if (!hasAllContacts) {
 			throw new IllegalArgumentException();
 		}
 		Meeting meeting = new FutureMeetingImpl(meetings.size(), date, contacts);
