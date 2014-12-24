@@ -118,7 +118,7 @@ public class ContactManagerImpl implements ContactManager {
 			String text) {
 		Meeting meeting = new PastMeetingImpl(meetings.size(), date, contacts,
 				text);
-		meetings.put(meeting.getId(), meeting);
+		meetings.add(meeting);
 	}
 
 	@Override
