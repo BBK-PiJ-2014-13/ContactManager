@@ -105,11 +105,13 @@ public class ContactManagerTest extends BasicTest {
 	public void getFutureMeetingListTest_Contact() {
 		contacts.add(contact);
 		manager.addFutureMeeting(contacts, date);
+		manager.addFutureMeeting(contacts, date);
 		manager.addFutureMeeting(new HashSet<Contact>(), date);
-
-		valueExpected = 1;
-		valueActual = manager.getFutureMeetingList(contact).size();
+		if (manager.getFutureMeetingList(contact).size() == 2) {
+			valueActual = 1;
+		}
 		test();
+		buildUp();
 	}
 
 	@Test
