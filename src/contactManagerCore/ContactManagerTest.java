@@ -34,7 +34,6 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.addFutureMeeting(contacts, date);
 		
 		valueActual = 0;
-		Date date = new Date();
 		try {
 			manager.addFutureMeeting(contacts, new GregorianCalendar(2013, 1, 1));
 		} catch (IllegalArgumentException e) {
