@@ -131,7 +131,7 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Test if the size of return Collection is right
-		
+
 		valueActual = 0;
 		if (manager.getFutureMeetingList(contact1).get(2).getDate().DAY_OF_MONTH == 4) {
 			valueActual = 1;
@@ -251,6 +251,15 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsHasAllContacts() {
-		
+		Set<Contact> smallSet = new HashSet<Contact>();
+
+		manager.addNewContact("John", "director");
+		manager.addNewContact("Tom", "programmer");
+		smallSet.add(new ContactImpl(0, "John"));
+
+		if (manager.hasAllContacts(smallSet)) {
+			valueActual = 1;
+		}
+		test();
 	}
 }
