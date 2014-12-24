@@ -177,7 +177,11 @@ public class ContactManagerImpl implements ContactManager {
 		// Write to file
 	}
 	
-	public void writeNeetings() {
+	public void writeMeetings() {
+		
+	}
+	
+	public void writeContacts() {
 		
 	}
 
