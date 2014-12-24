@@ -37,16 +37,16 @@ public class ContactManagerTest extends BasicTest {
 		valueActual = manager.getFutureMeetingList(date).size();
 		test();
 		buildUp();
-		
-		
+
 		try {
-			manager.addFutureMeeting(contacts, new GregorianCalendar(2010, 1, 1));
+			manager.addFutureMeeting(contacts,
+					new GregorianCalendar(2010, 1, 1));
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
 		test();
 		buildUp();
-		
+
 		contact = new ContactImpl(0, "Arnold");
 		contact.addNotes("actor");
 		manager.addNewContact("Arnold", "actor");
@@ -72,7 +72,7 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = null;
 		valueActual = manager.getPastMeeting(10);
 		test();
-		
+
 		valueExpected = 0;
 		valueActual = 1;
 		try {
@@ -97,7 +97,7 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test();
-		
+
 		valueActual = 0;
 		if (manager.getMeeting(10) == null) {
 			valueActual = 1;
@@ -112,6 +112,25 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test();
 		buildUp();
+
+		Contact contact1 = new ContactImpl(0, "John");
+		contact1.addNotes(notes);
+		contacts.add(contact1);
+		manager.addNewContact("John", notes);
+
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2015, 1, 2));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2015, 1, 1));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2015, 1, 5));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2015, 1, 4));
+		manager.addNewPastMeeting(contacts, new GregorianCalendar(2010, 1, 1),
+				notes);
+		manager.addNewPastMeeting(contacts, new GregorianCalendar(2011, 1, 1),
+				notes);
+
+		if (manager.getFutureMeetingList(contact1).size() == 4) {
+			valueActual = 1;
+		}
+		test(); // Test if the size of return Collection is right
 	}
 
 	@Test
@@ -163,10 +182,10 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = 2;
 		valueActual = manager.getContacts(1, 2).toArray().length;
 		test();
-		
+
 		valueExpected = 0;
 		valueActual = 1;
-		int[] array = {0, 1, 4};
+		int[] array = { 0, 1, 4 };
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
@@ -183,7 +202,7 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = 1;
 		valueActual = manager.getContacts("Jones").toArray().length;
 		test();
-		
+
 		valueExpected = 0;
 		valueActual = 1;
 		String emptyStr = null;
