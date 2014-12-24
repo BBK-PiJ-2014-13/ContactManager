@@ -128,6 +128,8 @@ public class ContactManagerTest extends BasicTest {
 		
 		valueExpected = 0;
 		valueActual = 1;
+		int[] array = null;
+		manager.getContacts(array);
 		try {
 			
 		} catch (NullPointerException e) {
