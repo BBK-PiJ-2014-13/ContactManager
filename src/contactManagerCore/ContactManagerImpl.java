@@ -1,6 +1,7 @@
 package contactManagerCore;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
@@ -195,7 +197,20 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public boolean hasAllContacts(Set<Contact> set) {
-		// TODO write this method
-		return false;
+		ArrayList<Contact> smallList = new ArrayList<Contact>();
+		ArrayList<Contact> bigList = new ArrayList<Contact>();
+		
+		Iterator<Contact> iterator = set.iterator();
+		while(iterator.hasNext()) {
+			Contact curElem = iterator.next();
+			smallList.add(new ContactImpl(curElem.getId(), curElem.getName()));
+		}
+		
+		for (int i = 0; i < contactsList.size(); i++) {
+			Contact curElem = contactsList.get(i);
+			bigList.add(new ContactImpl(curElem.getId(), curElem.getName()));
+		}
+		
+		return bigList.containsAll(smallList);
 	}
 }
