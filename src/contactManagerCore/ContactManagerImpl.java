@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
-	private ArrayList<Meeting> meetings = new ArrayList<Meeting>();
-	private ArrayList<Contact> contacts = new ArrayList<Contact>();
+	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
+	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		int isInPast = date.getTime().compareTo(new Date());
-		boolean hasAllContacts = this.contacts.containsAll(contacts);
+		boolean hasAllContacts = this.contactsList.containsAll(contacts);
 		if (isInPast == -1) {
 			throw new IllegalArgumentException();
 		}
@@ -25,18 +25,18 @@ public class ContactManagerImpl implements ContactManager {
 		if (!hasAllContacts) {
 			throw new IllegalArgumentException();
 		}
-		Meeting meeting = new FutureMeetingImpl(meetings.size(), date, contacts);
-		meetings.add(meeting);
+		Meeting meeting = new FutureMeetingImpl(meetingsList.size(), date, contacts);
+		meetingsList.add(meeting);
 		return meeting.getId();
 	}
 
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		if (id >= meetings.size()) {
+		if (id >= meetingsList.size()) {
 			return null;
 		}
-		if (meetings.get(id) instanceof PastMeeting) {
-			return (PastMeeting) meetings.get(id);
+		if (meetingsList.get(id) instanceof PastMeeting) {
+			return (PastMeeting) meetingsList.get(id);
 		} else {
 			throw new IllegalArgumentException();
 		}
@@ -51,20 +51,20 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public Meeting getMeeting(int id) {
-		if (id >= meetings.size()) {
+		if (id >= meetingsList.size()) {
 			return null;
 		}
-		return meetings.get(id);
+		return meetingsList.get(id);
 	}
 
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		List<Meeting> resultList = new ArrayList<Meeting>();
-		for (int i = 0; i < meetings.size(); i++) {
-			if (meetings.get(i) instanceof FutureMeeting) {
-				for (int j = 0; j < meetings.get(i).getContacts().size(); j++) {
-					if (meetings.get(i).getContacts().contains(contact)) {
-						resultList.add(meetings.get(i));
+		for (int i = 0; i < meetingsList.size(); i++) {
+			if (meetingsList.get(i) instanceof FutureMeeting) {
+				for (int j = 0; j < meetingsList.get(i).getContacts().size(); j++) {
+					if (meetingsList.get(i).getContacts().contains(contact)) {
+						resultList.add(meetingsList.get(i));
 						break;
 					}
 				}
@@ -89,8 +89,8 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Calendar date) {
 		List<Meeting> resultList = new ArrayList<Meeting>();
-		for (int i = 0; i < meetings.size(); i++) {
-			Meeting curMeeting = meetings.get(i);
+		for (int i = 0; i < meetingsList.size(); i++) {
+			Meeting curMeeting = meetingsList.get(i);
 			Calendar curElement = curMeeting.getDate();
 			Date thisDate = new GregorianCalendar(date.get(Calendar.YEAR), date.get(Calendar.MONTH),
 					date.get(Calendar.DATE)).getTime();
@@ -106,11 +106,11 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
 		List<Meeting> startingList = new ArrayList<Meeting>();
-		for (int i = 0; i < meetings.size(); i++) {
-			if (meetings.get(i) instanceof PastMeeting) {
-				for (int j = 0; j < meetings.get(i).getContacts().size(); j++) {
-					if (meetings.get(i).getContacts().contains(contact)) {
-						startingList.add(meetings.get(i));
+		for (int i = 0; i < meetingsList.size(); i++) {
+			if (meetingsList.get(i) instanceof PastMeeting) {
+				for (int j = 0; j < meetingsList.get(i).getContacts().size(); j++) {
+					if (meetingsList.get(i).getContacts().contains(contact)) {
+						startingList.add(meetingsList.get(i));
 						break;
 					}
 				}
@@ -128,17 +128,17 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
-		Meeting meeting = new PastMeetingImpl(meetings.size(), date, contacts,
+		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date, contacts,
 				text);
-		meetings.add(meeting);
+		meetingsList.add(meeting);
 	}
 
 	@Override
 	public void addMeetingNotes(int id, String text) {
-		for (int i = 0; i < meetings.size(); i++) {
-			Meeting curElement = meetings.get(i);
+		for (int i = 0; i < meetingsList.size(); i++) {
+			Meeting curElement = meetingsList.get(i);
 			if (curElement instanceof PastMeeting && curElement.getId() == id) {
-				((PastMeetingImpl) meetings.get(i)).addNotes(text);
+				((PastMeetingImpl) meetingsList.get(i)).addNotes(text);
 			}
 		}
 
@@ -146,8 +146,8 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addNewContact(String name, String notes) {
-		contacts.add(new ContactImpl(contacts.size(), name));
-		contacts.get(contacts.size() - 1).addNotes(notes);
+		contactsList.add(new ContactImpl(contactsList.size(), name));
+		contactsList.get(contactsList.size() - 1).addNotes(notes);
 
 	}
 
@@ -155,11 +155,11 @@ public class ContactManagerImpl implements ContactManager {
 	public Set<Contact> getContacts(int... ids) {
 		HashSet<Contact> resultSet = new HashSet<Contact>();
 		for (int i = 0; i < ids.length; i++) {
-			if (ids[i] >= contacts.size()) {
+			if (ids[i] >= contactsList.size()) {
 				throw new IllegalArgumentException();
 			}
-			if (contacts.get(ids[i]) != null) {
-				resultSet.add(contacts.get(ids[i]));
+			if (contactsList.get(ids[i]) != null) {
+				resultSet.add(contactsList.get(ids[i]));
 			}
 		}
 		return resultSet;
@@ -172,8 +172,8 @@ public class ContactManagerImpl implements ContactManager {
 			throw new NullPointerException();
 		}
 		Contact curElem;
-		for (int i = 0; i < contacts.size(); i++) {
-			curElem = contacts.get(i);
+		for (int i = 0; i < contactsList.size(); i++) {
+			curElem = contactsList.get(i);
 			if (curElem.getName() == name) {
 				resultSet.add(curElem);
 			}
