@@ -39,12 +39,22 @@ public class ContactManagerTest extends BasicTest {
 	public void getPastMeetingTest() {
 		manager.addNewPastMeeting(contacts, date, "notes1");
 		manager.addNewPastMeeting(contacts, date, "notes2");
+		manager.addFutureMeeting(contacts, date);
 		valueExpected = "notes2";
 		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
 
 		valueExpected = null;
-		valueActual = manager.getPastMeeting(2);
+		valueActual = manager.getPastMeeting(10);
+		test();
+		
+		valueExpected = 0;
+		valueActual = 1;
+		try {
+			manager.getPastMeeting(2);
+		} catch (IllegalArgumentException e) {
+			valueExpected = 1;
+		}
 		test();
 	}
 
