@@ -247,7 +247,10 @@ public class ContactManagerTest extends BasicTest {
 		valueExpected = 1;
 		valueActual = arrayList.get(0).getId();
 		test();
-
 	}
 
+	@Test
+	public void testsHasAllContacts() {
+		
+	}
 }
