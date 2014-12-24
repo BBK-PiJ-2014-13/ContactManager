@@ -131,6 +131,12 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Test if the size of return Collection is right
+		
+		valueActual = 0;
+		if (manager.getFutureMeetingList(contact1).get(2).getDate().DAY_OF_MONTH == 4) {
+			valueActual = 1;
+		}
+		test(); // Test if the list is chronologically sorted
 	}
 
 	@Test
