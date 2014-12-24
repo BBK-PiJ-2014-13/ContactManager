@@ -25,12 +25,13 @@ public class ContactManagerImpl implements ContactManager {
 	public PastMeeting getPastMeeting(int id) {
 		if (id >= meetings.size()) {
 			return null;
-		} else if (meetings.get(id) instanceof PastMeeting) {
+		}
+		if (meetings.get(id) instanceof PastMeeting) {
 			return (PastMeeting) meetings.get(id);
 		} else {
-			return null;
+			throw new IllegalArgumentException();
 		}
-
+		
 	}
 
 	@Override
