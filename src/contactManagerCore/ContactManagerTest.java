@@ -47,7 +47,11 @@ public class ContactManagerTest extends BasicTest {
 		test();
 		buildUp();
 		
+		contact = new ContactImpl(0, "Arnold");
+		contact.addNotes("actor");
+		manager.addNewContact("Arnold", "actor");
 		contacts.add(contact);
+		contacts.add(new ContactImpl(13, "John"));
 		try {
 			manager.addFutureMeeting(contacts, date);
 		} catch (IllegalArgumentException e) {
