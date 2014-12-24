@@ -51,6 +51,7 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void getFutureMeetingTest() {
 		// Is tested by addFutureMeetingTest()
+		test();
 	}
 
 	@Test
@@ -103,6 +104,7 @@ public class ContactManagerTest extends BasicTest {
 
 	public void addNewPastMeetingTest() {
 		// Is tested by getPastMeetingTest()
+		test();
 	}
 
 	@Test
