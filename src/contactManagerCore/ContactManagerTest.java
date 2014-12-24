@@ -118,15 +118,17 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addNewContactTest() {
-		valueExpected = 1;
-		valueActual = 0;
+		// Tested by getContactsTest_Int()
 		test();
 	}
 
 	@Test
 	public void getContactsTest_Int() {
-		valueExpected = 1;
-		valueActual = 0;
+		manager.addNewContact("Jones", "manager");
+		manager.addNewContact("Arnold", "actor");
+		manager.addNewContact("Obama", "president");
+		valueExpected = 2;
+		valueActual = manager.getContacts(1, 2).toArray().length;
 		test();
 	}
 
