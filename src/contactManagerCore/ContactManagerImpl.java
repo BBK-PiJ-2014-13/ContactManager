@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class ContactManagerImpl implements ContactManager {
 	private HashMap<Integer, Meeting> meetings = new HashMap<Integer, Meeting>();
+	private HashMap<Integer, Contact> contacts = new HashMap<Integer, Contact>();
 
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
