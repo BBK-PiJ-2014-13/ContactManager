@@ -42,7 +42,15 @@ public class ContactManagerTest extends BasicTest {
 		try {
 			manager.addFutureMeeting(contacts, new GregorianCalendar(2010, 1, 1));
 		} catch (IllegalArgumentException e) {
-			System.out.println("go called");
+			valueActual = 1;
+		}
+		test();
+		buildUp();
+		
+		contacts.add(contact);
+		try {
+			manager.addFutureMeeting(contacts, date);
+		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
 		test();
