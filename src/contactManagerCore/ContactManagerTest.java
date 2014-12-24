@@ -32,12 +32,18 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addFutureMeetingTest() {
 		manager.addFutureMeeting(contacts, date);
-		valueActual = manager.addFutureMeeting(contacts, date);
+		manager.addFutureMeeting(contacts, date);
+		valueExpected = 2;
+		valueActual = manager.getFutureMeetingList(date).size();
+		test();
+		buildUp();
+		
 		
 		try {
-			manager.addFutureMeeting(contacts, new GregorianCalendar(2013, 1, 1));
+			manager.addFutureMeeting(contacts, new GregorianCalendar(2010, 1, 1));
 		} catch (IllegalArgumentException e) {
-			valueExpected = 1;
+			System.out.println("go called");
+			valueActual = 1;
 		}
 		test();
 	}
