@@ -134,7 +134,8 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addNewContact(String name, String notes) {
-		// TODO Auto-generated method stub
+		contacts.add(new ContactImpl(contacts.size(), name));
+		contacts.get(contacts.size()).addNotes(notes);
 
 	}
 
