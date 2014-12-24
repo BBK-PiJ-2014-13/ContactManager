@@ -23,7 +23,7 @@ public class ContactManagerTest extends BasicTest {
 		manager = new ContactManagerImpl();
 		contact = new ContactImpl(13, "Arnold");
 		contacts = new HashSet<Contact>();
-		date = new GregorianCalendar();
+		date = new GregorianCalendar(2015, 1, 1);
 		notes = "hello world";
 		valueExpected = 1;
 		valueActual = 0;
@@ -31,11 +31,9 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addFutureMeetingTest() {
-		valueExpected = 1;
 		manager.addFutureMeeting(contacts, date);
 		valueActual = manager.addFutureMeeting(contacts, date);
 		
-		valueActual = 0;
 		try {
 			manager.addFutureMeeting(contacts, new GregorianCalendar(2013, 1, 1));
 		} catch (IllegalArgumentException e) {
