@@ -131,7 +131,7 @@ public class ContactManagerTest extends BasicTest {
 		int[] array = null;
 		try {
 			manager.getContacts(array);
-		} catch (NullPointerException e) {
+		} catch (IllegalArgumentException e) {
 			valueExpected = 1;
 		}
 		test();
