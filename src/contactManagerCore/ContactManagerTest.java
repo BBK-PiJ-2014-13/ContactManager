@@ -116,10 +116,8 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
 	public void addNewContactTest() {
 		// Tested by getContactsTest_Int()
-		test();
 	}
 
 	@Test
