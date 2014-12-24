@@ -67,11 +67,16 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewPastMeeting(contacts, date, "notes1");
 		manager.addFutureMeeting(contacts, date);
 		valueExpected = 1;
-		valueActual = manager.getMeeting(1).getId();
+		valueActual = 0;
+		if (manager.getMeeting(1) != null) {
+			valueActual = 1;
+		}
 		test();
-
-		valueExpected = null;
-		valueActual = manager.getMeeting(2);
+		
+		valueActual = 0;
+		if (manager.getMeeting(10) == null) {
+			valueActual = 1;
+		}
 		test();
 	}
 
