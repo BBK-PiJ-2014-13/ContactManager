@@ -128,7 +128,7 @@ public class ContactManagerTest extends BasicTest {
 		
 		valueExpected = 0;
 		valueActual = 1;
-		int[] array = null;
+		int[] array = {0, 1, 4};
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
