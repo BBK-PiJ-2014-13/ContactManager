@@ -23,7 +23,7 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public PastMeeting getPastMeeting(int id) {
-		if (meetings.get(id) == null) {
+		if (id >= meetings.size()) {
 			return null;
 		} else if (meetings.get(id) instanceof PastMeeting) {
 			return (PastMeeting) meetings.get(id);
@@ -154,8 +154,18 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public Set<Contact> getContacts(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		HashSet<Contact> resultSet = new HashSet<Contact>();
+		if (name == null) {
+			throw new NullPointerException();
+		}
+		Contact curElem;
+		for (int i = 0; i < contacts.size(); i++) {
+			curElem = contacts.get(i);
+			if (curElem.getName() == name) {
+				resultSet.add(curElem);
+			}
+		}
+		return resultSet;
 	}
 
 	@Override
