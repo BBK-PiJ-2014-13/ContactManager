@@ -141,15 +141,12 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public Set<Contact> getContacts(int... ids) {
 		HashSet<Contact> resultSet = new HashSet<Contact>();
-		int[] arguments = ids;
-		Contact curElem;
-		for (int i = 0; i < arguments.length; i++) {
-			curElem = contacts.get(arguments[i]);
-			if (curElem == null) {
+		for (int i = 0; i < ids.length; i++) {
+			if (ids[i] >= contacts.size()) {
 				throw new IllegalArgumentException();
 			}
-			if (curElem != null) {
-				resultSet.add(contacts.get(arguments[i]));
+			if (contacts.get(ids[i]) != null) {
+				resultSet.add(contacts.get(ids[i]));
 			}
 		}
 		return resultSet;
