@@ -197,7 +197,7 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public boolean hasAllContacts(Set<Contact> set) {
-				
+		boolean result = false;
 		Iterator<Contact> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			Contact curElem = iterator.next();
