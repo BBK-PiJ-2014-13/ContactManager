@@ -251,13 +251,17 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void testsHasAllContacts() {
-		Set<Contact> smallSet = new HashSet<Contact>();
-
+		Set<Contact> set = new HashSet<Contact>();
+		set.add(new ContactImpl(0, "John"));
+		if (!manager.hasAllContacts(set)) {
+			valueActual = 1;
+		}
+		test();
+		
 		manager.addNewContact("John", "director");
 		manager.addNewContact("Tom", "programmer");
-		smallSet.add(new ContactImpl(0, "John"));
 
-		if (manager.hasAllContacts(smallSet)) {
+		if (manager.hasAllContacts(set)) {
 			valueActual = 1;
 		}
 		test();
