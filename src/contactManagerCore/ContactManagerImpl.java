@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
@@ -23,11 +22,12 @@ public class ContactManagerImpl implements ContactManager {
 		if (isInPast == -1) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		if (!hasAllContacts) {
 			throw new IllegalArgumentException();
 		}
-		Meeting meeting = new FutureMeetingImpl(meetingsList.size(), date, contacts);
+		Meeting meeting = new FutureMeetingImpl(meetingsList.size(), date,
+				contacts);
 		meetingsList.add(meeting);
 		return meeting.getId();
 	}
@@ -42,7 +42,7 @@ public class ContactManagerImpl implements ContactManager {
 		} else {
 			throw new IllegalArgumentException();
 		}
-		
+
 	}
 
 	@Override
@@ -94,9 +94,12 @@ public class ContactManagerImpl implements ContactManager {
 		for (int i = 0; i < meetingsList.size(); i++) {
 			Meeting curMeeting = meetingsList.get(i);
 			Calendar curElement = curMeeting.getDate();
-			Date thisDate = new GregorianCalendar(date.get(Calendar.YEAR), date.get(Calendar.MONTH),
-					date.get(Calendar.DATE)).getTime();
-			Date targetDate = new GregorianCalendar(curElement.get(Calendar.YEAR), curElement.get(Calendar.MONTH),
+			Date thisDate = new GregorianCalendar(date.get(Calendar.YEAR),
+					date.get(Calendar.MONTH), date.get(Calendar.DATE))
+					.getTime();
+			Date targetDate = new GregorianCalendar(
+					curElement.get(Calendar.YEAR),
+					curElement.get(Calendar.MONTH),
 					curElement.get(Calendar.DATE)).getTime();
 			if (thisDate.equals(targetDate)) {
 				resultList.add(curMeeting);
@@ -130,8 +133,8 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
-		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date, contacts,
-				text);
+		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date,
+				contacts, text);
 		meetingsList.add(meeting);
 	}
 
@@ -187,24 +190,28 @@ public class ContactManagerImpl implements ContactManager {
 	public void flush() {
 		// Write to file
 	}
-	
+
 	public void writeMeetings() {
-		
+
 	}
-	
+
 	public void writeContacts() {
-		
+
 	}
 
 	public boolean hasAllContacts(Set<Contact> set) {
 		boolean result = false;
 		Iterator<Contact> iterator = set.iterator();
-		for (int i = 0; i < contactsList.size(); i++) {
-			Contact curElem = iterator.next();
-			boolean idIsSame = contactsList.get(i).getId() == curElem.getId();
-			boolean nameIsSame = contactsList.get(i).getName() == curElem.getName();
-			if (idIsSame && nameIsSame) {
-				result = true;
+		while (iterator.hasNext()) {
+			for (int i = 0; i < contactsList.size(); i++) {
+				Contact curElem = iterator.next();
+				boolean idIsSame = contactsList.get(i).getId() == curElem
+						.getId();
+				boolean nameIsSame = contactsList.get(i).getName() == curElem
+						.getName();
+				if (idIsSame && nameIsSame) {
+					result = true;
+				}
 			}
 		}
 		return result;
