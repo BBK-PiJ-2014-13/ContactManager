@@ -197,20 +197,16 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public boolean hasAllContacts(Set<Contact> set) {
-		ArrayList<Contact> smallList = new ArrayList<Contact>();
-		ArrayList<Contact> bigList = new ArrayList<Contact>();
-		
+				
 		Iterator<Contact> iterator = set.iterator();
 		while(iterator.hasNext()) {
 			Contact curElem = iterator.next();
-			smallList.add(new ContactImpl(curElem.getId(), curElem.getName()));
 		}
 		
 		for (int i = 0; i < contactsList.size(); i++) {
 			Contact curElem = contactsList.get(i);
-			bigList.add(new ContactImpl(curElem.getId(), curElem.getName()));
 		}
 		
-		return bigList.containsAll(smallList);
+		return false;
 	}
 }
