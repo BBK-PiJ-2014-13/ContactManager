@@ -204,6 +204,7 @@ public class ContactManagerImpl implements ContactManager {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
 			Contact curElem = iterator.next();
+			boolean hasElement = false;
 			for (int i = 0; i < contactsList.size(); i++) {
 				boolean idIsSame = contactsList.get(i).getId() == curElem
 						.getId();
