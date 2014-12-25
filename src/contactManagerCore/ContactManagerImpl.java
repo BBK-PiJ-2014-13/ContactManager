@@ -199,14 +199,14 @@ public class ContactManagerImpl implements ContactManager {
 	public boolean hasAllContacts(Set<Contact> set) {
 		boolean result = false;
 		Iterator<Contact> iterator = set.iterator();
-		while(iterator.hasNext()) {
-			Contact curElem = iterator.next();
-		}
-		
 		for (int i = 0; i < contactsList.size(); i++) {
-			Contact curElem = contactsList.get(i);
+			Contact curElem = iterator.next();
+			boolean idIsSame = contactsList.get(i).getId() == curElem.getId();
+			boolean nameIsSame = contactsList.get(i).getName() == curElem.getName();
+			if (idIsSame && nameIsSame) {
+				
+			}
 		}
-		
-		return false;
+		return result;
 	}
 }
