@@ -203,8 +203,8 @@ public class ContactManagerImpl implements ContactManager {
 		boolean result = false;
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
+			Contact curElem = iterator.next();
 			for (int i = 0; i < contactsList.size(); i++) {
-				Contact curElem = iterator.next();
 				boolean idIsSame = contactsList.get(i).getId() == curElem
 						.getId();
 				boolean nameIsSame = contactsList.get(i).getName() == curElem
