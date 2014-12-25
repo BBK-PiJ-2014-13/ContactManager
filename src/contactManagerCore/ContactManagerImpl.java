@@ -204,7 +204,7 @@ public class ContactManagerImpl implements ContactManager {
 			boolean idIsSame = contactsList.get(i).getId() == curElem.getId();
 			boolean nameIsSame = contactsList.get(i).getName() == curElem.getName();
 			if (idIsSame && nameIsSame) {
-				
+				result = true;
 			}
 		}
 		return result;
