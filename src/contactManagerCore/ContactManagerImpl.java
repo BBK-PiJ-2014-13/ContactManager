@@ -202,12 +202,12 @@ public class ContactManagerImpl implements ContactManager {
 	public boolean hasAllContacts(Set<Contact> set) {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
-			Contact curElem = iterator.next();
+			Contact curArrayElem = iterator.next();
 			boolean hasElement = false;
 			for (int i = 0; i < set.size(); i++) {
-				boolean idIsSame = contactsList.get(i).getId() == curElem
+				boolean idIsSame = contactsList.get(i).getId() == curArrayElem
 						.getId();
-				boolean nameIsSame = contactsList.get(i).getName() == curElem
+				boolean nameIsSame = contactsList.get(i).getName() == curArrayElem
 						.getName();
 				if (idIsSame && nameIsSame) {
 					hasElement = true;
