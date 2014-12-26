@@ -204,7 +204,7 @@ public class ContactManagerImpl implements ContactManager {
 		while (iterator.hasNext()) {
 			Contact curElem = iterator.next();
 			boolean hasElement = false;
-			for (int i = 0; i < set.size(); i++) {
+			for (int i = 0; i < contactsList.size(); i++) {
 				boolean idIsSame = contactsList.get(i).getId() == curElem
 						.getId();
 				boolean nameIsSame = contactsList.get(i).getName() == curElem
@@ -215,7 +215,7 @@ public class ContactManagerImpl implements ContactManager {
 				if (hasElement) {
 					break;
 				}
-				if (i + 1 == set.size()) {
+				if (i + 1 == contactsListS.size()) {
 					if (!hasElement) {
 						return false;
 					}
