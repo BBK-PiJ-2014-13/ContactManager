@@ -215,7 +215,7 @@ public class ContactManagerImpl implements ContactManager {
 				if (hasElement) {
 					break;
 				}
-				if (i++ == set.size()) {
+				if (i + 1 == set.size()) {
 					if (!hasElement) {
 						return false;
 					}
