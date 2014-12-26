@@ -203,24 +203,13 @@ public class ContactManagerImpl implements ContactManager {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
 			Contact curSetElem = iterator.next();
-			boolean hasElement = false;
 			if (curSetElem.getId() >= contactsList.size()) {
 				return false;
 			}
-			boolean idIsSame = contactsList.get(i).getId() == curSetElem
-					.getId();
-			boolean nameIsSame = contactsList.get(i).getName() == curSetElem
-					.getName();
-			if (idIsSame && nameIsSame) {
-				hasElement = true;
-			}
-			if (hasElement) {
-				break;
-			}
-			if (i + 1 == set.size()) {
-				if (!hasElement) {
-					return false;
-				}
+			Contact curArrayElem = contactsList.get(curSetElem.getId());
+			boolean nameIsSame = curArrayElem.getName().equals(curSetElem.getName());
+			if (!nameIsSame) {
+				return false;
 			}
 		}
 		return true;
