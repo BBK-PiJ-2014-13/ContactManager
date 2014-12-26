@@ -215,7 +215,7 @@ public class ContactManagerImpl implements ContactManager {
 				if (hasElement) {
 					break;
 				}
-				if (i + 1 == contactsListS.size()) {
+				if (i + 1 == contactsList.size()) {
 					if (!hasElement) {
 						return false;
 					}
