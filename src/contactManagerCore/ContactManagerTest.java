@@ -25,8 +25,6 @@ public class ContactManagerTest extends BasicTest {
 		contacts = new HashSet<Contact>();
 		date = new GregorianCalendar(2015, 1, 1);
 		notes = "hello world";
-		valueExpected = 1;
-		valueActual = 0;
 	}
 
 	@Test
