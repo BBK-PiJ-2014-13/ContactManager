@@ -258,8 +258,12 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Tests if the method returns false when it doesn't have a contact
-
-		manager.addNewContact("John", "director");
+		buildUp();
+		
+		set = new HashSet<Contact>();
+		set.add(new ContactImpl(1, "John"));
+		manager.addNewContact("Tom", "manager");
+		manager.addNewContact("John", "manager");
 
 		if (manager.hasAllContacts(set)) {
 			valueActual = 1;
