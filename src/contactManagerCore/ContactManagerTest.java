@@ -257,8 +257,7 @@ public class ContactManagerTest extends BasicTest {
 		if (!manager.hasAllContacts(set)) {
 			valueActual = 1;
 		}
-		test();
-		valueActual = 0;
+		test(); // Tests if the method returns true when it has all contacts
 
 		manager.addNewContact("John", "director");
 
