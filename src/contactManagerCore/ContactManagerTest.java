@@ -249,6 +249,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	@Test
 	public void testsHasAllContacts() {
 		Set<Contact> set = new HashSet<Contact>();
 		manager.addNewContact("Tom", "programmer");
