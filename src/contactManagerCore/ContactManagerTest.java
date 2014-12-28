@@ -74,11 +74,11 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addNewPastMeeting(contacts, calendar, "notes2");
 		manager.addFutureMeeting(contacts, calendar);
-		valueExpected = "notes2";
-		valueActual = manager.getPastMeeting(1).getNotes();
-		test();
+		if (manager.getPastMeeting(1).getNotes().equals("notes2")) {
+			valueActual = 1;
+		}
+		test(); // Test if the method returns correct object
 
-		valueExpected = null;
 		valueActual = manager.getPastMeeting(10);
 		test();
 
