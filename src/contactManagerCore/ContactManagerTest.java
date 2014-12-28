@@ -268,6 +268,6 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.hasAllContacts(set)) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests if the method returns true when it has all contacts
 	}
 }
