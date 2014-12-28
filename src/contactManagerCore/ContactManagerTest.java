@@ -119,7 +119,7 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getFutureMeetingList(contact).size() == 0) {
 			valueActual = 1;
 		}
-		test();
+		test(); // TODO Test if returns list with contacts
 		buildUp();
 
 		Contact contact1 = new ContactImpl(0, "John");
