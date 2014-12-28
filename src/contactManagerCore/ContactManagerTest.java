@@ -79,8 +79,10 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test(); // Test if the method returns correct object
 
-		valueActual = manager.getPastMeeting(10);
-		test();
+		if (manager.getPastMeeting(10) == null) {
+			valueActual = 1;
+		}
+		test(); // Tests if the method returns null when asked for a non-existant meeting
 
 		valueExpected = 0;
 		valueActual = 1;
