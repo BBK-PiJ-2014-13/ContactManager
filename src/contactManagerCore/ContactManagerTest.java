@@ -27,7 +27,7 @@ public class ContactManagerTest extends BasicTest {
 		notes = "hello world";
 	}
 
-	@Test
+	
 	public void addFutureMeetingTest() {
 		manager.addFutureMeeting(contacts, calendar);
 		if (manager.addFutureMeeting(contacts, calendar) == 1) {
@@ -54,10 +54,18 @@ public class ContactManagerTest extends BasicTest {
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests for exception when trying to add a meeting with an unknown contact
+		buildUp();
+		
+		try {
+			manager.addFutureMeeting(contacts, calendar);
+		} catch (IllegalArgumentException e) {
+			valueActual = 1;
+		}
+		test(); // Tests for exception when trying to add a meeting without any contacts
 	}
 
-	@Test
+	
 	public void getPastMeetingTest() {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addNewPastMeeting(contacts, calendar, "notes2");
@@ -84,7 +92,7 @@ public class ContactManagerTest extends BasicTest {
 		// Is tested by addFutureMeetingTest()
 	}
 
-	@Test
+	
 	public void getMeeting() {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addFutureMeeting(contacts, calendar);
@@ -102,7 +110,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
+	
 	public void getFutureMeetingListTest_Contact() {
 		if (manager.getFutureMeetingList(contact).size() == 0) {
 			valueActual = 1;
@@ -136,7 +144,7 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Test if the list is chronologically sorted
 	}
 
-	@Test
+	
 	public void getFutureMeetingListTest_Calendar() {
 		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
 		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
@@ -149,7 +157,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
+	
 	public void getPastMeetingListTest() {
 		contacts.add(contact);
 		manager.addNewPastMeeting(contacts, calendar, notes);
@@ -164,7 +172,7 @@ public class ContactManagerTest extends BasicTest {
 		// Is tested by getPastMeetingTest()
 	}
 
-	@Test
+	
 	public void addMeetingNotesTest() {
 		manager.addNewPastMeeting(contacts, calendar, "hello");
 		manager.addMeetingNotes(0, "\nworld");
@@ -177,7 +185,7 @@ public class ContactManagerTest extends BasicTest {
 		// Tested by getContactsTest_Int()
 	}
 
-	@Test
+	
 	public void getContactsTest_Int() {
 		manager.addNewContact("Jones", "manager");
 		manager.addNewContact("Arnold", "actor");
@@ -197,7 +205,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
+	
 	public void getContactsTest_String() {
 		manager.addNewContact("Jones", "manager");
 		manager.addNewContact("Arnold", "actor");
@@ -217,14 +225,14 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
+	
 	public void flushTest() {
 		valueExpected = 1;
 		valueActual = 0;
 		test();
 	}
 
-	@Test
+	
 	public void testsSortChronologically() {
 		Meeting meeting0 = new FutureMeetingImpl(0, new GregorianCalendar(2015,
 				01, 05, 12, 00), contacts);
@@ -246,7 +254,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
+	
 	public void testsHasAllContacts() {
 		Set<Contact> set = new HashSet<Contact>();
 		manager.addNewContact("Tom", "programmer");
