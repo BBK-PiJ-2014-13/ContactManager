@@ -46,9 +46,8 @@ public class ContactManagerTest extends BasicTest {
 		buildUp();
 
 		contact = new ContactImpl(0, "Arnold");
-		contact.addNotes("actor");
-		manager.addNewContact("Arnold", "actor");
 		contacts.add(contact);
+		manager.addNewContact("Arnold", "actor");
 		contacts.add(new ContactImpl(13, "John"));
 		try {
 			manager.addFutureMeeting(contacts, calendar);
