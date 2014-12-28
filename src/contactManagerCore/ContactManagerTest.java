@@ -84,14 +84,16 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getPastMeeting(10) == null) {
 			valueActual = 1;
 		}
-		test(); // Tests if the method returns null when asked for a non-existent meeting
+		test(); // Tests if the method returns null when asked for a
+				// non-existent meeting
 
 		try {
 			manager.getPastMeeting(2);
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test(); // Tests exception when a meeting with that id happens in the future
+		test(); // Tests exception when a meeting with that id happens in the
+				// future
 	}
 
 	public void getFutureMeetingTest() {
@@ -115,11 +117,15 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Tests if returns null when requested non-existent meeting
 	}
 
+	// TODO Test if returns sorted list with contacts no duplicates
+	// TODO Test if returns empty list if there are no meetings scheduled with
+	// this contact
+	// TODO Test if throws exception if contact does not exist
 	public void getFutureMeetingListTest_Contact() {
 		if (manager.getFutureMeetingList(contact).size() == 0) {
 			valueActual = 1;
 		}
-		test(); // TODO Test if returns list with contacts
+		test();
 		buildUp();
 
 		Contact contact1 = new ContactImpl(0, "John");
@@ -259,9 +265,10 @@ public class ContactManagerTest extends BasicTest {
 		if (!manager.hasAllContacts(set)) {
 			valueActual = 1;
 		}
-		test(); // Tests if the method returns false when it doesn't have a contact
+		test(); // Tests if the method returns false when it doesn't have a
+				// contact
 		buildUp();
-		
+
 		set = new HashSet<Contact>();
 		set.add(new ContactImpl(1, "John"));
 		manager.addNewContact("Tom", "manager");
