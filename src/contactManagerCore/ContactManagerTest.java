@@ -98,6 +98,7 @@ public class ContactManagerTest extends BasicTest {
 		// Is tested by addFutureMeetingTest()
 	}
 
+	@Test
 	public void getMeeting() {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addFutureMeeting(contacts, calendar);
