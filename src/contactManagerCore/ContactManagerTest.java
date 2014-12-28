@@ -100,6 +100,8 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getMeeting() {
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addNewContact("John", "director");
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addFutureMeeting(contacts, calendar);
 		if (manager.getMeeting(1).getDate().YEAR == 2015) {
