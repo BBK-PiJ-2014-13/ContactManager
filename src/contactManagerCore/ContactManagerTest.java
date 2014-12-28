@@ -104,7 +104,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewContact("John", "director");
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addFutureMeeting(contacts, calendar);
-		if (manager.getMeeting(1).getDate().YEAR == 2015) {
+		if (manager.getMeeting(1).getId() == 1) {
 			valueActual = 1;
 		}
 		test(); // Tests if returns correct meeting
