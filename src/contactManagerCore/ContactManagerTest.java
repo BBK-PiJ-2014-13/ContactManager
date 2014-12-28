@@ -29,8 +29,7 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addFutureMeetingTest() {
-		contact = new ContactImpl(0, "Arnold");
-		contacts.add(contact);
+		contacts.add(new ContactImpl(0, "Arnold"));
 		manager.addNewContact("Arnold", "actor");
 		manager.addFutureMeeting(contacts, calendar);
 		if (manager.addFutureMeeting(contacts, calendar) == 1) {
