@@ -42,7 +42,7 @@ public class ContactManagerTest extends BasicTest {
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests for exception when trying to add a past meeting
 		buildUp();
 
 		contact = new ContactImpl(0, "Arnold");
