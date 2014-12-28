@@ -6,11 +6,12 @@ import org.junit.Test;
 
 
 public class BasicTest {
-	Object valueExpected;
-	Object valueActual;
+	private Object valueExpected = 0;
+	public Object valueActual = 1;
 	
 	@Test
 	public void test() {
 		assertEquals(valueExpected, valueActual);
+		valueActual = 0;
 	}
 }
