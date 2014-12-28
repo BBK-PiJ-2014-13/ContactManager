@@ -29,6 +29,9 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addFutureMeetingTest() {
+		contact = new ContactImpl(0, "Arnold");
+		contacts.add(contact);
+		manager.addNewContact("Arnold", "actor");
 		manager.addFutureMeeting(contacts, calendar);
 		if (manager.addFutureMeeting(contacts, calendar) == 1) {
 			valueActual = 1;
