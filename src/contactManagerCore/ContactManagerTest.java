@@ -30,9 +30,9 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addFutureMeetingTest() {
 		manager.addFutureMeeting(contacts, calendar);
-		manager.addFutureMeeting(contacts, calendar);
-		valueExpected = 2;
-		valueActual = manager.getFutureMeetingList(calendar).size();
+		if (manager.addFutureMeeting(contacts, calendar) == 1) {
+			valueActual = 1;
+		}
 		test();
 		buildUp();
 
