@@ -106,11 +106,10 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test(); // Tests if returns correct meeting
 
-		valueActual = 0;
 		if (manager.getMeeting(10) == null) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests if returns null when requested non-existent meeting
 	}
 
 	public void getFutureMeetingListTest_Contact() {
