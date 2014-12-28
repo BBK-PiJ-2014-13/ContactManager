@@ -18,12 +18,11 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
 		int isInPast = date.getTime().compareTo(new Date());
-		boolean hasAllContacts = this.contactsList.containsAll(contacts);
 		if (isInPast == -1) {
 			throw new IllegalArgumentException();
 		}
 
-		if (!hasAllContacts) {
+		if (!hasAllContacts(contacts)) {
 			throw new IllegalArgumentException();
 		}
 		Meeting meeting = new FutureMeetingImpl(meetingsList.size(), date,
