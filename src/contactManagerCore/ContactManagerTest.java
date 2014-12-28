@@ -15,7 +15,7 @@ public class ContactManagerTest extends BasicTest {
 	ContactManagerImpl manager;
 	ContactImpl contact;
 	HashSet<Contact> contacts;
-	GregorianCalendar date;
+	GregorianCalendar calendar;
 	String notes;
 
 	@Before
@@ -23,16 +23,16 @@ public class ContactManagerTest extends BasicTest {
 		manager = new ContactManagerImpl();
 		contact = new ContactImpl(13, "Arnold");
 		contacts = new HashSet<Contact>();
-		date = new GregorianCalendar(2015, 1, 1);
+		calendar = new GregorianCalendar(2015, 1, 1);
 		notes = "hello world";
 	}
 
 	@Test
 	public void addFutureMeetingTest() {
-		manager.addFutureMeeting(contacts, date);
-		manager.addFutureMeeting(contacts, date);
+		manager.addFutureMeeting(contacts, calendar);
+		manager.addFutureMeeting(contacts, calendar);
 		valueExpected = 2;
-		valueActual = manager.getFutureMeetingList(date).size();
+		valueActual = manager.getFutureMeetingList(calendar).size();
 		test();
 		buildUp();
 
@@ -51,7 +51,7 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(contact);
 		contacts.add(new ContactImpl(13, "John"));
 		try {
-			manager.addFutureMeeting(contacts, date);
+			manager.addFutureMeeting(contacts, calendar);
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
@@ -60,9 +60,9 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getPastMeetingTest() {
-		manager.addNewPastMeeting(contacts, date, "notes1");
-		manager.addNewPastMeeting(contacts, date, "notes2");
-		manager.addFutureMeeting(contacts, date);
+		manager.addNewPastMeeting(contacts, calendar, "notes1");
+		manager.addNewPastMeeting(contacts, calendar, "notes2");
+		manager.addFutureMeeting(contacts, calendar);
 		valueExpected = "notes2";
 		valueActual = manager.getPastMeeting(1).getNotes();
 		test();
@@ -87,8 +87,8 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getMeeting() {
-		manager.addNewPastMeeting(contacts, date, "notes1");
-		manager.addFutureMeeting(contacts, date);
+		manager.addNewPastMeeting(contacts, calendar, "notes1");
+		manager.addFutureMeeting(contacts, calendar);
 		valueExpected = 1;
 		valueActual = 0;
 		if (manager.getMeeting(1) != null) {
@@ -153,8 +153,8 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void getPastMeetingListTest() {
 		contacts.add(contact);
-		manager.addNewPastMeeting(contacts, date, notes);
-		manager.addNewPastMeeting(new HashSet<Contact>(), date, notes);
+		manager.addNewPastMeeting(contacts, calendar, notes);
+		manager.addNewPastMeeting(new HashSet<Contact>(), calendar, notes);
 
 		valueExpected = 1;
 		valueActual = manager.getPastMeetingList(contact).size();
@@ -167,7 +167,7 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addMeetingNotesTest() {
-		manager.addNewPastMeeting(contacts, date, "hello");
+		manager.addNewPastMeeting(contacts, calendar, "hello");
 		manager.addMeetingNotes(0, "\nworld");
 		valueExpected = "hello\nworld";
 		valueActual = manager.getPastMeeting(0).getNotes();
