@@ -82,16 +82,14 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getPastMeeting(10) == null) {
 			valueActual = 1;
 		}
-		test(); // Tests if the method returns null when asked for a non-existant meeting
+		test(); // Tests if the method returns null when asked for a non-existent meeting
 
-		valueExpected = 0;
-		valueActual = 1;
 		try {
 			manager.getPastMeeting(2);
 		} catch (IllegalArgumentException e) {
-			valueExpected = 1;
+			valueActual = 1;
 		}
-		test();
+		test(); // Tests exception when a meeting with that id happens in the future
 	}
 
 	public void getFutureMeetingTest() {
