@@ -69,6 +69,7 @@ public class ContactManagerTest extends BasicTest {
 				// contacts
 	}
 
+	@Test
 	public void getPastMeetingTest() {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addNewPastMeeting(contacts, calendar, "notes2");
