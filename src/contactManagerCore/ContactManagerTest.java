@@ -101,12 +101,10 @@ public class ContactManagerTest extends BasicTest {
 	public void getMeeting() {
 		manager.addNewPastMeeting(contacts, calendar, "notes1");
 		manager.addFutureMeeting(contacts, calendar);
-		valueExpected = 1;
-		valueActual = 0;
-		if (manager.getMeeting(1) != null) {
+		if (manager.getMeeting(1).getDate().YEAR == 2015) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests if returns correct meeting
 
 		valueActual = 0;
 		if (manager.getMeeting(10) == null) {
