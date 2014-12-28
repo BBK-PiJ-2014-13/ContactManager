@@ -33,7 +33,7 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.addFutureMeeting(contacts, calendar) == 1) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Tests for correct return value
 		buildUp();
 
 		try {
