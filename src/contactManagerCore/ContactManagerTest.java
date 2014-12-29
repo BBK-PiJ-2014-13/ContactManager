@@ -188,14 +188,14 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Test if returns empty list if there are no meetings with this contact
 	}
 
+	@Test
 	public void getPastMeetingListTest() {
 		contacts.add(contact);
 		manager.addNewPastMeeting(contacts, calendar, notes);
 		manager.addNewPastMeeting(new HashSet<Contact>(), calendar, notes);
 
-		valueExpected = 1;
 		valueActual = manager.getPastMeetingList(contact).size();
-		test();
+		test(); // If returns list of past meetings with this contact
 	}
 
 	public void addNewPastMeetingTest() {
