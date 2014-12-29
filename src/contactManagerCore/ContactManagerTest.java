@@ -124,8 +124,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, calendar);
 		contacts = new HashSet<Contact>();
 		manager.addNewContact("Tom", "manager");
-		manager.getFutureMeetingList(new ContactImpl(1, "Tom"));
-		if (manager.getFutureMeetingList(contact).size() == 0) {
+		if (manager.getFutureMeetingList(new ContactImpl(1, "Tom")).size() == 0) {
 			valueActual = 1;
 		}
 		test(); // TODO Test if returns empty list if there are no meetings
