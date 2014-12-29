@@ -156,7 +156,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, calendar);
 		contacts = new HashSet<Contact>();
 		try {
-		manager.getFutureMeetingList(new ContactImpl(1, "Tom"));
+			manager.getFutureMeetingList(new ContactImpl(1, "Tom"));
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
@@ -177,15 +177,17 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getFutureMeetingList(date1).size() == 2) {
 			valueActual = 1;
 		}
-		test(); // Test if returns list with meeting on that date with no duplicates
-		
+		test(); // Test if returns list with meeting on that date with no
+				// duplicates
+
 		manager.addNewContact("Tom", "manager");
 		contacts = new HashSet<Contact>();
 		contacts.add(new ContactImpl(1, "Tom"));
 		if (manager.getFutureMeetingList(date3).size() == 0) {
 			valueActual = 1;
 		}
-		test(); // Test if returns empty list if there are no meetings with this contact
+		test(); // Test if returns empty list if there are no meetings with this
+				// contact
 	}
 
 	@Test
@@ -207,16 +209,17 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test(); // If returns list of past meetings with this contact
 		buildUp();
-		
+
 		contact = new ContactImpl(0, "John");
 		manager.addNewContact("John", "director");
 		if (manager.getPastMeetingList(contact).size() == 0) {
 			valueActual = 1;
 		}
-		
-		test(); // if returns empty list when there were no meetings with this contact
+
+		test(); // if returns empty list when there were no meetings with this
+				// contact
 		buildUp();
-		
+
 		try {
 			manager.getPastMeetingList(contact);
 		} catch (IllegalArgumentException e) {
@@ -228,7 +231,7 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addNewPastMeetingTest() {
 		try {
-		manager.addNewPastMeeting(contacts, calendar, notes);
+			manager.addNewPastMeeting(contacts, calendar, notes);
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
@@ -243,13 +246,13 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if throws exception if any of the contacts does not exist
-		
+
 		contacts = null;
 		try {
 			manager.addNewPastMeeting(contacts, calendar, notes);
-			} catch (NullPointerException e) {
-				valueActual = 1;
-			}
+		} catch (NullPointerException e) {
+			valueActual = 1;
+		}
 		test(); // if throws exception if any of the arguments is null
 	}
 
@@ -263,32 +266,49 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if adds notes
-		
+
 		try {
-			manager.addMeetingNotes(1, "\nJava");	
+			manager.addMeetingNotes(1, "\nJava");
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test(); // if throws IllegalArgumentException if the meeting does not exist
-		
+		test(); // if throws IllegalArgumentException if the meeting does not
+				// exist
+
 		manager.addFutureMeeting(contacts, new GregorianCalendar(2016, 1, 1));
 		try {
-			manager.addMeetingNotes(1, "\nJava");	
+			manager.addMeetingNotes(1, "\nJava");
 		} catch (IllegalStateException e) {
 			valueActual = 1;
 		}
-		test(); // if throws IllegalStateException if the meeting is set for a date in the future
-		
+		test(); // if throws IllegalStateException if the meeting is set for a
+				// date in the future
+
 		try {
-			manager.addMeetingNotes(0, null);	
-		} catch (NullPointerException  e) {
+			manager.addMeetingNotes(0, null);
+		} catch (NullPointerException e) {
 			valueActual = 1;
 		}
 		test(); // if throws NullPointerException if the notes are null
 	}
 
+	@Test
 	public void addNewContactTest() {
-		// Tested by getContactsTest_Int()
+		try {
+		manager.addNewContact(null, "director");
+		}
+		catch (NullPointerException e) {
+			valueActual = 1;
+		}
+		test(); // if throws NullPointerException if the name is null
+		
+		try {
+			manager.addNewContact("John", null);
+		}
+			catch (NullPointerException e) {
+				valueActual = 1;
+			}
+		test(); // if throws NullPointerException if the notes are null
 	}
 
 	public void getContactsTest_Int() {
