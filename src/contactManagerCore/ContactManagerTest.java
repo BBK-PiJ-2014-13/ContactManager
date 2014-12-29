@@ -225,8 +225,14 @@ public class ContactManagerTest extends BasicTest {
 		test(); // if throws exception when this contact doesn't exist
 	}
 
+	@Test
 	public void addNewPastMeetingTest() {
-		// Is tested by getPastMeetingTest()
+		try {
+		manager.addNewPastMeeting(contacts, calendar, notes);
+		} catch (IllegalArgumentException e) {
+			valueActual = 1;
+		}
+		test(); // if throws exception if the list of contacts is empty
 	}
 
 	public void addMeetingNotesTest() {
