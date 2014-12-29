@@ -117,7 +117,6 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Tests if returns null when requested non-existent meeting
 	}
 
-	// TODO Test if throws exception if contact does not exist
 	@Test
 	public void getFutureMeetingListTest_Contact() {
 		manager.addNewContact("John", "director");
@@ -151,12 +150,18 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Test if returns sorted list with contacts no duplicates
+		buildUp();
 
-		valueActual = 0;
-		if (manager.getFutureMeetingList(contact1).get(2).getDate().DAY_OF_MONTH == 4) {
+		manager.addNewContact("John", "director");
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addFutureMeeting(contacts, calendar);
+		contacts = new HashSet<Contact>();
+		try {
+		manager.getFutureMeetingList(new ContactImpl(1, "Tom"));
+		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test(); // Test if the list is chronologically sorted
+		test(); // TODO Test if throws exception if contact does not exist
 	}
 
 	public void getFutureMeetingListTest_Calendar() {
