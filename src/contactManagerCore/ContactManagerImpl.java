@@ -237,4 +237,17 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		return true;
 	}
+
+	public boolean hasThisContact(Contact contact) {
+		boolean hasThisID = !(contact.getId() >= contactsList.size());
+		if (!hasThisID) {
+			throw new IllegalArgumentException();
+		}
+		boolean hasThisContact = contact.getName().equals(
+				contactsList.get(contact.getId()).getName());
+		if (!hasThisContact) {
+			throw new IllegalArgumentException();
+		}
+		return true;
+	}
 }
