@@ -329,21 +329,21 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	@Test
 	public void getContactsTest_String() {
 		manager.addNewContact("Jones", "manager");
 		manager.addNewContact("Arnold", "actor");
-		manager.addNewContact("Obama", "president");
-		valueExpected = 1;
-		valueActual = manager.getContacts("Jones").toArray().length;
-		test();
+		manager.addNewContact("John Smith", "president");
+		if (manager.getContacts("Jo").toArray().length == 2) {
+			valueActual = 1;
+		}
+		test(); // if return a list with the contacts whose name contains that string
 
-		valueExpected = 0;
-		valueActual = 1;
 		String emptyStr = null;
 		try {
 			manager.getContacts(emptyStr);
 		} catch (NullPointerException e) {
-			valueExpected = 1;
+			valueActual = 1;
 		}
 		test();
 	}
