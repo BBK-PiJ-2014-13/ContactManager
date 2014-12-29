@@ -117,7 +117,6 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Tests if returns null when requested non-existent meeting
 	}
 
-	// TODO Test if returns sorted list with contacts no duplicates
 	// TODO Test if throws exception if contact does not exist
 	@Test
 	public void getFutureMeetingListTest_Contact() {
@@ -151,7 +150,7 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getFutureMeetingList(contact1).size() == 4) {
 			valueActual = 1;
 		}
-		test(); // Test if the size of return Collection is right
+		test(); // Test if returns sorted list with contacts no duplicates
 
 		valueActual = 0;
 		if (manager.getFutureMeetingList(contact1).get(2).getDate().DAY_OF_MONTH == 4) {
