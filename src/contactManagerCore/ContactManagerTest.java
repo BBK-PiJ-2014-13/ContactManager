@@ -167,6 +167,7 @@ public class ContactManagerTest extends BasicTest {
 	public void getFutureMeetingListTest_Calendar() {
 		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
 		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
+		Calendar date3 = new GregorianCalendar(2015, 1, 12, 12, 00);
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addNewContact("John", "diretor");
 		manager.addFutureMeeting(contacts, date1);
@@ -177,6 +178,14 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Test if returns list with meeting on that date with no duplicates
+		
+		manager.addNewContact("Tom", "manager");
+		contacts = new HashSet<Contact>();
+		contacts.add(new ContactImpl(1, "Tom"));
+		if (manager.getFutureMeetingList(date3).size() == 0) {
+			valueActual = 1;
+		}
+		test(); // Test if returns empty list if there are no meetings with this contact
 	}
 
 	public void getPastMeetingListTest() {
