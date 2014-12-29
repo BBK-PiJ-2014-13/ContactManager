@@ -63,15 +63,7 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
-		boolean hasThisID = !(contact.getId() >= contactsList.size());
-		if (!hasThisID) {
-			throw new IllegalArgumentException();
-		}
-		boolean hasThisContact = contact.getName().equals(
-				contactsList.get(contact.getId()).getName());
-		if (!hasThisContact) {
-			throw new IllegalArgumentException();
-		}
+		hasThisContact(contact);
 		
 		List<Meeting> resultList = new ArrayList<Meeting>();
 		for (int i = 0; i < meetingsList.size(); i++) {
