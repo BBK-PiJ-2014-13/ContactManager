@@ -295,19 +295,17 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addNewContactTest() {
 		try {
-		manager.addNewContact(null, "director");
-		}
-		catch (NullPointerException e) {
+			manager.addNewContact(null, "director");
+		} catch (NullPointerException e) {
 			valueActual = 1;
 		}
 		test(); // if throws NullPointerException if the name is null
-		
+
 		try {
 			manager.addNewContact("John", null);
+		} catch (NullPointerException e) {
+			valueActual = 1;
 		}
-			catch (NullPointerException e) {
-				valueActual = 1;
-			}
 		test(); // if throws NullPointerException if the notes are null
 	}
 
@@ -316,14 +314,17 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewContact("Jones", "manager");
 		manager.addNewContact("Arnold", "actor");
 		manager.addNewContact("Obama", "president");
-		valueActual = manager.getContacts(1, 2).toArray().length;
-		test();
+		if (manager.getContacts(1, 2).size() == 2) {
+			valueActual = 1;			
+		}
+		test(); // if returns a list containing the contacts that correspond to
+				// the IDs
 
-		valueActual = 1;
 		int[] array = { 0, 1, 4 };
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
+			valueActual = 1;
 		}
 		test();
 	}
