@@ -239,10 +239,18 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(new ContactImpl(1, "Tom"));
 		try {
 			manager.addNewPastMeeting(contacts, calendar, notes);
-			} catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
+			valueActual = 1;
+		}
+		test(); // if throws exception if any of the contacts does not exist
+		
+		contacts = null;
+		try {
+			manager.addNewPastMeeting(contacts, calendar, notes);
+			} catch (NullPointerException e) {
 				valueActual = 1;
 			}
-		test(); // if throws exception if any of the contacts does not exist
+		test(); // if throws exception if any of the arguments is null
 	}
 
 	public void addMeetingNotesTest() {
