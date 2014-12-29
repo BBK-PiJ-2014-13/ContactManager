@@ -158,12 +158,9 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addMeetingNotes(int id, String text) {
-		for (int i = 0; i < meetingsList.size(); i++) {
-			Meeting curElement = meetingsList.get(i);
-			if (curElement instanceof PastMeeting && curElement.getId() == id) {
-				((PastMeetingImpl) meetingsList.get(i)).addNotes(text);
+		if (meetingsList.get(id) instanceof PastMeeting) {
+				((PastMeetingImpl) meetingsList.get(id)).addNotes(text);
 			}
-		}
 
 	}
 
