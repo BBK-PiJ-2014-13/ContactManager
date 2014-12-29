@@ -253,12 +253,16 @@ public class ContactManagerTest extends BasicTest {
 		test(); // if throws exception if any of the arguments is null
 	}
 
+	@Test
 	public void addMeetingNotesTest() {
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addNewContact("John", "director");
 		manager.addNewPastMeeting(contacts, calendar, "hello");
 		manager.addMeetingNotes(0, "\nworld");
-		valueExpected = "hello\nworld";
-		valueActual = manager.getPastMeeting(0).getNotes();
-		test();
+		if (manager.getPastMeeting(0).getNotes().equals("hello\nworld")) {
+			valueActual = 1;
+		}
+		test(); // if adds notes
 	}
 
 	public void addNewContactTest() {
