@@ -270,6 +270,14 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if throws IllegalArgumentException if the meeting does not exist
+		
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2016, 1, 1));
+		try {
+			manager.addMeetingNotes(1, "\nJava");	
+		} catch (IllegalStateException e) {
+			valueActual = 1;
+		}
+		test(); // if throws IllegalStateException if the meeting is set for a date in the future
 	}
 
 	public void addNewContactTest() {
