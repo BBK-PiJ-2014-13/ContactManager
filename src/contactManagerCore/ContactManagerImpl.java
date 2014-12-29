@@ -209,7 +209,7 @@ public class ContactManagerImpl implements ContactManager {
 		Contact curElem;
 		for (int i = 0; i < contactsList.size(); i++) {
 			curElem = contactsList.get(i);
-			if (curElem.getName() == name) {
+			if (curElem.getName().contains(name)) {
 				resultSet.add(curElem);
 			}
 		}
