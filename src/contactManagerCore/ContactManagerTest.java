@@ -311,21 +311,19 @@ public class ContactManagerTest extends BasicTest {
 		test(); // if throws NullPointerException if the notes are null
 	}
 
+	@Test
 	public void getContactsTest_Int() {
 		manager.addNewContact("Jones", "manager");
 		manager.addNewContact("Arnold", "actor");
 		manager.addNewContact("Obama", "president");
-		valueExpected = 2;
 		valueActual = manager.getContacts(1, 2).toArray().length;
 		test();
 
-		valueExpected = 0;
 		valueActual = 1;
 		int[] array = { 0, 1, 4 };
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
-			valueExpected = 1;
 		}
 		test();
 	}
