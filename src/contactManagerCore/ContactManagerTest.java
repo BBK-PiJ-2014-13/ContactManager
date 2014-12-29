@@ -278,6 +278,13 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if throws IllegalStateException if the meeting is set for a date in the future
+		
+		try {
+			manager.addMeetingNotes(0, null);	
+		} catch (NullPointerException  e) {
+			valueActual = 1;
+		}
+		test(); // if throws NullPointerException if the notes are null
 	}
 
 	public void addNewContactTest() {
