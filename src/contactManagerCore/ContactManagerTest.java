@@ -353,6 +353,7 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	@Test
 	public void testsSortChronologically() {
 		Meeting meeting0 = new FutureMeetingImpl(0, new GregorianCalendar(2015,
 				01, 05, 12, 00), contacts);
@@ -364,13 +365,15 @@ public class ContactManagerTest extends BasicTest {
 		arrayList.add(meeting0);
 		arrayList.add(meeting1);
 		arrayList.add(meeting2);
-		valueExpected = 0;
-		valueActual = arrayList.get(0).getId();
+		if (arrayList.get(0).getId() == 0) {
+			valueActual = 1;
+		}
 		test();
 
 		manager.sortChronologically(arrayList);
-		valueExpected = 1;
-		valueActual = arrayList.get(0).getId();
+		if (arrayList.get(0).getId() == 1) {
+			valueActual = 1;
+		}
 		test();
 	}
 
