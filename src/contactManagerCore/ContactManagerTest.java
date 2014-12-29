@@ -127,7 +127,7 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getFutureMeetingList(new ContactImpl(1, "Tom")).size() == 0) {
 			valueActual = 1;
 		}
-		test(); // TODO Test if returns empty list if there are no meetings
+		test(); // Test if returns empty list if there are no meetings
 				// scheduled with this contact
 		buildUp();
 
@@ -160,7 +160,7 @@ public class ContactManagerTest extends BasicTest {
 		} catch (IllegalArgumentException e) {
 			valueActual = 1;
 		}
-		test(); // TODO Test if throws exception if contact does not exist
+		test(); // Test if throws exception if contact does not exist
 	}
 
 	@Test
