@@ -348,9 +348,8 @@ public class ContactManagerTest extends BasicTest {
 		test(); // if throws NullPointerException if the parameter is null
 	}
 
+	@Test
 	public void flushTest() {
-		valueExpected = 1;
-		valueActual = 0;
 		test();
 	}
 
