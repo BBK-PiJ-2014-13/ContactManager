@@ -63,6 +63,16 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
+		boolean hasThisID = !(contact.getId() >= contactsList.size());
+		boolean hasThisContact = contact.getName().equals(
+				contactsList.get(contact.getId()).getName());
+		if (!hasThisID) {
+			throw new IllegalArgumentException();
+		}
+		if (!hasThisContact) {
+			throw new IllegalArgumentException();
+		}
+		
 		List<Meeting> resultList = new ArrayList<Meeting>();
 		for (int i = 0; i < meetingsList.size(); i++) {
 			if (meetingsList.get(i) instanceof FutureMeeting) {
@@ -209,7 +219,8 @@ public class ContactManagerImpl implements ContactManager {
 				return false;
 			}
 			Contact curArrayElem = contactsList.get(curSetElem.getId());
-			boolean nameIsSame = curArrayElem.getName().equals(curSetElem.getName());
+			boolean nameIsSame = curArrayElem.getName().equals(
+					curSetElem.getName());
 			if (!nameIsSame) {
 				return false;
 			}
