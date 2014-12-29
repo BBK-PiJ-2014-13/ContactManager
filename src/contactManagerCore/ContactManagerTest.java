@@ -192,10 +192,26 @@ public class ContactManagerTest extends BasicTest {
 	public void getPastMeetingListTest() {
 		contacts.add(contact);
 		manager.addNewPastMeeting(contacts, calendar, notes);
-		manager.addNewPastMeeting(new HashSet<Contact>(), calendar, notes);
+		manager.addNewPastMeeting(contacts, calendar, notes);
+		manager.addNewPastMeeting(contacts, calendar, notes);
+		contacts = new HashSet<Contact>();
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addNewPastMeeting(contacts, calendar, notes);
+		manager.addNewPastMeeting(contacts, calendar, notes);
 
-		valueActual = manager.getPastMeetingList(contact).size();
+		if (manager.getPastMeetingList(contact).size() == 1) {
+			valueActual = 1;
+		}
 		test(); // If returns list of past meetings with this contact
+		buildUp();
+		
+		contact = new ContactImpl(0, "John");
+		manager.addNewContact("John", "director");
+		if (manager.getPastMeetingList(contact).size() == 0) {
+			valueActual = 1;
+		}
+		
+		test(); // if return empty list when there were no meetings with this contact
 	}
 
 	public void addNewPastMeetingTest() {
