@@ -64,11 +64,11 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		boolean hasThisID = !(contact.getId() >= contactsList.size());
-		boolean hasThisContact = contact.getName().equals(
-				contactsList.get(contact.getId()).getName());
 		if (!hasThisID) {
 			throw new IllegalArgumentException();
 		}
+		boolean hasThisContact = contact.getName().equals(
+				contactsList.get(contact.getId()).getName());
 		if (!hasThisContact) {
 			throw new IllegalArgumentException();
 		}
