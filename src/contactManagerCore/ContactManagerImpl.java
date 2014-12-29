@@ -177,6 +177,10 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addNewContact(String name, String notes) {
+		if (name == null || notes == null) {
+			throw new NullPointerException();
+		}
+		
 		contactsList.add(new ContactImpl(contactsList.size(), name));
 		contactsList.get(contactsList.size() - 1).addNotes(notes);
 
