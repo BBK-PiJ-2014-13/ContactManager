@@ -158,9 +158,17 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void addMeetingNotes(int id, String text) {
-		if (meetingsList.get(id) instanceof PastMeeting) {
-				((PastMeetingImpl) meetingsList.get(id)).addNotes(text);
-			}
+		boolean hasThisId = !(id >= meetingsList.size());
+		if (!hasThisId) {
+			throw new IllegalArgumentException();
+		}
+		
+		boolean isPast = meetingsList.get(id) instanceof PastMeeting;
+		if (!isPast) {
+			throw new IllegalStateException();
+		}
+
+		((PastMeetingImpl) meetingsList.get(id)).addNotes(text);
 
 	}
 
