@@ -147,6 +147,10 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException();
 		}
 		
+		if (!hasAllContacts(contacts)) {
+			throw new IllegalArgumentException();
+		}
+		
 		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date,
 				contacts, text);
 		meetingsList.add(meeting);
