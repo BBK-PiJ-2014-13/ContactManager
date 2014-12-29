@@ -64,7 +64,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<Meeting> getFutureMeetingList(Contact contact) {
 		hasThisContact(contact);
-		
+
 		List<Meeting> resultList = new ArrayList<Meeting>();
 		for (int i = 0; i < meetingsList.size(); i++) {
 			if (meetingsList.get(i) instanceof FutureMeeting) {
@@ -115,7 +115,7 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public List<PastMeeting> getPastMeetingList(Contact contact) {
 		hasThisContact(contact);
-		
+
 		List<Meeting> startingList = new ArrayList<Meeting>();
 		for (int i = 0; i < meetingsList.size(); i++) {
 			if (meetingsList.get(i) instanceof PastMeeting) {
@@ -139,6 +139,9 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void addNewPastMeeting(Set<Contact> contacts, Calendar date,
 			String text) {
+		if (contacts == null || date == null || text == null) {
+			throw new NullPointerException();
+		}
 		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date,
 				contacts, text);
 		meetingsList.add(meeting);
