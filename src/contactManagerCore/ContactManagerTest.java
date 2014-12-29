@@ -190,16 +190,19 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getPastMeetingListTest() {
-		contacts.add(contact);
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addNewContact("John", "director");
 		manager.addNewPastMeeting(contacts, calendar, notes);
 		manager.addNewPastMeeting(contacts, calendar, notes);
 		manager.addNewPastMeeting(contacts, calendar, notes);
 		contacts = new HashSet<Contact>();
-		contacts.add(new ContactImpl(0, "John"));
+		contact = new ContactImpl(1, "Tom");
+		contacts.add(contact);
+		manager.addNewContact("Tom", "manager");
 		manager.addNewPastMeeting(contacts, calendar, notes);
 		manager.addNewPastMeeting(contacts, calendar, notes);
 
-		if (manager.getPastMeetingList(contact).size() == 1) {
+		if (manager.getPastMeetingList(contact).size() == 2) {
 			valueActual = 1;
 		}
 		test(); // If returns list of past meetings with this contact
