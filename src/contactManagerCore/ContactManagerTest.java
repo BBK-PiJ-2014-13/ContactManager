@@ -211,7 +211,15 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		
-		test(); // if return empty list when there were no meetings with this contact
+		test(); // if returns empty list when there were no meetings with this contact
+		buildUp();
+		
+		try {
+			manager.getPastMeetingList(contact);
+		} catch (IllegalArgumentException e) {
+			valueActual = 1;
+		}
+		test(); // if throws exception when this contact doesn't exist
 	}
 
 	public void addNewPastMeetingTest() {
