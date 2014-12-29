@@ -263,6 +263,13 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if adds notes
+		
+		try {
+			manager.addMeetingNotes(1, "\nJava");	
+		} catch (IllegalArgumentException e) {
+			valueActual = 1;
+		}
+		test(); // if throws IllegalArgumentException if the meeting does not exist
 	}
 
 	public void addNewContactTest() {
