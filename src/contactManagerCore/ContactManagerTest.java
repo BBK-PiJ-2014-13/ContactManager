@@ -167,11 +167,15 @@ public class ContactManagerTest extends BasicTest {
 	public void getFutureMeetingListTest_Calendar() {
 		Calendar date1 = new GregorianCalendar(2015, 1, 5, 12, 00);
 		Calendar date2 = new GregorianCalendar(2015, 1, 4, 12, 00);
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addNewContact("John", "diretor");
 		manager.addFutureMeeting(contacts, date1);
 		manager.addFutureMeeting(contacts, date2);
 		manager.addFutureMeeting(contacts, date1);
 
-		valueActual = manager.getFutureMeetingList(date1).size();
+		if (manager.getFutureMeetingList(date1).size() == 2) {
+			valueActual = 1;
+		}
 		test(); // Test if returns list with meeting on that date with no duplicates
 	}
 
