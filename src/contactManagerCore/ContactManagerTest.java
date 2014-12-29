@@ -118,14 +118,20 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	// TODO Test if returns sorted list with contacts no duplicates
-	// TODO Test if returns empty list if there are no meetings scheduled with
-	// this contact
+
 	// TODO Test if throws exception if contact does not exist
 	public void getFutureMeetingListTest_Contact() {
+		manager.addNewContact("John", "director");
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addFutureMeeting(contacts, calendar);
+		contacts = new HashSet<Contact>();
+		manager.addNewContact("Tom", "manager");
+		manager.getFutureMeetingList(new ContactImpl(1, "Tom"));
 		if (manager.getFutureMeetingList(contact).size() == 0) {
 			valueActual = 1;
 		}
-		test();
+		test(); // TODO Test if returns empty list if there are no meetings
+				// scheduled with this contact
 		buildUp();
 
 		Contact contact1 = new ContactImpl(0, "John");
