@@ -118,8 +118,8 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	// TODO Test if returns sorted list with contacts no duplicates
-
 	// TODO Test if throws exception if contact does not exist
+	@Test
 	public void getFutureMeetingListTest_Contact() {
 		manager.addNewContact("John", "director");
 		contacts.add(new ContactImpl(0, "John"));
