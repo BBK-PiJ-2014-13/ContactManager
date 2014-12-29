@@ -142,6 +142,11 @@ public class ContactManagerImpl implements ContactManager {
 		if (contacts == null || date == null || text == null) {
 			throw new NullPointerException();
 		}
+		
+		if (contacts.size() == 0) {
+			throw new IllegalArgumentException();
+		}
+		
 		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date,
 				contacts, text);
 		meetingsList.add(meeting);
