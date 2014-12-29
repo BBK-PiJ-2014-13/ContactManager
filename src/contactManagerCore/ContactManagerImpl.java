@@ -168,8 +168,11 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalStateException();
 		}
 
+		if (text == null) {
+			throw new NullPointerException();
+		}
+		
 		((PastMeetingImpl) meetingsList.get(id)).addNotes(text);
-
 	}
 
 	@Override
