@@ -233,6 +233,16 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // if throws exception if the list of contacts is empty
+
+		manager.addNewContact("John", "director");
+		contacts.add(new ContactImpl(0, "John"));
+		contacts.add(new ContactImpl(1, "Tom"));
+		try {
+			manager.addNewPastMeeting(contacts, calendar, notes);
+			} catch (IllegalArgumentException e) {
+				valueActual = 1;
+			}
+		test(); // if throws exception if any of the contacts does not exist
 	}
 
 	public void addMeetingNotesTest() {
