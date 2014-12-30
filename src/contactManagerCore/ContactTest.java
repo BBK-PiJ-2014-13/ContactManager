@@ -15,12 +15,14 @@ public class ContactTest extends BasicTest {
 
 	@Test
 	public void testsGetName() {
-		valueExpected = "";
-		valueActual = contact.getNotes();
+		if (contact.getNotes() == "") {
+			valueActual = 1;
+		}
 		test();
 		
-		valueExpected = "John";
-		valueActual = contact.getName();
+		if (contact.getName() == "John") {
+			valueActual = 1;
+		}
 		test();
 	}
 
