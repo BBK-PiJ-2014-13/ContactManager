@@ -38,7 +38,7 @@ public class ContactTest extends BasicTest {
 	public void testsAddNotes() {
 		contact.addNotes("hello");
 		contact.addNotes(" world");
-		if (contact.getNotes() == "hello world") {
+		if (contact.getNotes().equals("hello world")) {
 			valueActual = 1;
 		}
 		test();
