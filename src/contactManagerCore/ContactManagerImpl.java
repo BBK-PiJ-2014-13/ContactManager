@@ -1,5 +1,6 @@
 package contactManagerCore;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -13,6 +14,11 @@ import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -149,15 +155,15 @@ public class ContactManagerImpl implements ContactManager {
 		if (contacts == null || date == null || text == null) {
 			throw new NullPointerException();
 		}
-		
+
 		if (contacts.size() == 0) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		if (!hasAllContacts(contacts)) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		Meeting meeting = new PastMeetingImpl(meetingsList.size(), date,
 				contacts, text);
 		meetingsList.add(meeting);
@@ -169,7 +175,7 @@ public class ContactManagerImpl implements ContactManager {
 		if (!hasThisId) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		boolean isPast = meetingsList.get(id) instanceof PastMeeting;
 		if (!isPast) {
 			throw new IllegalStateException();
@@ -178,7 +184,7 @@ public class ContactManagerImpl implements ContactManager {
 		if (text == null) {
 			throw new NullPointerException();
 		}
-		
+
 		((PastMeetingImpl) meetingsList.get(id)).addNotes(text);
 	}
 
@@ -187,7 +193,7 @@ public class ContactManagerImpl implements ContactManager {
 		if (name == null || notes == null) {
 			throw new NullPointerException();
 		}
-		
+
 		contactsList.add(new ContactImpl(contactsList.size(), name));
 		contactsList.get(contactsList.size() - 1).addNotes(notes);
 
@@ -226,28 +232,38 @@ public class ContactManagerImpl implements ContactManager {
 	@Override
 	public void flush() {
 		try {
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-		
-		// root element
-		Document doc = docBuilder.newDocument();
-		Element rootElement = doc.createElement("Contacts");
-		doc.appendChild(rootElement);
-		
-		// Contact elements
-		for (int i = 0; i < contactsList.size(); i++) {
-			Contact curEl = contactsList.get(i);
-			Element contact = doc.createElement("Contact");
-			contact.setAttribute("id", Integer.toString(i));
-			
-			Node nameNode = doc.createElement("name");
-			nameNode.appendChild(doc.createTextNode(curEl.getName()));
-			rootElement.appendChild(nameNode);
-			
-			Node notesNode = doc.createElement("notes");
-			notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
-			rootElement.appendChild(notesNode);
-		}
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+			// root element
+			Document doc = docBuilder.newDocument();
+			Element rootElement = doc.createElement("Contacts");
+			doc.appendChild(rootElement);
+
+			// Contact elements
+			for (int i = 0; i < contactsList.size(); i++) {
+				Contact curEl = contactsList.get(i);
+				Element contact = doc.createElement("Contact");
+				contact.setAttribute("id", Integer.toString(i));
+
+				Node nameNode = doc.createElement("name");
+				nameNode.appendChild(doc.createTextNode(curEl.getName()));
+				rootElement.appendChild(nameNode);
+
+				Node notesNode = doc.createElement("notes");
+				notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
+				rootElement.appendChild(notesNode);
+				
+				// Write the content into xml file
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				Transformer transformer = transformerFactory.newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
+				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+				DOMSource source = new DOMSource(doc);
+				StreamResult result = new StreamResult(new File("contacts.xml"));
+				transformer.transform(source, result);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
