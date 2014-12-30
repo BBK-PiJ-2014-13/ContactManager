@@ -242,9 +242,11 @@ public class ContactManagerImpl implements ContactManager {
 			
 			Node nameNode = doc.createElement("name");
 			nameNode.appendChild(doc.createTextNode(curEl.getName()));
+			rootElement.appendChild(nameNode);
 			
 			Node notesNode = doc.createElement("notes");
 			notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
+			rootElement.appendChild(notesNode);
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
