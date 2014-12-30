@@ -381,7 +381,11 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	public void importListsTest() {
-		
+		manager.addNewContact("John", "director");
+		contacts.add(new ContactImpl(0, "John"));
+		manager.addFutureMeeting(contacts, calendar);
+		manager.flush();
+		manager = new ContactManagerImpl();
 	}
 	
 	@Test
