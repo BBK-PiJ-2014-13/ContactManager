@@ -229,7 +229,10 @@ public class ContactManagerImpl implements ContactManager {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		
+		// root element
 		Document doc = docBuilder.newDocument();
+		Element rootElement = doc.createElement("Contacts");
+		doc.appendChild(rootElement);
 		
 		// Contact elements
 		for (int i = 0; i < contactsList.size(); i++) {
