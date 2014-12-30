@@ -28,8 +28,9 @@ public class ContactTest extends BasicTest {
 
 	@Test
 	public void testsGetNotes() {
-		valueExpected = "";
-		valueActual = contact.getNotes();
+		if (contact.getNotes() == "") {
+			valueActual = 1;
+		}
 		test();
 	}
 	
@@ -37,8 +38,9 @@ public class ContactTest extends BasicTest {
 	public void testsAddNotes() {
 		contact.addNotes("hello");
 		contact.addNotes(" world");
-		valueExpected = "hello world";
-		valueActual = contact.getNotes();
+		if (contact.getNotes() == "hello world") {
+			valueActual = 1;
+		}
 		test();
 	}
 }
