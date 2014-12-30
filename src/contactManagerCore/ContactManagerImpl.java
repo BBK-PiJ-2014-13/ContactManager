@@ -271,6 +271,15 @@ public class ContactManagerImpl implements ContactManager {
 						calendarNode.appendChild(doc.createTextNode(curEl
 								.getDate().getTime().toString()));
 						meeting.appendChild(calendarNode);
+
+						Element contacts = doc.createElement("contacts");
+						meeting.appendChild(contacts);
+						Node curContactNode;
+						for (int j = 0; j < curEl.getContacts().size(); i++) {
+							Contact[] curContactEl = (Contact[]) curEl
+									.getContacts().toArray()[j];
+
+						}
 					}
 				} else {
 					// Contact elements
@@ -339,8 +348,9 @@ public class ContactManagerImpl implements ContactManager {
 				for (int i = 0; i < nList.getLength(); i++) {
 					Element curElem = (Element) nList.item(i);
 					int id = Integer.parseInt(curElem.getAttribute("id"));
-					String date = curElem.getElementsByTagName("date").item(0).getTextContent();
-					
+					String date = curElem.getElementsByTagName("date").item(0)
+							.getTextContent();
+
 					// TODO add code to copy list of attending contacts
 					// TODO add code to copy type of Meeting (Future, Past...)
 				}
