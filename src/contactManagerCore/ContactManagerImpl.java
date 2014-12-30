@@ -314,7 +314,7 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public ArrayList<ArrayList> importLists() {
-		boolean writeMeetings = true;
+		boolean readMeetings = true;
 		ArrayList<Contact> outputContacts = new ArrayList<Contact>();
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory
@@ -322,23 +322,27 @@ public class ContactManagerImpl implements ContactManager {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
 			Document doc;
-			if (writeMeetings) {
+			if (readMeetings) {
 				doc = docBuilder.parse(new File("meetings.xml"));
 			} else {
 				doc = docBuilder.parse(new File("contacts.xml"));
 			}
 
 			NodeList nList;
-			if (writeMeetings) {
+			if (readMeetings) {
 				nList = doc.getElementsByTagName("meeting");
 			} else {
 				nList = doc.getElementsByTagName("contact");
 			}
 
-			if (writeMeetings) {
+			if (readMeetings) {
 				for (int i = 0; i < nList.getLength(); i++) {
 					Element curElem = (Element) nList.item(i);
 					int id = Integer.parseInt(curElem.getAttribute("id"));
+					String date = curElem.getElementsByTagName("date").item(0).getTextContent();
+					
+					// TODO add code to copy list of attending contacts
+					// TODO add code to copy type of Meeting (Future, Past...)
 				}
 			} else {
 				for (int i = 0; i < nList.getLength(); i++) {
