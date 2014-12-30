@@ -305,6 +305,10 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 
+	public void importLists() {
+		
+	}
+	
 	public boolean hasAllContacts(Set<Contact> set) {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
