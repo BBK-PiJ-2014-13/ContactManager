@@ -1,15 +1,20 @@
 package contactManagerCore;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class ContactManagerTest extends BasicTest {
 	ContactManagerImpl manager;
@@ -357,6 +362,21 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, calendar);
 		manager.addNewPastMeeting(contacts, new GregorianCalendar(2014, 1, 1), notes);
 		manager.flush();
+		
+		try {
+		File xmlFile = new File("contacts.xml");
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.parse(xmlFile);
+		
+		NodeList nList = doc.getElementsByTagName("Contact");
+		Element eElement = (Element) nList.item(1);
+		if (eElement.getElementsByTagName("name").equals("Tom")) {
+			valueActual = 1;
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		test();
 	}
 
