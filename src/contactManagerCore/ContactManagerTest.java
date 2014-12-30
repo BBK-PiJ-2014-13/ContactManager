@@ -369,9 +369,9 @@ public class ContactManagerTest extends BasicTest {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(xmlFile);
 		
-		NodeList nList = doc.getElementsByTagName("Contact");
+		NodeList nList = doc.getElementsByTagName("contact");
 		Element eElement = (Element) nList.item(1);
-		if (eElement.getElementsByTagName("name").equals("Tom")) {
+		if (eElement.getElementsByTagName("name").item(0).getTextContent().equals("Tom")) {
 			valueActual = 1;
 		}
 		} catch (Exception e) {
