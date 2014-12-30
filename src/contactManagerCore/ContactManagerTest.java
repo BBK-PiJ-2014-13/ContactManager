@@ -398,7 +398,7 @@ public class ContactManagerTest extends BasicTest {
 //		}
 //		test();
 		
-		if (contactListTest.get(1).getName().equals("Tom")) {
+		if (contactListTest.get(0).getName().equals("Tom")) {
 			valueActual = 1;
 		}
 		test();
