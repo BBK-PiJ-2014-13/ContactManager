@@ -356,6 +356,7 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addFutureMeeting(contacts, calendar);
 		manager.addNewPastMeeting(contacts, new GregorianCalendar(2014, 1, 1), notes);
+		manager.flush();
 		test();
 	}
 
