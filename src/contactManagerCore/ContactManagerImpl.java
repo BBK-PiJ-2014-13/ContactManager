@@ -27,6 +27,10 @@ import org.w3c.dom.Node;
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
+	
+	public ContactManagerImpl() {
+		importLists();
+	}
 
 	@Override
 	public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
