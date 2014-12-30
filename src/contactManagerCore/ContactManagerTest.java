@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -380,12 +381,27 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	@Test
 	public void importListsTest() {
 		manager.addNewContact("John", "director");
+		manager.addNewContact("Tom", "manager");
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addFutureMeeting(contacts, calendar);
 		manager.flush();
-		manager = new ContactManagerImpl();
+		List<Meeting> meetingListTest = manager.importLists().get(0);
+		List<Contact> contactListTest = manager.importLists().get(1);
+		
+		Contact[] meetingContactsTest = (Contact[]) meetingListTest.get(0).getContacts().toArray();
+		
+		if (meetingContactsTest[0].getName().equals("John")) {
+			valueActual = 1;
+		}
+		test();
+		
+		if (contactListTest.get(1).getName().equals("Tom")) {
+			valueActual = 1;
+		}
+		test();
 	}
 	
 	@Test
