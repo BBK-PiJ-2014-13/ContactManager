@@ -236,6 +236,12 @@ public class ContactManagerImpl implements ContactManager {
 					.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
+			// Iterates 2 times, one for meetings and one for contacts
+			boolean writeMeetings = true;
+			for (int i = 0; i < 2; i++) {
+				
+			}
+			
 			// root element
 			Document doc = docBuilder.newDocument();
 			Element rootElement = doc.createElement("contacts");
