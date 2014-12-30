@@ -7,8 +7,9 @@ public class ContactTest extends BasicTest {
 
 	@Test
 	public void testsGetId() {
-		valueExpected = 10;
-		valueActual = contact.getId();
+		if (contact.getId() == 10) {
+			valueActual = 1;
+		}
 		test();
 	}
 
