@@ -233,11 +233,15 @@ public class ContactManagerImpl implements ContactManager {
 		
 		// Contact elements
 		for (int i = 0; i < contactsList.size(); i++) {
-			Contact curElement = contactsList.get(i);
+			Contact curEl = contactsList.get(i);
 			Element contact = doc.createElement("Contact");
 			contact.setAttribute("id", Integer.toString(i));
-			Node node = doc.createElement("name");
-			node.appendChild(doc.createTextNode(curElement.getName()));
+			
+			Node nameNode = doc.createElement("name");
+			nameNode.appendChild(doc.createTextNode(curEl.getName()));
+			
+			Node notesNode = doc.createElement("notes");
+			notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
