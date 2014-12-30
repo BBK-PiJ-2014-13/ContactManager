@@ -1,6 +1,7 @@
 package contactManagerCore;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -23,6 +25,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
@@ -309,8 +313,29 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 
-	public void importLists() {
+	public ArrayList<ArrayList> importLists() {
+		ArrayList<Contact> outputContacts = new ArrayList<Contact>();
+		try {
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.parse(new File("contacts.xml"));
+			
+			NodeList nList = doc.getElementsByTagName("contact");
+			for (int i = 0; i < nList.getLength(); i++) {
+			Element curElem = (Element) nList.item(i);
+			int id = Integer.parseInt(curElem.getAttribute("id"));
+			String name = curElem.getElementsByTagName("name").item(0).getTextContent();
+			String notes = curElem.getElementsByTagName("notes").item(0).getTextContent();
+			Contact targetContact = new ContactImpl(id, name);
+			targetContact.addNotes(notes);
+			outputContacts.add(targetContact);
+			}
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		ArrayList<ArrayList> returnList = new ArrayList<ArrayList>();
 		
+		return null;
 	}
 	
 	public boolean hasAllContacts(Set<Contact> set) {
