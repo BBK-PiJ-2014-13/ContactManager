@@ -238,13 +238,13 @@ public class ContactManagerImpl implements ContactManager {
 
 			// root element
 			Document doc = docBuilder.newDocument();
-			Element rootElement = doc.createElement("Contacts");
+			Element rootElement = doc.createElement("contacts");
 			doc.appendChild(rootElement);
 
 			// Contact elements
 			for (int i = 0; i < contactsList.size(); i++) {
 				Contact curEl = contactsList.get(i);
-				Element contact = doc.createElement("Contact");
+				Element contact = doc.createElement("contact");
 				contact.setAttribute("id", Integer.toString(i));
 				rootElement.appendChild(contact);
 
