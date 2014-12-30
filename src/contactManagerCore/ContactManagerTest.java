@@ -380,6 +380,10 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
+	public void importListsTest() {
+		
+	}
+	
 	@Test
 	public void testsSortChronologically() {
 		Meeting meeting0 = new FutureMeetingImpl(0, new GregorianCalendar(2015,
