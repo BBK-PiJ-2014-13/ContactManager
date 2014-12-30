@@ -11,6 +11,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
@@ -218,7 +224,21 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public void flush() {
-		// Write to file
+		try {
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		
+		Document doc = docBuilder.newDocument();
+		
+		// Contact elements
+		for (int i = 0; i < contactsList.size(); i++) {
+			Element contact = doc.createElement("Contact");
+			contact.setAttribute("id", Integer.toString(i));
+			
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void writeMeetings() {
