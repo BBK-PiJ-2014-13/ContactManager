@@ -246,24 +246,27 @@ public class ContactManagerImpl implements ContactManager {
 				Contact curEl = contactsList.get(i);
 				Element contact = doc.createElement("Contact");
 				contact.setAttribute("id", Integer.toString(i));
+				rootElement.appendChild(contact);
 
 				Node nameNode = doc.createElement("name");
 				nameNode.appendChild(doc.createTextNode(curEl.getName()));
-				rootElement.appendChild(nameNode);
+				contact.appendChild(nameNode);
 
 				Node notesNode = doc.createElement("notes");
 				notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
-				rootElement.appendChild(notesNode);
-				
-				// Write the content into xml file
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = transformerFactory.newTransformer();
-				transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
-				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-				DOMSource source = new DOMSource(doc);
-				StreamResult result = new StreamResult(new File("contacts.xml"));
-				transformer.transform(source, result);
+				contact.appendChild(notesNode);
 			}
+
+			// Write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory
+					.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(
+					"{http://xml.apache.org/xslt}indent-amount", "2");
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File("contacts.xml"));
+			transformer.transform(source, result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
