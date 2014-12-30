@@ -1,13 +1,13 @@
 package contactManagerCore;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +16,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
@@ -232,9 +233,11 @@ public class ContactManagerImpl implements ContactManager {
 		
 		// Contact elements
 		for (int i = 0; i < contactsList.size(); i++) {
+			Contact curElement = contactsList.get(i);
 			Element contact = doc.createElement("Contact");
 			contact.setAttribute("id", Integer.toString(i));
-			
+			Node node = doc.createElement("name");
+			node.appendChild(doc.createTextNode(curElement.getName()));
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
