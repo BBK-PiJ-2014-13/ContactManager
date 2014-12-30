@@ -239,28 +239,49 @@ public class ContactManagerImpl implements ContactManager {
 			// Iterates 2 times, one for meetings and one for contacts
 			boolean writeMeetings = true;
 			for (int i = 0; i < 2; i++) {
-				
+
 			}
-			
+
 			// root element
 			Document doc = docBuilder.newDocument();
-			Element rootElement = doc.createElement("contacts");
+			Element rootElement;
+			if (writeMeetings) {
+				rootElement = doc.createElement("meetings");
+			} else {
+				rootElement = doc.createElement("contacts");
+			}
+
 			doc.appendChild(rootElement);
 
-			// Contact elements
-			for (int i = 0; i < contactsList.size(); i++) {
-				Contact curEl = contactsList.get(i);
-				Element contact = doc.createElement("contact");
-				contact.setAttribute("id", Integer.toString(i));
-				rootElement.appendChild(contact);
+			if (writeMeetings) {
+				// Meetings elements
+				for (int i = 0; i < meetingsList.size(); i++) {
+					Meeting curEl = meetingsList.get(i);
+					Element meeting = doc.createElement("meeting");
+					meeting.setAttribute("id", Integer.toString(i));
+					rootElement.appendChild(meeting);
 
-				Node nameNode = doc.createElement("name");
-				nameNode.appendChild(doc.createTextNode(curEl.getName()));
-				contact.appendChild(nameNode);
+					Node calendarNode = doc.createElement("date");
+					calendarNode.appendChild(doc.createTextNode(curEl.getDate()
+							.getTime().toString()));
+					meeting.appendChild(calendarNode);
+				}
+			} else {
+				// Contact elements
+				for (int i = 0; i < contactsList.size(); i++) {
+					Contact curEl = contactsList.get(i);
+					Element contact = doc.createElement("contact");
+					contact.setAttribute("id", Integer.toString(i));
+					rootElement.appendChild(contact);
 
-				Node notesNode = doc.createElement("notes");
-				notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
-				contact.appendChild(notesNode);
+					Node nameNode = doc.createElement("name");
+					nameNode.appendChild(doc.createTextNode(curEl.getName()));
+					contact.appendChild(nameNode);
+
+					Node notesNode = doc.createElement("notes");
+					notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
+					contact.appendChild(notesNode);
+				}
 			}
 
 			// Write the content into xml file
