@@ -305,14 +305,6 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 
-	public void writeMeetings() {
-
-	}
-
-	public void writeContacts() {
-
-	}
-
 	public boolean hasAllContacts(Set<Contact> set) {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
