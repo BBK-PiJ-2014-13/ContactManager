@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Meeting> meetingsList = new ArrayList<Meeting>();
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
-	
+
 	public ContactManagerImpl() {
 		importLists();
 	}
@@ -314,30 +314,53 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public ArrayList<ArrayList> importLists() {
+		boolean writeMeetings = true;
 		ArrayList<Contact> outputContacts = new ArrayList<Contact>();
 		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory
+					.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("contacts.xml"));
-			
-			NodeList nList = doc.getElementsByTagName("contact");
-			for (int i = 0; i < nList.getLength(); i++) {
-			Element curElem = (Element) nList.item(i);
-			int id = Integer.parseInt(curElem.getAttribute("id"));
-			String name = curElem.getElementsByTagName("name").item(0).getTextContent();
-			String notes = curElem.getElementsByTagName("notes").item(0).getTextContent();
-			Contact targetContact = new ContactImpl(id, name);
-			targetContact.addNotes(notes);
-			outputContacts.add(targetContact);
+
+			Document doc;
+			if (writeMeetings) {
+				doc = docBuilder.parse(new File("meetings.xml"));
+			} else {
+				doc = docBuilder.parse(new File("contacts.xml"));
+			}
+
+			NodeList nList;
+			if (writeMeetings) {
+				nList = doc.getElementsByTagName("meeting");
+			} else {
+				nList = doc.getElementsByTagName("contact");
+			}
+
+			if (writeMeetings) {
+				for (int i = 0; i < nList.getLength(); i++) {
+					Element curElem = (Element) nList.item(i);
+					int id = Integer.parseInt(curElem.getAttribute("id"));
+				}
+			} else {
+				for (int i = 0; i < nList.getLength(); i++) {
+					Element curElem = (Element) nList.item(i);
+					int id = Integer.parseInt(curElem.getAttribute("id"));
+					String name = curElem.getElementsByTagName("name").item(0)
+							.getTextContent();
+					String notes = curElem.getElementsByTagName("notes")
+							.item(0).getTextContent();
+					Contact targetContact = new ContactImpl(id, name);
+					targetContact.addNotes(notes);
+					outputContacts.add(targetContact);
+				}
 			}
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
 		ArrayList<ArrayList> returnList = new ArrayList<ArrayList>();
-		
-		return null;
+		returnList.add(contactsList);
+		return returnList;
 	}
-	
+
 	public boolean hasAllContacts(Set<Contact> set) {
 		Iterator<Contact> iterator = set.iterator();
 		while (iterator.hasNext()) {
