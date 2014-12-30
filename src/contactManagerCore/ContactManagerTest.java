@@ -389,7 +389,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, calendar);
 		manager.flush();
 //		List<Meeting> meetingListTest = manager.importLists().get(0);
-		List<Contact> contactListTest = manager.importLists().get(1);
+		List<Contact> contactListTest = manager.importLists().get(0);
 		
 //		Contact[] meetingContactsTest = (Contact[]) meetingListTest.get(0).getContacts().toArray();
 //		
@@ -398,7 +398,7 @@ public class ContactManagerTest extends BasicTest {
 //		}
 //		test();
 		
-		if (contactListTest.get(0).getName().equals("Tom")) {
+		if (contactListTest.get(1).getName().equals("Tom")) {
 			valueActual = 1;
 		}
 		test();
