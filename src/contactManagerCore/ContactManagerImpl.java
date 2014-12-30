@@ -238,62 +238,68 @@ public class ContactManagerImpl implements ContactManager {
 
 			// Iterates 2 times, one for meetings and one for contacts
 			boolean writeMeetings = true;
-			for (int i = 0; i < 2; i++) {
+			for (int iterations = 0; iterations < 2; iterations++) {
 
-			}
-
-			// root element
-			Document doc = docBuilder.newDocument();
-			Element rootElement;
-			if (writeMeetings) {
-				rootElement = doc.createElement("meetings");
-			} else {
-				rootElement = doc.createElement("contacts");
-			}
-
-			doc.appendChild(rootElement);
-
-			if (writeMeetings) {
-				// Meetings elements
-				for (int i = 0; i < meetingsList.size(); i++) {
-					Meeting curEl = meetingsList.get(i);
-					Element meeting = doc.createElement("meeting");
-					meeting.setAttribute("id", Integer.toString(i));
-					rootElement.appendChild(meeting);
-
-					Node calendarNode = doc.createElement("date");
-					calendarNode.appendChild(doc.createTextNode(curEl.getDate()
-							.getTime().toString()));
-					meeting.appendChild(calendarNode);
+				// root element
+				Document doc = docBuilder.newDocument();
+				Element rootElement;
+				if (writeMeetings) {
+					rootElement = doc.createElement("meetings");
+				} else {
+					rootElement = doc.createElement("contacts");
 				}
-			} else {
-				// Contact elements
-				for (int i = 0; i < contactsList.size(); i++) {
-					Contact curEl = contactsList.get(i);
-					Element contact = doc.createElement("contact");
-					contact.setAttribute("id", Integer.toString(i));
-					rootElement.appendChild(contact);
 
-					Node nameNode = doc.createElement("name");
-					nameNode.appendChild(doc.createTextNode(curEl.getName()));
-					contact.appendChild(nameNode);
+				doc.appendChild(rootElement);
 
-					Node notesNode = doc.createElement("notes");
-					notesNode.appendChild(doc.createTextNode(curEl.getNotes()));
-					contact.appendChild(notesNode);
+				if (writeMeetings) {
+					// Meetings elements
+					for (int i = 0; i < meetingsList.size(); i++) {
+						Meeting curEl = meetingsList.get(i);
+						Element meeting = doc.createElement("meeting");
+						meeting.setAttribute("id", Integer.toString(i));
+						rootElement.appendChild(meeting);
+
+						Node calendarNode = doc.createElement("date");
+						calendarNode.appendChild(doc.createTextNode(curEl
+								.getDate().getTime().toString()));
+						meeting.appendChild(calendarNode);
+					}
+				} else {
+					// Contact elements
+					for (int i = 0; i < contactsList.size(); i++) {
+						Contact curEl = contactsList.get(i);
+						Element contact = doc.createElement("contact");
+						contact.setAttribute("id", Integer.toString(i));
+						rootElement.appendChild(contact);
+
+						Node nameNode = doc.createElement("name");
+						nameNode.appendChild(doc.createTextNode(curEl.getName()));
+						contact.appendChild(nameNode);
+
+						Node notesNode = doc.createElement("notes");
+						notesNode.appendChild(doc.createTextNode(curEl
+								.getNotes()));
+						contact.appendChild(notesNode);
+					}
 				}
-			}
 
-			// Write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory
-					.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(
-					"{http://xml.apache.org/xslt}indent-amount", "2");
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("contacts.xml"));
-			transformer.transform(source, result);
+				// Write the content into xml files
+				TransformerFactory transformerFactory = TransformerFactory
+						.newInstance();
+				Transformer transformer = transformerFactory.newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				transformer.setOutputProperty(
+						"{http://xml.apache.org/xslt}indent-amount", "2");
+				DOMSource source = new DOMSource(doc);
+				StreamResult result;
+				if (writeMeetings) {
+					result = new StreamResult(new File("meetings.xml"));
+				} else {
+					result = new StreamResult(new File("contacts.xml"));
+				}
+				transformer.transform(source, result);
+				writeMeetings = !writeMeetings;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
