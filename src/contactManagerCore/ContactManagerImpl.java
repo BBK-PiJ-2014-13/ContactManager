@@ -259,7 +259,7 @@ public class ContactManagerImpl implements ContactManager {
 
 				doc.appendChild(rootElement);
 				if (writeMeetings) {
-					// Meetings elements
+					// Meeting
 					for (int i = 0; i < meetingsList.size(); i++) {
 						Meeting curMeeting = meetingsList.get(i);
 						Element meeting = doc.createElement("meeting");
@@ -276,6 +276,14 @@ public class ContactManagerImpl implements ContactManager {
 						meeting.appendChild(contacts);
 						Object[] meetingContacts = curMeeting.getContacts()
 								.toArray();
+						
+						// Notes
+						Node meetingNotes = doc.createElement("notes");
+						if (curMeeting instanceof PastMeeting) {
+							meetingNotes.appendChild(doc.createTextNode(((PastMeeting) curMeeting).getNotes()));
+							meeting.appendChild(meetingNotes);
+						}
+						
 
 						// Contacts
 						for (int j = 0; j < curMeeting.getContacts().size(); j++) {
