@@ -407,6 +407,8 @@ public class ContactManagerImpl implements ContactManager {
 			} catch (ParserConfigurationException | SAXException | IOException e) {
 				e.printStackTrace();
 			}
+			System.out.println("change boolean");
+			importContacts = !importContacts;
 		}
 	}
 
