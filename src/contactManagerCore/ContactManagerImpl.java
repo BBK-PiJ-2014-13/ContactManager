@@ -258,25 +258,32 @@ public class ContactManagerImpl implements ContactManager {
 				}
 
 				doc.appendChild(rootElement);
-
 				if (writeMeetings) {
 					// Meetings elements
 					for (int i = 0; i < meetingsList.size(); i++) {
-						Meeting curEl = meetingsList.get(i);
+						Meeting curMeeting = meetingsList.get(i);
 						Element meeting = doc.createElement("meeting");
 						meeting.setAttribute("id", Integer.toString(i));
 						rootElement.appendChild(meeting);
 
 						Node calendarNode = doc.createElement("date");
-						calendarNode.appendChild(doc.createTextNode(curEl
+						calendarNode.appendChild(doc.createTextNode(curMeeting
 								.getDate().getTime().toString()));
 						meeting.appendChild(calendarNode);
 
 						Element contacts = doc.createElement("contacts");
 						meeting.appendChild(contacts);
-						Object[] meetingContacts = curEl.getContacts().toArray();
-						for (int j = 0; j < curEl.getContacts().size(); i++) {
+						Object[] meetingContacts = curMeeting.getContacts().toArray();
+						for (int j = 0; j < curMeeting.getContacts().size(); j++) {
 							Contact curContact = (Contact) meetingContacts[j];
+							Element meetingContact = doc.createElement("contact");
+							meetingContact.setAttribute("id", Integer.toString(curContact.getId()));
+							contacts.appendChild(meetingContact);
+							
+							// Name
+							Node contactName = doc.createElement("name");
+							contactName.appendChild(doc.createTextNode(curContact.getName()));
+							meetingContact.appendChild(contactName);
 						}
 					}
 				} else {
@@ -287,10 +294,12 @@ public class ContactManagerImpl implements ContactManager {
 						contact.setAttribute("id", Integer.toString(i));
 						rootElement.appendChild(contact);
 
+						// Name
 						Node nameNode = doc.createElement("name");
 						nameNode.appendChild(doc.createTextNode(curEl.getName()));
 						contact.appendChild(nameNode);
-
+						
+						// Notes
 						Node notesNode = doc.createElement("notes");
 						notesNode.appendChild(doc.createTextNode(curEl
 								.getNotes()));
