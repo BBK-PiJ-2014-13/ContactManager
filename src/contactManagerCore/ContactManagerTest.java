@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ContactManagerTest extends BasicTest {
@@ -321,7 +322,7 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewContact("Arnold", "actor");
 		manager.addNewContact("Obama", "president");
 		if (manager.getContacts(1, 2).size() == 2) {
-			valueActual = 1;			
+			valueActual = 1;
 		}
 		test(); // if returns a list containing the contacts that correspond to
 				// the IDs
@@ -343,7 +344,8 @@ public class ContactManagerTest extends BasicTest {
 		if (manager.getContacts("Jo").toArray().length == 2) {
 			valueActual = 1;
 		}
-		test(); // if return a list with the contacts whose name contains that string
+		test(); // if return a list with the contacts whose name contains that
+				// string
 
 		String emptyStr = null;
 		try {
@@ -361,24 +363,29 @@ public class ContactManagerTest extends BasicTest {
 		manager.addNewContact("Larry", "programmer");
 		Contact contactTest1 = new ContactImpl(0, "John");
 		contactTest1.addNotes("director");
+		Contact contactTest2 = new ContactImpl(1, "Tom");
+		contactTest2.addNotes("manager");
 		contacts.add(contactTest1);
+		contacts.add(contactTest2);
 		manager.addFutureMeeting(contacts, calendar);
-		manager.addNewPastMeeting(contacts, new GregorianCalendar(2014, 1, 1), notes);
+		manager.addNewPastMeeting(contacts, new GregorianCalendar(2014, 1, 1),
+				notes);
 		manager.flush();
-		
+
 		try {
-		File xmlFile = new File("contacts.xml");
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(xmlFile);
-		
-		NodeList nList = doc.getElementsByTagName("contact");
-		Element eElement = (Element) nList.item(1);
-		if (eElement.getElementsByTagName("name").item(0).getTextContent().equals("Tom")) {
-			valueActual = 1;
-		}
+			File xmlFile = new File("meetings.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(xmlFile);
+
+			NodeList listOfMeetings = doc.getElementsByTagName("meeting");
+			Node secondContact = listOfMeetings.item(1);
+			if (secondContact.getTextContent().equals("Tom")) {
+				valueActual = 1;
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			valueActual = 0;
 		}
 		test();
 	}
@@ -390,13 +397,13 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addFutureMeeting(contacts, calendar);
 		manager.flush();
-		
+
 		Contact contactTest = (Contact) manager.getContacts("Tom").toArray()[0];
 		if (contactTest.getNotes().equals("manager")) {
 			valueActual = 1;
 		}
 		test();
-		
+
 		try {
 			manager.getFutureMeetingList(calendar).get(0);
 			valueActual = 1;
@@ -405,7 +412,7 @@ public class ContactManagerTest extends BasicTest {
 		}
 		test();
 	}
-	
+
 	@Test
 	public void testsSortChronologically() {
 		Meeting meeting0 = new FutureMeetingImpl(0, new GregorianCalendar(2015,
