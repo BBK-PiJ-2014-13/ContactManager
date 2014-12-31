@@ -401,7 +401,8 @@ public class ContactManagerImpl implements ContactManager {
 					// Meetings
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
-
+						HashSet<Contact> meetingContactsSet = new HashSet<Contact>();
+						
 						// ID
 						int meetingID = Integer.parseInt(curElem
 								.getAttribute("id"));
@@ -411,8 +412,9 @@ public class ContactManagerImpl implements ContactManager {
 								.item(0).getTextContent();
 
 						// Notes
+						String notes = null;
 						if (curElem.getElementsByTagName("notes").getLength() != 0) {
-							String notes = curElem
+							notes = curElem
 									.getElementsByTagName("notes").item(0)
 									.getTextContent();
 						}
@@ -420,7 +422,6 @@ public class ContactManagerImpl implements ContactManager {
 						// Contacts
 						NodeList meetingContacts = curElem
 								.getElementsByTagName("contact");
-						HashSet<Contact> meetingContactsSet = new HashSet<Contact>();
 						for (int j = 0; j < meetingContacts.getLength(); j++) {
 							Element curContact = (Element) meetingContacts
 									.item(j);
@@ -457,7 +458,11 @@ public class ContactManagerImpl implements ContactManager {
 						GregorianCalendar meetingCalendar = new GregorianCalendar();
 						meetingCalendar.setTime(meetingDate);
 						if (isInPast >= 0) {
-							meetingOutput = new FutureMeetingImpl(meetingID, meetingCalendar, outputContacts);
+							meetingOutput = new FutureMeetingImpl(meetingID, meetingCalendar, meetingContactsSet);
+							meetingsList.set(meetingID, meetingOutput);
+						} else {
+							meetingOutput = new PastMeetingImpl(meetingID, meetingCalendar, meetingContactsSet, notes);
+							meetingsList.set(meetingID, meetingOutput);
 						}
 					}
 				}
