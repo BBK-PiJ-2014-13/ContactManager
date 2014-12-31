@@ -272,8 +272,8 @@ public class ContactManagerImpl implements ContactManager {
 						// Date
 						Node calendarNode = doc.createElement("date");
 						DateFormat dateFormat = new SimpleDateFormat();
-						calendarNode.appendChild(doc.createTextNode(dateFormat.format(curMeeting
-								.getDate().getTime())));
+						calendarNode.appendChild(doc.createTextNode(dateFormat
+								.format(curMeeting.getDate().getTime())));
 						meeting.appendChild(calendarNode);
 
 						// Contacts
@@ -397,29 +397,29 @@ public class ContactManagerImpl implements ContactManager {
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
 						contactsList.set(id, targetContact);
-						
+
 					}
 				} else {
 					// Meetings
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
 						HashSet<Contact> meetingContactsSet = new HashSet<Contact>();
-						
+
 						// ID
 						int meetingID = Integer.parseInt(curElem
 								.getAttribute("id"));
 
 						// Date
 						DateFormat dateFormat = new SimpleDateFormat();
-						String date = curElem.getElementsByTagName("date")
-								.item(0).getTextContent();
+						Date date = dateFormat.parse(curElem
+								.getElementsByTagName("date").item(0)
+								.getTextContent());
 
 						// Notes
 						String notes = null;
 						if (curElem.getElementsByTagName("notes").getLength() != 0) {
-							notes = curElem
-									.getElementsByTagName("notes").item(0)
-									.getTextContent();
+							notes = curElem.getElementsByTagName("notes")
+									.item(0).getTextContent();
 						}
 
 						// Contacts
@@ -442,12 +442,13 @@ public class ContactManagerImpl implements ContactManager {
 							String contactNotes = curContact
 									.getElementsByTagName("notes").item(0)
 									.getTextContent();
-							
-							Contact meetingContactOutput = new ContactImpl(contactID, contactName);
+
+							Contact meetingContactOutput = new ContactImpl(
+									contactID, contactName);
 							meetingContactOutput.addNotes(contactNotes);
 							meetingContactsSet.add(meetingContactOutput);
 						}
-						
+
 						// Add meeting to the array
 						DateFormat dateFormat = new SimpleDateFormat();
 						Date meetingDate = null;
@@ -461,10 +462,12 @@ public class ContactManagerImpl implements ContactManager {
 						GregorianCalendar meetingCalendar = new GregorianCalendar();
 						meetingCalendar.setTime(meetingDate);
 						if (isInPast >= 0) {
-							meetingOutput = new FutureMeetingImpl(meetingID, meetingCalendar, meetingContactsSet);
+							meetingOutput = new FutureMeetingImpl(meetingID,
+									meetingCalendar, meetingContactsSet);
 							meetingsList.set(meetingID, meetingOutput);
 						} else {
-							meetingOutput = new PastMeetingImpl(meetingID, meetingCalendar, meetingContactsSet, notes);
+							meetingOutput = new PastMeetingImpl(meetingID,
+									meetingCalendar, meetingContactsSet, notes);
 							meetingsList.set(meetingID, meetingOutput);
 						}
 					}
