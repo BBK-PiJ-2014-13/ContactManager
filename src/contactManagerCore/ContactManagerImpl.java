@@ -74,8 +74,14 @@ public class ContactManagerImpl implements ContactManager {
 
 	@Override
 	public FutureMeeting getFutureMeeting(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		if (id >= meetingsList.size()) {
+			return null;
+		}
+		if (meetingsList.get(id) instanceof FutureMeeting) {
+			return (FutureMeeting) meetingsList.get(id);
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
