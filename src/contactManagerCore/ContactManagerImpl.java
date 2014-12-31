@@ -378,11 +378,18 @@ public class ContactManagerImpl implements ContactManager {
 					// Contacts
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
+						
+						// ID
 						int id = Integer.parseInt(curElem.getAttribute("id"));
+						
+						// Name
 						String name = curElem.getElementsByTagName("name")
 								.item(0).getTextContent();
+						
+						// Notes
 						String notes = curElem.getElementsByTagName("notes")
 								.item(0).getTextContent();
+						
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
 						outputContacts.add(targetContact);
@@ -391,8 +398,10 @@ public class ContactManagerImpl implements ContactManager {
 					// Meetings
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
-						int id = Integer.parseInt(curElem.getAttribute("id"));
 
+						// ID
+						int id = Integer.parseInt(curElem.getAttribute("id"));
+						
 						// Date
 						String date = curElem.getElementsByTagName("date")
 								.item(0).getTextContent();
