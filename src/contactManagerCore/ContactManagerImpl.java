@@ -33,7 +33,7 @@ public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	public ContactManagerImpl() {
-//		TODO importLists();
+		// TODO importLists();
 	}
 
 	@Override
@@ -353,8 +353,8 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public void importLists() {
+		boolean importContacts = true;
 		for (int count = 0; count < 2; count++) {
-			boolean importContacts = true;
 			ArrayList<Contact> outputContacts = new ArrayList<Contact>();
 			try {
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory
@@ -374,7 +374,6 @@ public class ContactManagerImpl implements ContactManager {
 				} else {
 					nList = doc.getElementsByTagName("meeting");
 				}
-
 				if (importContacts) {
 					// Contacts
 					for (int i = 0; i < nList.getLength(); i++) {
@@ -393,12 +392,15 @@ public class ContactManagerImpl implements ContactManager {
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
 						int id = Integer.parseInt(curElem.getAttribute("id"));
-						
+
 						// Date
 						String date = curElem.getElementsByTagName("date")
 								.item(0).getTextContent();
 
-						
+						// Notes
+						String notes = curElem.getElementsByTagName("notes")
+								.item(0).getTextContent();
+
 						// TODO add code to copy list of attending contacts
 						// TODO add code to copy type of Meeting (Future,
 						// Past...)
@@ -407,7 +409,6 @@ public class ContactManagerImpl implements ContactManager {
 			} catch (ParserConfigurationException | SAXException | IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("change boolean");
 			importContacts = !importContacts;
 		}
 	}
