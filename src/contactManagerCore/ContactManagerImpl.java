@@ -271,10 +271,12 @@ public class ContactManagerImpl implements ContactManager {
 
 						// Date
 						Node calendarNode = doc.createElement("date");
-						calendarNode.appendChild(doc.createTextNode(curMeeting
-								.getDate().getTime().toString()));
+						DateFormat dateFormat = new SimpleDateFormat();
+						calendarNode.appendChild(doc.createTextNode(dateFormat.format(curMeeting
+								.getDate().getTime())));
 						meeting.appendChild(calendarNode);
 
+						// Contacts
 						Element contacts = doc.createElement("contacts");
 						meeting.appendChild(contacts);
 						Object[] meetingContacts = curMeeting.getContacts()
@@ -408,6 +410,7 @@ public class ContactManagerImpl implements ContactManager {
 								.getAttribute("id"));
 
 						// Date
+						DateFormat dateFormat = new SimpleDateFormat();
 						String date = curElem.getElementsByTagName("date")
 								.item(0).getTextContent();
 
