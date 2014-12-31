@@ -358,7 +358,6 @@ public class ContactManagerImpl implements ContactManager {
 	public void importLists() {
 		boolean importContacts = true;
 		for (int count = 0; count < 2; count++) {
-			ArrayList<Contact> outputContacts = new ArrayList<Contact>();
 			try {
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory
 						.newInstance();
@@ -395,7 +394,8 @@ public class ContactManagerImpl implements ContactManager {
 
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
-						outputContacts.add(targetContact);
+						contactsList.set(id, targetContact);
+						
 					}
 				} else {
 					// Meetings
