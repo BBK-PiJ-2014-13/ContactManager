@@ -103,7 +103,7 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	public void getFutureMeetingTest() {
-		// Is tested by addFutureMeetingTest()
+		// TODO test this
 	}
 
 	@Test
