@@ -266,6 +266,7 @@ public class ContactManagerImpl implements ContactManager {
 						meeting.setAttribute("id", Integer.toString(i));
 						rootElement.appendChild(meeting);
 
+						// Date
 						Node calendarNode = doc.createElement("date");
 						calendarNode.appendChild(doc.createTextNode(curMeeting
 								.getDate().getTime().toString()));
@@ -273,22 +274,30 @@ public class ContactManagerImpl implements ContactManager {
 
 						Element contacts = doc.createElement("contacts");
 						meeting.appendChild(contacts);
-						Object[] meetingContacts = curMeeting.getContacts().toArray();
+						Object[] meetingContacts = curMeeting.getContacts()
+								.toArray();
+
+						// Contacts
 						for (int j = 0; j < curMeeting.getContacts().size(); j++) {
 							Contact curContact = (Contact) meetingContacts[j];
-							Element meetingContact = doc.createElement("contact");
-							meetingContact.setAttribute("id", Integer.toString(curContact.getId()));
+							Element meetingContact = doc
+									.createElement("contact");
+							meetingContact.setAttribute("id",
+									Integer.toString(curContact.getId()));
 							contacts.appendChild(meetingContact);
-							
+
 							// Name
 							Node contactName = doc.createElement("name");
-							contactName.appendChild(doc.createTextNode(curContact.getName()));
+							contactName.appendChild(doc
+									.createTextNode(curContact.getName()));
 							meetingContact.appendChild(contactName);
-							
+
 							// Notes
 							Node contactNotes = doc.createElement("notes");
-							contactNotes.appendChild(doc.createTextNode(curContact.getNotes()));
+							contactNotes.appendChild(doc
+									.createTextNode(curContact.getNotes()));
 							meetingContact.appendChild(contactNotes);
+
 						}
 					}
 				} else {
@@ -303,7 +312,7 @@ public class ContactManagerImpl implements ContactManager {
 						Node nameNode = doc.createElement("name");
 						nameNode.appendChild(doc.createTextNode(curEl.getName()));
 						contact.appendChild(nameNode);
-						
+
 						// Notes
 						Node notesNode = doc.createElement("notes");
 						notesNode.appendChild(doc.createTextNode(curEl
