@@ -1,6 +1,7 @@
 package contactManagerCore;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,12 +10,14 @@ import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class ContactManagerTest extends BasicTest {
 	ContactManagerImpl manager;
@@ -370,6 +373,7 @@ public class ContactManagerTest extends BasicTest {
 				notes);
 		manager.flush();
 
+		// Tests meetings
 		try {
 			File xmlFile = new File("meetings.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -384,6 +388,30 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = null;
 		}
 		test();
+		
+		// Tests contacts
+		try {
+			File xmlFile = new File("contacts.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(xmlFile);
+			
+			NodeList listOfContacts = doc.getElementsByTagName("contact");
+			valueExpected = 3;
+			valueActual = listOfContacts.getLength();
+			test();
+			
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void importListsTest() {
