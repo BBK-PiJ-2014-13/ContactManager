@@ -389,7 +389,18 @@ public class ContactManagerTest extends BasicTest {
 		manager.addFutureMeeting(contacts, calendar);
 		manager.flush();
 		
-		// TODO remake this test
+		Contact contactTest = (Contact) manager.getContacts("Tom").toArray()[0];
+		if (contactTest.getNotes().equals("manager")) {
+			valueActual = 1;
+		}
+		test();
+		
+		try {
+			manager.getFutureMeetingList(calendar).get(0);
+			valueActual = 1;
+		} catch (Exception e) {
+			valueActual = 0;
+		}
 		test();
 	}
 	
