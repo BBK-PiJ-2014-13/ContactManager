@@ -274,11 +274,9 @@ public class ContactManagerImpl implements ContactManager {
 
 						Element contacts = doc.createElement("contacts");
 						meeting.appendChild(contacts);
-						Node curContactNode;
-						Contact[] meetingContacts = (Contact[]) curEl
-								.getContacts().toArray();
+						Object[] meetingContacts = curEl.getContacts().toArray();
 						for (int j = 0; j < curEl.getContacts().size(); i++) {
-							Contact curContact = meetingContacts[j];
+							Contact curContact = (Contact) meetingContacts[j];
 						}
 					}
 				} else {
