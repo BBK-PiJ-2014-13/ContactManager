@@ -376,6 +376,7 @@ public class ContactManagerImpl implements ContactManager {
 				}
 
 				if (importContacts) {
+					// Contacts
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
 						int id = Integer.parseInt(curElem.getAttribute("id"));
@@ -388,12 +389,16 @@ public class ContactManagerImpl implements ContactManager {
 						outputContacts.add(targetContact);
 					}
 				} else {
+					// Meetings
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
 						int id = Integer.parseInt(curElem.getAttribute("id"));
+						
+						// Date
 						String date = curElem.getElementsByTagName("date")
 								.item(0).getTextContent();
 
+						
 						// TODO add code to copy list of attending contacts
 						// TODO add code to copy type of Meeting (Future,
 						// Past...)
