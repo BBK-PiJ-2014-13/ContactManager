@@ -418,6 +418,11 @@ public class ContactManagerImpl implements ContactManager {
 						for (int j = 0; j < meetingContacts.getLength(); j++) {
 							Element curContact = (Element) meetingContacts.item(j);
 							
+							// ID
+							
+							// Name
+							
+							// Notes
 						}
 					}
 				}
