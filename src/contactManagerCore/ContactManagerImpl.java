@@ -400,7 +400,7 @@ public class ContactManagerImpl implements ContactManager {
 						Element curElem = (Element) nList.item(i);
 
 						// ID
-						int id = Integer.parseInt(curElem.getAttribute("id"));
+						int meetingID = Integer.parseInt(curElem.getAttribute("id"));
 						
 						// Date
 						String date = curElem.getElementsByTagName("date")
@@ -419,8 +419,10 @@ public class ContactManagerImpl implements ContactManager {
 							Element curContact = (Element) meetingContacts.item(j);
 							
 							// ID
+							int contactID = Integer.parseInt(curContact.getAttribute("id"));
 							
 							// Name
+							
 							
 							// Notes
 						}
