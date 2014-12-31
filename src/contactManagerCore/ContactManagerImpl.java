@@ -276,14 +276,15 @@ public class ContactManagerImpl implements ContactManager {
 						meeting.appendChild(contacts);
 						Object[] meetingContacts = curMeeting.getContacts()
 								.toArray();
-						
+
 						// Notes
 						Node meetingNotes = doc.createElement("notes");
 						if (curMeeting instanceof PastMeeting) {
-							meetingNotes.appendChild(doc.createTextNode(((PastMeeting) curMeeting).getNotes()));
+							meetingNotes.appendChild(doc
+									.createTextNode(((PastMeeting) curMeeting)
+											.getNotes()));
 							meeting.appendChild(meetingNotes);
 						}
-						
 
 						// Contacts
 						for (int j = 0; j < curMeeting.getContacts().size(); j++) {
@@ -429,9 +430,5 @@ public class ContactManagerImpl implements ContactManager {
 			throw new IllegalArgumentException();
 		}
 		return true;
-	}
-
-	public ArrayList<Contact> getSetContents() {
-		return null;
 	}
 }
