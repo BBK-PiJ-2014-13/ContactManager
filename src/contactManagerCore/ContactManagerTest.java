@@ -380,12 +380,23 @@ public class ContactManagerTest extends BasicTest {
 			Document doc = dBuilder.parse(xmlFile);
 
 			NodeList listOfMeetings = doc.getElementsByTagName("meeting");
-			Node secondContact = listOfMeetings.item(1);
-			if (secondContact.getTextContent().equals("Tom")) {
-				valueActual = 1;
+			NodeList firstMeetingNodes = listOfMeetings.item(0).getChildNodes();
+			Node contactTest = null;
+			for (int i = 0; i < firstMeetingNodes.getLength(); i++) {
+				if (firstMeetingNodes.item(i).getNodeName().equals("contacts")) {
+					contactTest = firstMeetingNodes.item(i).getChildNodes().item(1);
+				}
 			}
+			
+			
+			for (int i = 0; i < contactTest.getChildNodes().getLength(); i++) {
+				if (contactTest.getChildNodes().item(i).getNodeName().equals("name")) {
+					valueActual = contactTest.getChildNodes().item(i).getTextContent();
+				}
+			}
+			valueExpected = "Tom";
 		} catch (Exception e) {
-			valueActual = 0;
+			valueActual = null;
 		}
 		test();
 	}
