@@ -401,7 +401,6 @@ public class ContactManagerTest extends BasicTest {
 		test();
 	}
 
-	@Test
 	public void importListsTest() {
 		manager.addNewContact("John", "director");
 		manager.addNewContact("Tom", "manager");
