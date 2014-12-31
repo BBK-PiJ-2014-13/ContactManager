@@ -353,52 +353,55 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public void importLists() {
-		boolean importContacts = true;
-		ArrayList<Contact> outputContacts = new ArrayList<Contact>();
-		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		for (int count = 0; count < 2; count++) {
+			boolean importContacts = true;
+			ArrayList<Contact> outputContacts = new ArrayList<Contact>();
+			try {
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory
+						.newInstance();
+				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-			Document doc;
-			if (importContacts) {
-				doc = docBuilder.parse(new File("contacts.xml"));
-			} else {
-				doc = docBuilder.parse(new File("meetings.xml"));
-			}
-
-			NodeList nList;
-			if (importContacts) {
-				nList = doc.getElementsByTagName("contact");
-			} else {
-				nList = doc.getElementsByTagName("meeting");
-			}
-
-			if (importContacts) {
-				for (int i = 0; i < nList.getLength(); i++) {
-					Element curElem = (Element) nList.item(i);
-					int id = Integer.parseInt(curElem.getAttribute("id"));
-					String name = curElem.getElementsByTagName("name").item(0)
-							.getTextContent();
-					String notes = curElem.getElementsByTagName("notes")
-							.item(0).getTextContent();
-					Contact targetContact = new ContactImpl(id, name);
-					targetContact.addNotes(notes);
-					outputContacts.add(targetContact);
+				Document doc;
+				if (importContacts) {
+					doc = docBuilder.parse(new File("contacts.xml"));
+				} else {
+					doc = docBuilder.parse(new File("meetings.xml"));
 				}
-			} else {
-				for (int i = 0; i < nList.getLength(); i++) {
-					Element curElem = (Element) nList.item(i);
-					int id = Integer.parseInt(curElem.getAttribute("id"));
-					String date = curElem.getElementsByTagName("date").item(0)
-							.getTextContent();
 
-					// TODO add code to copy list of attending contacts
-					// TODO add code to copy type of Meeting (Future, Past...)
+				NodeList nList;
+				if (importContacts) {
+					nList = doc.getElementsByTagName("contact");
+				} else {
+					nList = doc.getElementsByTagName("meeting");
 				}
+
+				if (importContacts) {
+					for (int i = 0; i < nList.getLength(); i++) {
+						Element curElem = (Element) nList.item(i);
+						int id = Integer.parseInt(curElem.getAttribute("id"));
+						String name = curElem.getElementsByTagName("name")
+								.item(0).getTextContent();
+						String notes = curElem.getElementsByTagName("notes")
+								.item(0).getTextContent();
+						Contact targetContact = new ContactImpl(id, name);
+						targetContact.addNotes(notes);
+						outputContacts.add(targetContact);
+					}
+				} else {
+					for (int i = 0; i < nList.getLength(); i++) {
+						Element curElem = (Element) nList.item(i);
+						int id = Integer.parseInt(curElem.getAttribute("id"));
+						String date = curElem.getElementsByTagName("date")
+								.item(0).getTextContent();
+
+						// TODO add code to copy list of attending contacts
+						// TODO add code to copy type of Meeting (Future,
+						// Past...)
+					}
+				}
+			} catch (ParserConfigurationException | SAXException | IOException e) {
+				e.printStackTrace();
 			}
-		} catch (ParserConfigurationException | SAXException | IOException e) {
-			e.printStackTrace();
 		}
 	}
 
