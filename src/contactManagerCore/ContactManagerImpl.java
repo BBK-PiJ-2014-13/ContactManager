@@ -430,4 +430,8 @@ public class ContactManagerImpl implements ContactManager {
 		}
 		return true;
 	}
+
+	public ArrayList<Contact> getSetContents() {
+		return null;
+	}
 }
