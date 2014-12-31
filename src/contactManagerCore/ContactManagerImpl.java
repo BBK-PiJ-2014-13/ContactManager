@@ -378,18 +378,18 @@ public class ContactManagerImpl implements ContactManager {
 					// Contacts
 					for (int i = 0; i < nList.getLength(); i++) {
 						Element curElem = (Element) nList.item(i);
-						
+
 						// ID
 						int id = Integer.parseInt(curElem.getAttribute("id"));
-						
+
 						// Name
 						String name = curElem.getElementsByTagName("name")
 								.item(0).getTextContent();
-						
+
 						// Notes
 						String notes = curElem.getElementsByTagName("notes")
 								.item(0).getTextContent();
-						
+
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
 						outputContacts.add(targetContact);
@@ -400,8 +400,9 @@ public class ContactManagerImpl implements ContactManager {
 						Element curElem = (Element) nList.item(i);
 
 						// ID
-						int meetingID = Integer.parseInt(curElem.getAttribute("id"));
-						
+						int meetingID = Integer.parseInt(curElem
+								.getAttribute("id"));
+
 						// Date
 						String date = curElem.getElementsByTagName("date")
 								.item(0).getTextContent();
@@ -414,17 +415,26 @@ public class ContactManagerImpl implements ContactManager {
 						}
 
 						// Contacts
-						NodeList meetingContacts = curElem.getElementsByTagName("contact");
+						NodeList meetingContacts = curElem
+								.getElementsByTagName("contact");
+						HashSet<Contact> meetingContactsSet = new HashSet<Contact>();
 						for (int j = 0; j < meetingContacts.getLength(); j++) {
-							Element curContact = (Element) meetingContacts.item(j);
-							
+							Element curContact = (Element) meetingContacts
+									.item(j);
+
 							// ID
-							int contactID = Integer.parseInt(curContact.getAttribute("id"));
-							
+							int contactID = Integer.parseInt(curContact
+									.getAttribute("id"));
+
 							// Name
-							
-							
+							String contactName = curContact
+									.getElementsByTagName("name").item(0)
+									.getTextContent();
+
 							// Notes
+							String contactNotes = curContact
+									.getElementsByTagName("notes").item(0)
+									.getTextContent();
 						}
 					}
 				}
