@@ -275,10 +275,10 @@ public class ContactManagerImpl implements ContactManager {
 						Element contacts = doc.createElement("contacts");
 						meeting.appendChild(contacts);
 						Node curContactNode;
+						Contact[] meetingContacts = (Contact[]) curEl
+								.getContacts().toArray();
 						for (int j = 0; j < curEl.getContacts().size(); i++) {
-							Contact[] curContactEl = (Contact[]) curEl
-									.getContacts().toArray()[j];
-
+							Contact curContact = meetingContacts[j];
 						}
 					}
 				} else {
@@ -322,7 +322,7 @@ public class ContactManagerImpl implements ContactManager {
 		}
 	}
 
-	public ArrayList<ArrayList> importLists() {
+	public void importLists() {
 		boolean readMeetings = true;
 		ArrayList<Contact> outputContacts = new ArrayList<Contact>();
 		try {
@@ -370,9 +370,6 @@ public class ContactManagerImpl implements ContactManager {
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
-		ArrayList<ArrayList> returnList = new ArrayList<ArrayList>();
-		returnList.add(contactsList);
-		return returnList;
 	}
 
 	public boolean hasAllContacts(Set<Contact> set) {
