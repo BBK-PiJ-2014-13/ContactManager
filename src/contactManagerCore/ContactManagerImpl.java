@@ -2,6 +2,9 @@ package contactManagerCore;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -439,6 +442,22 @@ public class ContactManagerImpl implements ContactManager {
 							Contact meetingContactOutput = new ContactImpl(contactID, contactName);
 							meetingContactOutput.addNotes(contactNotes);
 							meetingContactsSet.add(meetingContactOutput);
+						}
+						
+						// Add meeting to the array
+						DateFormat dateFormat = new SimpleDateFormat();
+						Date meetingDate = null;
+						try {
+							meetingDate = dateFormat.parse(date);
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+						int isInPast = meetingDate.compareTo(new Date());
+						Meeting meetingOutput;
+						GregorianCalendar meetingCalendar = new GregorianCalendar();
+						meetingCalendar.setTime(meetingDate);
+						if (isInPast >= 0) {
+							meetingOutput = new FutureMeetingImpl(meetingID, meetingCalendar, outputContacts);
 						}
 					}
 				}
