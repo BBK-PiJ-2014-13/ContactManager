@@ -25,6 +25,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -36,7 +37,7 @@ public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	public ContactManagerImpl() {
-		// TODO importLists();
+		importLists();
 	}
 
 	@Override
@@ -411,9 +412,16 @@ public class ContactManagerImpl implements ContactManager {
 
 						// Date
 						DateFormat dateFormat = new SimpleDateFormat();
-						Date date = dateFormat.parse(curElem
-								.getElementsByTagName("date").item(0)
-								.getTextContent());
+						Date date = null;
+						try {
+							date = dateFormat.parse(curElem
+									.getElementsByTagName("date").item(0)
+									.getTextContent());
+						} catch (DOMException e) {
+							e.printStackTrace();
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
 
 						// Notes
 						String notes = null;
@@ -450,17 +458,10 @@ public class ContactManagerImpl implements ContactManager {
 						}
 
 						// Add meeting to the array
-						DateFormat dateFormat = new SimpleDateFormat();
-						Date meetingDate = null;
-						try {
-							meetingDate = dateFormat.parse(date);
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-						int isInPast = meetingDate.compareTo(new Date());
+						int isInPast = date.compareTo(new Date());
 						Meeting meetingOutput;
 						GregorianCalendar meetingCalendar = new GregorianCalendar();
-						meetingCalendar.setTime(meetingDate);
+						meetingCalendar.setTime(date);
 						if (isInPast >= 0) {
 							meetingOutput = new FutureMeetingImpl(meetingID,
 									meetingCalendar, meetingContactsSet);
