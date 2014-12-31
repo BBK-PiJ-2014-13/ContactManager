@@ -435,6 +435,10 @@ public class ContactManagerImpl implements ContactManager {
 							String contactNotes = curContact
 									.getElementsByTagName("notes").item(0)
 									.getTextContent();
+							
+							Contact meetingContactOutput = new ContactImpl(contactID, contactName);
+							meetingContactOutput.addNotes(contactNotes);
+							meetingContactsSet.add(meetingContactOutput);
 						}
 					}
 				}
