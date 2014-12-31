@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -14,7 +13,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -380,21 +378,8 @@ public class ContactManagerTest extends BasicTest {
 			Document doc = dBuilder.parse(xmlFile);
 
 			NodeList listOfMeetings = doc.getElementsByTagName("meeting");
-			NodeList firstMeetingNodes = listOfMeetings.item(0).getChildNodes();
-			Node contactTest = null;
-			for (int i = 0; i < firstMeetingNodes.getLength(); i++) {
-				if (firstMeetingNodes.item(i).getNodeName().equals("contacts")) {
-					contactTest = firstMeetingNodes.item(i).getChildNodes().item(1);
-				}
-			}
-			
-			
-			for (int i = 0; i < contactTest.getChildNodes().getLength(); i++) {
-				if (contactTest.getChildNodes().item(i).getNodeName().equals("name")) {
-					valueActual = contactTest.getChildNodes().item(i).getTextContent();
-				}
-			}
-			valueExpected = "Tom";
+					valueExpected = 2;
+					valueActual = listOfMeetings.getLength();
 		} catch (Exception e) {
 			valueActual = null;
 		}
