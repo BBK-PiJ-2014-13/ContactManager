@@ -388,19 +388,8 @@ public class ContactManagerTest extends BasicTest {
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addFutureMeeting(contacts, calendar);
 		manager.flush();
-		List<Meeting> meetingListTest = manager.importLists().get(0);
-		List<Contact> contactListTest = manager.importLists().get(0);
 		
-		Contact[] meetingContactsTest = (Contact[]) meetingListTest.get(0).getContacts().toArray();
-		
-		if (meetingContactsTest[0].getName().equals("John")) {
-			valueActual = 1;
-		}
-		test();
-		
-		if (contactListTest.get(1).getName().equals("Tom")) {
-			valueActual = 1;
-		}
+		// TODO remake this test
 		test();
 	}
 	
