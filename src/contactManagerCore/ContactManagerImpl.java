@@ -33,7 +33,7 @@ public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	public ContactManagerImpl() {
-		importLists();
+//		TODO importLists();
 	}
 
 	@Override
