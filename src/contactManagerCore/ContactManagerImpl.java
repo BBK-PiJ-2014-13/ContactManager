@@ -404,9 +404,12 @@ public class ContactManagerImpl implements ContactManager {
 									.getTextContent();
 						}
 
-						// TODO add code to copy list of attending contacts
-						// TODO add code to copy type of Meeting (Future,
-						// Past...)
+						// Contacts
+						NodeList meetingContacts = curElem.getElementsByTagName("contact");
+						for (int j = 0; j < meetingContacts.getLength(); j++) {
+							Element curContact = (Element) meetingContacts.item(j);
+							
+						}
 					}
 				}
 			} catch (ParserConfigurationException | SAXException | IOException e) {
