@@ -398,8 +398,11 @@ public class ContactManagerImpl implements ContactManager {
 								.item(0).getTextContent();
 
 						// Notes
-						String notes = curElem.getElementsByTagName("notes")
-								.item(0).getTextContent();
+						if (curElem.getElementsByTagName("notes").getLength() != 0) {
+							String notes = curElem
+									.getElementsByTagName("notes").item(0)
+									.getTextContent();
+						}
 
 						// TODO add code to copy list of attending contacts
 						// TODO add code to copy type of Meeting (Future,
