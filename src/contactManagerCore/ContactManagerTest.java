@@ -334,7 +334,8 @@ public class ContactManagerTest extends BasicTest {
 				// the IDs
 
 		int[] array = { 0, 1, 4 };
-		valueExpected = new IllegalArgumentException().getClass().getSimpleName();
+		valueExpected = new IllegalArgumentException().getClass()
+				.getSimpleName();
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
@@ -495,11 +496,8 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addToListTest() {
 		Contact contactTest1 = new ContactImpl(10, "John");
-		manager.addToList(10, contactTest1);
-		
 		valueExpected = "John";
-		Contact contactTest2 = (Contact) manager.getContacts("John").toArray()[0];
-		valueActual = contactTest2.getName();
+		valueActual = ((Contact) manager.addToList(10, contactTest1)).getName();
 		test(); // if element is in correct position inside of array
 	}
 }
