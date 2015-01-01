@@ -404,7 +404,7 @@ public class ContactManagerImpl implements ContactManager {
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
 						// TODO add code to prevent exceptions when lists are empty
-						addToList(id, targetContact, contactsList);
+						addToList(id, targetContact);
 
 					}
 				} else {
