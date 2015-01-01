@@ -330,10 +330,11 @@ public class ContactManagerTest extends BasicTest {
 				// the IDs
 
 		int[] array = { 0, 1, 4 };
+		valueExpected = new IllegalArgumentException().getClass().getSimpleName();
 		try {
 			manager.getContacts(array);
 		} catch (IllegalArgumentException e) {
-			valueActual = 1;
+			valueActual = e.getClass().getSimpleName();
 		}
 		test();
 	}
