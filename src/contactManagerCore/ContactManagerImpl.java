@@ -517,7 +517,6 @@ public class ContactManagerImpl implements ContactManager {
 		return true;
 	}
 
-	public void addToList(Object element, ArrayList<Object> array) {
-		
+	public void addToList(int position, Object element, ArrayList<Object> array) {
 	}
 }
