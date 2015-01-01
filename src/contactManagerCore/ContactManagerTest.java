@@ -489,7 +489,6 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void addToListTest() {
-		ArrayList<Object> arrayTest = new ArrayList<Object>();
 		Contact contactTest1 = new ContactImpl(10, "John");
 		manager.addToList(10, contactTest1);
 		
