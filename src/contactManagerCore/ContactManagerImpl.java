@@ -517,7 +517,7 @@ public class ContactManagerImpl implements ContactManager {
 		return true;
 	}
 
-	public void addToList(int position, Object element, ArrayList<Object> array) {
+	public void addToList(int position, Object element) {
 		if (position >= array.size()) {
 			for (int i = 0; i < position - array.size() + 1; i++) {
 				array.add(null);
