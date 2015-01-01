@@ -488,6 +488,8 @@ public class ContactManagerTest extends BasicTest {
 	}
 
 	public void addToListTest() {
-		
+		ArrayList<Object> arrayTest = new ArrayList<Object>();
+		Contact contactTest = new ContactImpl(10, "John");
+		manager.addToList(0, contactTest, arrayTest);
 	}
 }
