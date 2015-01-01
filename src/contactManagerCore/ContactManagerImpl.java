@@ -472,7 +472,7 @@ public class ContactManagerImpl implements ContactManager {
 						if (isInPast >= 0) {
 							meetingOutput = new FutureMeetingImpl(meetingID,
 									meetingCalendar, meetingContactsSet);
-							meetingsList.set(meetingID, meetingOutput);
+							addToList(meetingID, meetingOutput);
 						} else {
 							meetingOutput = new PastMeetingImpl(meetingID,
 									meetingCalendar, meetingContactsSet, notes);
