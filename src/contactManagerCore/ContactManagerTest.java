@@ -29,6 +29,10 @@ public class ContactManagerTest extends BasicTest {
 
 	@Before
 	public void buildUp() {
+		File contactsXML = new File("contacts.xml");
+		File meetingsXML = new File("meetings.xml");
+		contactsXML.delete();
+		meetingsXML.delete();
 		manager = new ContactManagerImpl();
 		contact = new ContactImpl(13, "Arnold");
 		contacts = new HashSet<Contact>();
