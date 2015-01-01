@@ -490,14 +490,12 @@ public class ContactManagerTest extends BasicTest {
 	@Test
 	public void addToListTest() {
 		ArrayList<Object> arrayTest = new ArrayList<Object>();
-		Contact contactTest = new ContactImpl(10, "John");
-		manager.addToList(10, contactTest, arrayTest);
-		valueExpected = 11;
-		valueActual = arrayTest.size();
-		test(); // if array size is correct
+		Contact contactTest1 = new ContactImpl(10, "John");
+		manager.addToList(10, contactTest1);
 		
 		valueExpected = "John";
-		valueActual = ((Contact) arrayTest.get(10)).getName();
+		Contact contactTest2 = (Contact) manager.getContacts("John").toArray()[0];
+		valueActual = contactTest2.getName();
 		test(); // if element is in correct position inside of array
 	}
 }
