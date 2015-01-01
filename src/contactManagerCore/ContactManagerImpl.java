@@ -518,11 +518,21 @@ public class ContactManagerImpl implements ContactManager {
 	}
 
 	public void addToList(int position, Object element) {
-		if (position >= array.size()) {
-			for (int i = 0; i < position - array.size() + 1; i++) {
-				array.add(null);
+		if (element instanceof Meeting) {
+			if (position >= meetingsList.size()) {
+				for (int i = 0; i < position - meetingsList.size() + 1; i++) {
+					meetingsList.add(null);
+				}
 			}
+			meetingsList.set(position, (Meeting) element);
 		}
-		array.set(position, element);
+		if (element instanceof Contact) {
+			if (position >= contactsList.size()) {
+				for (int i = 0; i < position - contactsList.size() + 1; i++) {
+					contactsList.add(null);
+				}
+			}
+			contactsList.set(position, (Contact) element);
+		}
 	}
 }
