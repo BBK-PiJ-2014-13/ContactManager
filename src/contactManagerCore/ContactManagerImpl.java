@@ -37,8 +37,8 @@ public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	public ContactManagerImpl() {
-		File meetingsXML = new File("meetings");
-		File contactsXML = new File("contacts");
+		File meetingsXML = new File("meetings.xml");
+		File contactsXML = new File("contacts.xml");
 		if (meetingsXML.exists() && contactsXML.exists()) {
 			importLists();	
 		}
