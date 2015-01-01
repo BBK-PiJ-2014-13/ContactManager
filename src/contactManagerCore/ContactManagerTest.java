@@ -2,8 +2,6 @@ package contactManagerCore;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -14,6 +12,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -38,6 +37,14 @@ public class ContactManagerTest extends BasicTest {
 		contacts = new HashSet<Contact>();
 		calendar = new GregorianCalendar(2015, 1, 1);
 		notes = "hello world";
+	}
+	
+	@After
+	public void cleanUp() {
+		File contactsXML = new File("contacts.xml");
+		File meetingsXML = new File("meetings.xml");
+		contactsXML.delete();
+		meetingsXML.delete();
 	}
 
 	@Test
