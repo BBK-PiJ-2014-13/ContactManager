@@ -221,6 +221,10 @@ public class ContactManagerImpl implements ContactManager {
 	public Set<Contact> getContacts(int... ids) {
 		HashSet<Contact> resultSet = new HashSet<Contact>();
 		for (int i = 0; i < ids.length; i++) {
+			System.out.println("id: " + ids[i]);
+			System.out.println("size: " + contactsList.size());
+			System.out.println();
+			
 			if (ids[i] >= contactsList.size()) {
 				throw new IllegalArgumentException();
 			}
@@ -517,22 +521,25 @@ public class ContactManagerImpl implements ContactManager {
 		return true;
 	}
 
-	public void addToList(int position, Object element) {
+	public Object addToList(int position, Object element) {
 		if (element instanceof Meeting) {
-			if (position >= meetingsList.size()) {
-				for (int i = 0; i < position - meetingsList.size() + 1; i++) {
+			int size = meetingsList.size();
+			if (position >= size) {
+				for (int i = 0; i < position - size + 1; i++) {
 					meetingsList.add(null);
 				}
 			}
 			meetingsList.set(position, (Meeting) element);
 		}
 		if (element instanceof Contact) {
-			if (position >= contactsList.size()) {
-				for (int i = 0; i < position - contactsList.size() + 1; i++) {
+			int size = contactsList.size();
+			if (position >= size) {
+				for (int i = 0; i < position - size + 1; i++) {
 					contactsList.add(null);
 				}
 			}
 			contactsList.set(position, (Contact) element);
 		}
+		return contactsList.get(position);
 	}
 }
