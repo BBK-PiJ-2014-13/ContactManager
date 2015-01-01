@@ -487,9 +487,17 @@ public class ContactManagerTest extends BasicTest {
 		test(); // Tests if the method returns true when it has all contacts
 	}
 
+	@Test
 	public void addToListTest() {
 		ArrayList<Object> arrayTest = new ArrayList<Object>();
 		Contact contactTest = new ContactImpl(10, "John");
-		manager.addToList(0, contactTest, arrayTest);
+		manager.addToList(contactTest, arrayTest);
+		valueExpected = 11;
+		valueActual = arrayTest.size();
+		test(); // if array size is correct
+		
+		valueExpected = "John";
+		valueActual = ((Contact) arrayTest.get(10)).getName();
+		test(); // if element is in correct position inside of array
 	}
 }
