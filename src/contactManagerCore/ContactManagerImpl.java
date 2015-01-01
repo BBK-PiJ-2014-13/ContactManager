@@ -37,7 +37,11 @@ public class ContactManagerImpl implements ContactManager {
 	private ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 	public ContactManagerImpl() {
-		importLists();
+		File meetingsXML = new File("meetings");
+		File contactsXML = new File("contacts");
+		if (meetingsXML.exists() && contactsXML.exists()) {
+			importLists();	
+		}
 	}
 
 	@Override
