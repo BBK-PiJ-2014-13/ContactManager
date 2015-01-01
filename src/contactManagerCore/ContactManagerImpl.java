@@ -476,7 +476,7 @@ public class ContactManagerImpl implements ContactManager {
 						} else {
 							meetingOutput = new PastMeetingImpl(meetingID,
 									meetingCalendar, meetingContactsSet, notes);
-							meetingsList.set(meetingID, meetingOutput);
+							addToList(meetingID, meetingOutput);
 						}
 					}
 				}
