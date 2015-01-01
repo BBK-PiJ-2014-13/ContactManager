@@ -225,10 +225,6 @@ public class ContactManagerImpl implements ContactManager {
 	public Set<Contact> getContacts(int... ids) {
 		HashSet<Contact> resultSet = new HashSet<Contact>();
 		for (int i = 0; i < ids.length; i++) {
-			System.out.println("id: " + ids[i]);
-			System.out.println("size: " + contactsList.size());
-			System.out.println();
-			
 			if (ids[i] >= contactsList.size()) {
 				throw new IllegalArgumentException();
 			}
