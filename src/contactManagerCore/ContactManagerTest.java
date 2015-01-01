@@ -491,7 +491,7 @@ public class ContactManagerTest extends BasicTest {
 	public void addToListTest() {
 		ArrayList<Object> arrayTest = new ArrayList<Object>();
 		Contact contactTest = new ContactImpl(10, "John");
-		manager.addToList(contactTest, arrayTest);
+		manager.addToList(10, contactTest, arrayTest);
 		valueExpected = 11;
 		valueActual = arrayTest.size();
 		test(); // if array size is correct
