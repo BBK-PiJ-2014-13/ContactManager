@@ -2,6 +2,8 @@ package contactManagerCore;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -15,7 +17,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -382,13 +383,13 @@ public class ContactManagerTest extends BasicTest {
 			Document doc = dBuilder.parse(xmlFile);
 
 			NodeList listOfMeetings = doc.getElementsByTagName("meeting");
-					valueExpected = 2;
-					valueActual = listOfMeetings.getLength();
+			valueExpected = 2;
+			valueActual = listOfMeetings.getLength();
 		} catch (Exception e) {
 			valueActual = null;
 		}
 		test();
-		
+
 		// Tests contacts
 		try {
 			File xmlFile = new File("contacts.xml");
@@ -396,12 +397,12 @@ public class ContactManagerTest extends BasicTest {
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(xmlFile);
-			
+
 			NodeList listOfContacts = doc.getElementsByTagName("contact");
 			valueExpected = 3;
 			valueActual = listOfContacts.getLength();
 			test();
-			
+
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -414,26 +415,29 @@ public class ContactManagerTest extends BasicTest {
 		}
 	}
 
+	@Test
 	public void importListsTest() {
 		manager.addNewContact("John", "director");
 		manager.addNewContact("Tom", "manager");
-		contacts.add(new ContactImpl(0, "John"));
+		Contact contactTest1 = new ContactImpl(0, "John");
+		contactTest1.addNotes("director");
+		contacts.add(contactTest1);
 		manager.addFutureMeeting(contacts, calendar);
+		manager.addNewPastMeeting(contacts, new GregorianCalendar(2010, 1, 1),
+				notes);
 		manager.flush();
+		manager = new ContactManagerImpl();
 
 		Contact contactTest = (Contact) manager.getContacts("Tom").toArray()[0];
 		if (contactTest.getNotes().equals("manager")) {
 			valueActual = 1;
 		}
-		test();
+		test(); // Test if imported contacts correctly
 
-		try {
-			manager.getFutureMeetingList(calendar).get(0);
+		if (manager.getFutureMeeting(0).getDate().equals(calendar)) {
 			valueActual = 1;
-		} catch (Exception e) {
-			valueActual = 0;
 		}
-		test();
+		test(); // Test if imported meetings correctly
 	}
 
 	@Test
@@ -481,5 +485,9 @@ public class ContactManagerTest extends BasicTest {
 			valueActual = 1;
 		}
 		test(); // Tests if the method returns true when it has all contacts
+	}
+
+	public void addToListTest() {
+		
 	}
 }
