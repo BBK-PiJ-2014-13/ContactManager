@@ -84,8 +84,6 @@ public class ContactManagerImpl implements ContactManager {
 		if (meetingsList.get(id) instanceof FutureMeeting) {
 			return (FutureMeeting) meetingsList.get(id);
 		} else {
-			System.out.println(meetingsList.get(0).getClass().getSimpleName());
-			System.out.println(meetingsList.get(1).getClass().getSimpleName());
 			throw new IllegalArgumentException();
 		}
 	}
