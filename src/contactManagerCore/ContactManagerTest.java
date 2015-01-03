@@ -121,11 +121,11 @@ public class ContactManagerTest extends BasicTest {
 		contact = new ContactImpl(0, "John");
 		contacts.add(contact);
 		manager.addNewContact("John", "director");
-		manager.addFutureMeeting(contacts, futureCalendar);
-		manager.addFutureMeeting(contacts, futureCalendar);
-		manager.addFutureMeeting(contacts, futureCalendar);
-		valueExpected = 2040;
-		valueActual = manager.getFutureMeeting(2).getDate().get(Calendar.YEAR);
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2040, 1, 1));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2030, 1, 1));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2020, 1, 1));
+		valueExpected = 2030;
+		valueActual = manager.getFutureMeeting(1).getDate().get(Calendar.YEAR);
 		test(); // if returns correct future meeting
 		
 		valueExpected = null;
