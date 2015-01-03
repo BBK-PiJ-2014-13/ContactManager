@@ -51,11 +51,12 @@ public class ContactManagerTest extends BasicTest {
 	public void addFutureMeetingTest() {
 		contacts.add(new ContactImpl(0, "John"));
 		manager.addNewContact("John", "director");
-		manager.addFutureMeeting(contacts, futureCalendar);
-		if (manager.addFutureMeeting(contacts, futureCalendar) == 1) {
-			valueActual = 1;
-		}
-		test(); // Tests for correct return value
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2040, 1, 1));
+		int meetingID = manager.addFutureMeeting(contacts, new GregorianCalendar(2020, 1, 1));
+		manager.addFutureMeeting(contacts, new GregorianCalendar(2030, 1, 1));
+		valueExpected = 2020;
+		valueActual = manager.getFutureMeeting(meetingID).getDate().get(Calendar.YEAR);
+		test(); // if adds a meeting correctly
 		buildUp();
 
 		try {
