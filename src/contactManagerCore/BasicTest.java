@@ -11,6 +11,7 @@ public class BasicTest {
 	
 	public void test() {
 		assertEquals(valueExpected, valueActual);
+		valueExpected = 1;
 		valueActual = 0;
 	}
 }
