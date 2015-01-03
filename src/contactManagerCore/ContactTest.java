@@ -15,11 +15,6 @@ public class ContactTest extends BasicTest {
 
 	@Test
 	public void testsGetName() {
-		if (contact.getNotes() == "") {
-			valueActual = 1;
-		}
-		test();
-		
 		if (contact.getName() == "John") {
 			valueActual = 1;
 		}
