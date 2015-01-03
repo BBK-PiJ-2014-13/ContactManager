@@ -118,7 +118,19 @@ public class ContactManagerTest extends BasicTest {
 
 	@Test
 	public void getFutureMeetingTest() {
-		test();
+		contact = new ContactImpl(0, "John");
+		contacts.add(contact);
+		manager.addNewContact("John", "director");
+		manager.addFutureMeeting(contacts, futureCalendar);
+		manager.addFutureMeeting(contacts, futureCalendar);
+		manager.addFutureMeeting(contacts, futureCalendar);
+		valueExpected = 2040;
+		valueActual = manager.getFutureMeeting(2).getDate().get(Calendar.YEAR);
+		test(); // if returns correct future meeting
+		
+		valueExpected = null;
+		valueActual = manager.getFutureMeeting(10);
+		test(); // if returns null when there is no such meeting
 	}
 
 	@Test
