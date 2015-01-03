@@ -84,6 +84,8 @@ public class ContactManagerImpl implements ContactManager {
 		if (meetingsList.get(id) instanceof FutureMeeting) {
 			return (FutureMeeting) meetingsList.get(id);
 		} else {
+			System.out.println(meetingsList.get(0).getClass().getSimpleName());
+			System.out.println(meetingsList.get(1).getClass().getSimpleName());
 			throw new IllegalArgumentException();
 		}
 	}
@@ -407,7 +409,6 @@ public class ContactManagerImpl implements ContactManager {
 
 						Contact targetContact = new ContactImpl(id, name);
 						targetContact.addNotes(notes);
-						// TODO add code to prevent exceptions when lists are empty
 						addToList(id, targetContact);
 
 					}
@@ -469,11 +470,14 @@ public class ContactManagerImpl implements ContactManager {
 						}
 
 						// Add meeting to the array
-						int isInPast = date.compareTo(new Date());
+						boolean isInFuture = false;
+						if (date.compareTo(new Date()) >= 0) {
+							isInFuture = true;
+						}
 						Meeting meetingOutput;
 						GregorianCalendar meetingCalendar = new GregorianCalendar();
 						meetingCalendar.setTime(date);
-						if (isInPast >= 0) {
+						if (isInFuture) {
 							meetingOutput = new FutureMeetingImpl(meetingID,
 									meetingCalendar, meetingContactsSet);
 							addToList(meetingID, meetingOutput);
