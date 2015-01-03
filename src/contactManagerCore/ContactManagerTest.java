@@ -116,8 +116,9 @@ public class ContactManagerTest extends BasicTest {
 				// future
 	}
 
+	@Test
 	public void getFutureMeetingTest() {
-		// TODO test this
+		test();
 	}
 
 	@Test
